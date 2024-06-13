@@ -297,6 +297,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // End of Quote Section 
 
+// Share button 
+
+document.querySelector('.button-container').addEventListener('click', async function(event) {
+  if (event.target.id === 'share-copy') {
+      const url = window.location.href;
+      try {
+          await navigator.clipboard.writeText(url);
+          alert('Link copied to clipboard!');
+      } catch (err) {
+          alert('Failed to copy link.');
+      }
+  }
+});
+
 // End of share button
 
 //Tablet Section
