@@ -843,7 +843,33 @@
         margin-top: 0.5rem;
         font-size: 12.5px;
     }
-
+  
+    .ppm-section {
+        width: 100%;
+    }
+    
+    .ppm-text {
+        line-height: 1.6;
+    }
+    
+    .ppm-text>h1 {
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .ppm-text > p {
+        font-size: 12.5px;
+    }
+    /* copyright */
+    .copy-right > h4{
+        font-size: 12.5px;
+    }
+    .ppm-text > p {
+        font-size: 12.5px;
+    }
+    /* copyright */
+    .copy-right > h4{
+        font-size: 12.5px;
+    }
     .m-icon,
     .e-icon,
     .l-icon {
@@ -898,6 +924,13 @@
     .ppm-text>h1 {
         font-size: 20px;
         font-weight: 500;
+    }
+    .ppm-text > p {
+        font-size: 12.5px;
+    }
+    /* copyright */
+    .copy-right > h4{
+        font-size: 12.5px;
     }
     .ppm-text > p {
         font-size: 12.5px;

@@ -343,5 +343,21 @@
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/mobile.js"></script>
     
+    <script>
+ 
+    // Share button 
+
+    document.querySelector('.button-container').addEventListener('click', async function (event) {
+    if (event.target.id === 'share-copy') {
+        const url = window.location.href;
+        try {
+        await navigator.clipboard.writeText(url);
+        alert('Link copied to clipboard!');
+        } catch (err) {
+        alert('Failed to copy link.');
+        }
+    }
+    });
+    </script>
 </body>
 </html>

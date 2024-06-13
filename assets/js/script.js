@@ -285,6 +285,7 @@ document.querySelector('.button-next').addEventListener('click', function () {
   swiper.slideNext();
 });
 
+
 document.querySelector('.button-prev').addEventListener('click', function () {
   swiper.slidePrev();
 });
@@ -298,17 +299,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Share button 
 
-document.querySelector('.button-container').addEventListener('click', async function (event) {
+document.querySelector('.button-container').addEventListener('click', async function(event) {
   if (event.target.id === 'share-copy') {
-    const url = window.location.href;
-    try {
-      await navigator.clipboard.writeText(url);
-      alert('Link copied to clipboard!');
-    } catch (err) {
-      alert('Failed to copy link.');
-    }
+      const url = window.location.href;
+      try {
+          await navigator.clipboard.writeText(url);
+          alert('Link copied to clipboard!');
+      } catch (err) {
+          alert('Failed to copy link.');
+      }
   }
 });
+
 // End of share button
 
 //Tablet Section
