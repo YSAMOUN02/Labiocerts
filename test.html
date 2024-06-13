@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Box with Suggestions</title>
+    <style> 
+        .over-lay-content {
+            position: relative;
+            top: 25%;
+            width: 100%;
+            text-align: left;
+            margin-top: 3px;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+            text-decoration: none;
+            color: white;
+        }
+        .s-box {
+            position: absolute;
+            top: 5%;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .s-box input[type="text"] {
+            width: calc(120% - 50%);
+            padding: 5px;
+            border: 1px solid #947878; 
+            border-top: none;
+            font-size: 20px;
+            width: 80%;
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            background-color: transparent;
+            outline: none;
+            color: rgb(174, 78, 78);
+        }
+        .s-box button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 3rem;
+            margin-left: 40rem;
+        }
+        .s-box button a {
+            text-decoration: none;
+            color: black;
+        }
+        .s-suggestions {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .s-suggestions li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .s-suggestions li a {
+            text-decoration: none;
+            color: rgb(210, 100, 100);
+        }
+        .s-suggestions li:hover {
+            background: #ab4e4e;
+        }
+        .s-suggestions li.no-results {
+            text-align: center;
+            color: rgb(221, 147, 147);
+        }
+    </style>
+</head>
+<body>
+    <div class="s-box">
+        <input type="text" id="s-input" placeholder="Search...........">
+        <button id="s-button"><a href="#" id="s-link">Search</a></button>
+        <ul class="s-suggestions" id="s-suggestions">
+            <li><a href="Phy-analysis.html">Physico-Chemical Analysis</a></li>
+            <li><a href="Food-analysis.html">Analysis Fees For Food</a></li>
+            <li><a href="analysisfees.html">Analysis Fees For Water and Waste Water</a></li>
+            <li><a href="La-analysis.html">Labiocert Analysis</a></li>
+            <li><a href="service-one.html">Pharmaceutical Testing</a></li>
+            <li><a href="welcomebio.html">Welcome to Labiocert</a></li>
+            <li><a href="service-two.html">Food and Feed Testing</a></li>
+            <li><a href="service-three.html">Water and Wastewater Testing</a></li>
+            <li><a href="getquote.html">Get a quote</a></li>
+            <li><a href="Eventone.html">New year and double birthday</a></li>
+            <li><a href="Eventtwo.html">Launch of KEM</a></li>
+            <li><a href="Eventthree.html">KINAL is the symbol of the effective pain-killer</a></li>
+            <li><a href="location.html">Location and Contact</a></li>
+            <li><a href="group-ppm.html">The Group PPM/Confirel announces the launch of KEM</a></li>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const input = document.getElementById('s-input');
+            const suggestions = document.getElementById('s-suggestions');
+            const suggestionItems = suggestions.querySelectorAll('li');
+            const searchButton = document.getElementById('s-button');
+            const searchLink = document.getElementById('s-link');
+
+            input.addEventListener('input', function () {
+                const query = input.value.toLowerCase().trim();
+                if (query === '') {
+                    suggestions.style.display = 'none';
+                    return;
+                }
+
+                let matches = 0;
+                suggestionItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(query)) {
+                        item.style.display = 'block';
+                        matches++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                if (matches === 0) {
+                    const noResults = document.createElement('li');
+                    noResults.className = 'no-results';
+                    noResults.textContent = 'No results found';
+                    suggestions.appendChild(noResults);
+                } else {
+                    const noResults = suggestions.querySelector('.no-results');
+                    if (noResults) {
+                        noResults.remove();
+                    }
+                }
+
+                suggestions.style.display = matches > 0 ? 'block' : 'none';
+            });
+
+            input.addEventListener('focus', function () {
+                if (input.value.trim() !== '') {
+                    suggestions.style.display = 'block';
+                }
+            });
+
+            input.addEventListener('blur', function () {
+                setTimeout(() => { suggestions.style.display = 'none'; }, 100);
+            });
+
+            suggestionItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    input.value = item.textContent;
+                    suggestions.style.display = 'none';
+                });
+            });
+
+            searchButton.addEventListener('click', function (event) {
+                event.preventDefault();
+                const query = input.value.toLowerCase().trim();
+                let found = false;
+
+                suggestionItems.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text === query) {
+                        searchLink.href = item.querySelector('a').href;
+                        found = true;
+                    }
+                });
+
+                if (found) {
+                    window.location.href = searchLink.href;
+                } else {
+                    alert('No matching result found.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
