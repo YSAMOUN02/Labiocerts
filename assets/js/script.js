@@ -1,6 +1,21 @@
-// search bar
-// Add click event listener to search icon to toggle the search box
 (function() {
+  const suggestions = [
+    { text: 'Physico-Chemical Analysis', link: 'Phy-analysis.html' },
+    { text: 'Analysis Fees For Food', link: 'Food-analysis.html' },
+    { text: 'Analysis Fees For Water and Waste Water', link: 'analysisfees.html' },
+    { text: 'Labiocert Analysis', link: 'La-analysis.html' },
+    { text: 'Pharmaceutical Testing', link: 'service-one.html' },
+    { text: 'Welcome to Labiocert', link: 'welcomebio.html' },
+    { text: 'Food and Feed Testing', link: 'service-two.html' },
+    { text: 'Water and Wastewater Testing', link: 'service-three.html' },
+    { text: 'Get a quote', link: 'getquote.html' },
+    { text: 'New year and double birthday', link: 'Eventone.html' },
+    { text: 'Launch of KEM', link: 'Eventtwo.html' },
+    { text: 'KINAL is the symbol of the effective pain-killer', link: 'Eventthree.html' },
+    { text: 'Location and Contact', link: 'location.html' },
+    { text: 'The Group PPM/Confirel announces the launch of KEM', link: 'group-ppm.html' }
+  ];
+
   // Function to toggle the search box visibility
   function toggleSearchBox() {
     var searchBox = document.querySelector('.search-box');
@@ -16,10 +31,8 @@
 
   // Function to hide search suggestions
   function hideSearchSuggestions() {
-    const searchSuggestions = document.querySelectorAll('.search-suggestions li');
-    searchSuggestions.forEach(li => {
-      li.style.display = 'none';
-    });
+    const searchSuggestions = document.querySelector('.search-suggestions');
+    searchSuggestions.innerHTML = '';
 
     // Remove any "No results" message if present
     const noResultsMessage = document.querySelector('.search-suggestions li.no-results');
@@ -28,52 +41,51 @@
     }
   }
 
-  // Event listener for search icon click
-  document.querySelector('.search-icon').addEventListener('click', function () {
+  // Function for search icon click event
+  function onSearchIconClick() {
     toggleSearchBox();
     hideSearchSuggestions(); // Hide search suggestions when clicking on the search bar
-  });
+  }
 
-  // Event listener for clicking outside the search bar
-  document.addEventListener('click', function (event) {
+  // Function for clicking outside the search bar
+  function onDocumentClick(event) {
     if (!event.target.closest('.search-container') && !event.target.closest('.search-box')) {
       hideSearchBox();
     }
-  });
+  }
 
-  // Event listener for input in search box
-  document.querySelector('.search-box input').addEventListener('input', function () {
+  // Function for input in search box
+  function onSearchBoxInput() {
     const query = this.value.trim().toLowerCase();
-    const searchSuggestions = document.querySelectorAll('.search-suggestions li');
+    const searchSuggestions = document.querySelector('.search-suggestions');
     let hasResults = false;
 
-    searchSuggestions.forEach(li => {
-      const text = li.textContent.trim().toLowerCase();
-      if (query && text.startsWith(query)) {
-        li.style.display = 'block';
-        hasResults = true;
-      } else {
-        li.style.display = 'none';
+    searchSuggestions.innerHTML = '';
+
+    if (query !== '') {
+      suggestions.forEach(suggestion => {
+        if (suggestion.text.toLowerCase().startsWith(query)) {
+          const li = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = suggestion.link;
+          link.textContent = suggestion.text;
+          li.appendChild(link);
+          searchSuggestions.appendChild(li);
+          hasResults = true;
+        }
+      });
+
+      if (!hasResults) {
+        const noResultli = document.createElement('li');
+        noResultli.textContent = "No results";
+        noResultli.classList.add('no-results');
+        searchSuggestions.appendChild(noResultli);
       }
-    });
-
-    // Remove existing "No results" message if present
-    const noResultsMessage = document.querySelector('.search-suggestions li.no-results');
-    if (noResultsMessage) {
-      noResultsMessage.remove();
     }
+  }
 
-    // Display "No results" message if no matches found
-    if (!hasResults && query !== '') {
-      const noResultli = document.createElement('li');
-      noResultli.textContent = "No results";
-      noResultli.classList.add('no-results');
-      document.querySelector('.search-suggestions').appendChild(noResultli);
-    }
-  });
-
-  // Event listener for search button click
-  document.querySelector('#search-button').addEventListener('click', function (event) {
+  // Function for search button click
+  function onSearchButtonClick(event) {
     event.preventDefault();
     const query = document.querySelector('.search-box input').value.trim().toLowerCase();
     const searchSuggestions = document.querySelectorAll('.search-suggestions li');
@@ -86,9 +98,15 @@
         break;
       }
     }
-  });
+  }
+
+  // Attach event listeners
+  document.querySelector('.search-icon').addEventListener('click', onSearchIconClick);
+  document.addEventListener('click', onDocumentClick);
+  document.querySelector('.search-box input').addEventListener('input', onSearchBoxInput);
+  document.querySelector('#search-button').addEventListener('click', onSearchButtonClick);
 })();
-// end of search bar 
+
 
 // Media Center
 document.addEventListener('DOMContentLoaded', () => {

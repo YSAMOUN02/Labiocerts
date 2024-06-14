@@ -46,7 +46,15 @@ function initializeSearch() {
             }
         });
 
-        sSuggestions.style.display = hasResults ? 'block' : 'none';
+        if(!hasResults && filter.length > 0){
+            const noResultItem = document.createElement('li');
+            noResultItem.textContent = 'No results found';
+            noResultItem.style.color = 'white'; 
+            sSuggestions.appendChild(noResultItem);
+            sSuggestions.style.display = 'block'; 
+        }else{
+            sSuggestions.style.display = hasResults ? 'block' : 'none';  
+        }
     }
 
     function onFocus() {

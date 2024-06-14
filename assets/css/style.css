@@ -2180,8 +2180,9 @@ footer {
     }
 
     .nav-ham {
-        display: flex;
-        gap: 4rem;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 15rem;
         width: 100%;
         z-index: 10;
         border-radius: 0px;
@@ -2189,16 +2190,19 @@ footer {
         box-shadow: 0px 1px 5px 0px rgba(159, 159, 159, 0.352);
         position: fixed !important;
         top: 0rem;
+        text-align: center;
     }
 
     .logo {
-        margin-left: 13rem;
-        margin-right: 12rem;
+        margin-left: 1rem;
+        margin-right: 0rem;
+      
     }
 
     .hamburger {
         display: flex;
         margin-left: 2rem;
+        margin-right: 2rem;
         color: #8b8b8b;
         margin-top: 0.5rem;
     }
@@ -2311,9 +2315,8 @@ footer {
     /* search */
     .s-bar {
         display: flex;
-        margin-left: 2rem;
         color: rgb(139, 139, 139);
-        margin: 0.5rem 0rem 0rem 0rem;
+        margin-top: 0.5rem;
     }
 
     .s-container {
@@ -2705,7 +2708,7 @@ footer {
     .fa-square-youtube:hover {
         color: #191818;
     }
-
+   
     /*End Footer */
     /* Our service */
     .services-title>h1 {
@@ -2724,17 +2727,19 @@ footer {
     }
 
     .grid-service {
-        display: flex;
-        margin: 0 0 0 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin: 0 0 0 0rem;
         gap: 2rem;
     }
 
     .serviceone-title>a>h4 {
         color: black;
-        text-align: left;
+        text-align: center;
         margin-top: 0.5rem;
         margin-bottom: 3rem;
         font-size: 15px;
+       
 
     }
 
@@ -3452,60 +3457,84 @@ footer {
 
     /* End of Location Section */
 }
-
-@media (max-width: 800px) {
-
-    .logo {
+@media (max-width: 850px){
+    /* .logo {
         margin-left: 12rem;
         margin-right: 10.5rem;
-    }
+    } */
 }
-
-@media(max-width: 768px) {
-    .logo {
+@media (max-width: 800px) {
+    .nav-ham {
+        grid-template-columns: 1fr 2fr 1fr;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    .s-bar {
+        margin-left: 7rem;
+        margin-right: 2rem;
+    }
+    
+    /* .logo {
         margin-left: 12rem;
-        margin-right: 9rem;
-    }
+        margin-right: 10.5rem;
+    } */
 }
 
+@media(max-width: 769px){
+    /* .logo{
+        margin-left: 11.5rem;
+        margin-right: 8rem;
+    } */
+}
+@media(max-width: 730px ){
+    /* .logo{
+        margin-left: 10rem;
+        margin-right: 8rem;
+    } */
+}
+@media(max-width: 700px ){
+    /* .logo{
+        margin-left: 9rem;
+        margin-right: 7rem;
+    } */
+}
+@media(max-width: 670px ){
+    /* .logo{
+        margin-left: 8rem;
+        margin-right: 6rem;
+    } */
+}
+@media(max-width:463px){
+    .s-bar {
+        margin-left: 3rem;
+        margin-right: 1rem;
+    }
+    
+}
 /* End Of Responsive Tablet */
 /* Responsive Mobile L */
 @media screen and (max-width: 450px) {
 
-
-    .nav-ham {
-        gap: 0rem;
-    }
-
-    .logo {
-        margin-left: 5.8rem;
-        margin-right: 4.5rem;
-    }
-
     .logo>a>img {
         width: 125px;
+        margin-top: 0.2rem;
     }
-
-    .hamburger {
-        display: flex;
-        margin-left: 2rem;
-        color: #8b8b8b;
-        margin-top: 0.5rem;
-    }
-
     .s-icon>i {
         font-size: 23px;
     }
-
+    .s-bar {
+        margin-left: 3rem;
+    }
     .s-bar {
         margin-top: 0.2rem;
     }
-
     .over-lay li a {
         font-size: 18px;
         color: white;
     }
-
+    .hamburger{
+        margin-top: 0.2rem;
+    }
     /* search */
     .s-box input[type="text"] {
         margin-left: 2.5rem;
@@ -4714,11 +4743,14 @@ footer {
 /* Responsive Mobile M */
 @media (max-width:400px) {
 
-    .logo {
+    /* .logo {
         margin-left: 4.1rem;
         margin-right: 3rem;
+    } */
+    .s-bar {
+        margin-left: 2.5rem;
+        margin-right: 1rem;
     }
-
     /* Our service */
     .services-title>h1 {
         font-size: 20px;
@@ -4759,25 +4791,44 @@ footer {
 }
 
 /* End of Responsive Mobile M */
+@media(max-width:390px){
+    /* .logo {
+        margin-left: 5.1rem;
+        margin-right: 3rem;
+    } */
+}
 /* Responsive Mobile S */
 @media (max-width: 360px) {
-    .logo {
+    /* .logo {
         margin-left: 3.6rem;
-        margin-right: 2rem;
+        margin-right: 2.5rem;
+    } */
+    .s-bar {
+        margin-left: 1.5rem;
+        margin-right: 1rem;
     }
-
     .text-title {
         width: 480%;
     }
 }
 
 @media screen and (max-width: 320px) {
-    .logo {
+    /* .logo {
         margin-left: 2.5rem;
         margin-right: 2rem;
         margin-top: 0.5rem;
+    } */
+    .s-bar {
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
-
+    .hamburger {
+        display: flex;
+        margin-left: 1.5rem;
+        margin-right: 1rem;
+        color: #8b8b8b;
+        margin-top: 0.2rem;
+    }
     /* Our service */
 
     .services-title>h1 {
