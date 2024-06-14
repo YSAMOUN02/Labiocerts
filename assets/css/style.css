@@ -560,15 +560,18 @@ swiper-slide img {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
-.welcome-title-section > p {
+
+.welcome-title-section>p {
     width: 100%;
     margin-top: 0.5rem;
 }
+
 .welcome-title-section>h1 {
     text-align: left;
     font-size: 20px !important;
     font-weight: 700 !important;
 }
+
 .welcome-title {
     margin-top: 0.5rem;
     margin-bottom: 0rem;
@@ -823,9 +826,11 @@ swiper-slide img {
 .serviceone-title>a:hover h4 {
     color: #00b3ff;
 }
-.s-img > img{
+
+.s-img>img {
     width: 100%;
 }
+
 /* End of our service */
 /* Pharmticacual */
 .one-service {
@@ -888,9 +893,11 @@ swiper-slide img {
 .microbiological {
     display: flex;
 }
+
 .microbiological-text {
     margin-top: 3rem
 }
+
 .microbiological-text>li {
     list-style-type: circle;
     list-style-position: outside;
@@ -1999,6 +2006,7 @@ footer {
 .contact-icon {
     font-size: 37px;
 }
+
 .open-detail>span {
     font-size: 13px;
 }
@@ -2017,6 +2025,7 @@ footer {
     font-size: 20em;
     color: #ffff;
 }
+
 .mobile-icon,
 .email-icon,
 .location-icon {
@@ -2032,6 +2041,7 @@ footer {
     margin-top: 3rem;
     margin-bottom: 0rem;
 }
+
 .contact-tell {
     margin-top: 0rem;
 }
@@ -2111,6 +2121,7 @@ footer {
 .fa-square-youtube:hover {
     color: #191818;
 }
+
 /*End Footer */
 
 /* Compyright */
@@ -2133,31 +2144,32 @@ footer {
 /* End of Company right */
 /* End of Slider section */
 @media (max-width:1024px) {
-  
-swiper-container {
-    width: 100%;
-    height: 50%;
-    margin-top: 5.2rem;
-}
-/* service */
-.tenzero{
-    margin-left: 3rem;
-    margin-right: 3rem;
-}
-.tenzero-four{
-    width: 100%;
-}
+
+    swiper-container {
+        width: 100%;
+        height: 50%;
+        margin-top: 5.2rem;
+    }
+
+    /* service */
+    .tenzero {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+
+    .tenzero-four {
+        width: 100%;
+    }
 }
 
 /* Responsive Tablet */
 @media screen and (max-width: 962px) {
-    .tenzero{
+    .tenzero {
         margin-left: 0rem;
         margin-right: 0rem;
     }
-    .tenzero-four{
-        width: 0%;
-    }
+
+
     .main-nav {
         display: none;
     }
@@ -2364,6 +2376,9 @@ swiper-container {
         background-color: transparent;
         outline: none;
         color: white;
+        margin-left: 4.5rem;
+        margin-right: 4.5rem;
+        text-align: center;
     }
 
     .s-box button {
@@ -2389,20 +2404,22 @@ swiper-container {
         max-height: 200px;
         overflow-y: auto;
         display: none;
+        margin-left: 4.5rem;
     }
 
     .s-suggestions li {
-        padding: 10px;
-        border-bottom: 1px solid #ccc;
+        padding: 30px;
+        border-bottom: 1px solid #ffffff;
+        width: 87.5%;
     }
 
     .s-suggestions li a {
         text-decoration: none;
-        color: white;
+        color: rgb(255, 255, 255);
     }
 
     .s-suggestions li:hover {
-        background: #f0f0f0;
+        background: #7d7d7d29;
     }
 
     .s-suggestions li.no-results {
@@ -3455,6 +3472,7 @@ swiper-container {
 /* Responsive Mobile L */
 @media screen and (max-width: 450px) {
 
+
     .nav-ham {
         gap: 0rem;
     }
@@ -3488,6 +3506,28 @@ swiper-container {
         color: white;
     }
 
+    /* search */
+    .s-box input[type="text"] {
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+    }
+
+    .s-suggestions {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 0 0;
+        text-align: left;
+        max-height: 200px;
+        overflow-y: auto;
+        display: none;
+        margin-left: 2.5rem;
+    }
+
+    .s-suggestions li {
+        padding: 10px;
+    }
+
+    /* end of search bar */
     /* Slider Section */
     swiper-container {
         width: 100%;
@@ -3499,26 +3539,35 @@ swiper-container {
     /* Welcome section */
     .welcome-section {
         margin-top: 1rem;
-        margin-left: -0.5rem;
-        margin-right: 0.5rem;
-        padding: 0.5rem 0.5rem;
+        padding: 2rem 2rem;
         font-family: "Roboto Slab", serif;
     }
 
     .welcome-img>img {
+        display: block;
+        width: 95%;
+        object-fit: cover;
         margin-top: 0rem;
-        width: 100%;
+        margin-bottom: 0rem;
+        margin-left: 0rem;
     }
 
     .grid1x2 {
-        gap: 2rem;
+        gap: 0rem;
         display: block;
-        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .welcome-title-section>p {
+        width: 100%;
+        margin-top: 0.5rem;
+        margin-left: -0.1rem;
     }
 
     .welcome-title-section>h1 {
+        text-align: left;
         font-size: 18px !important;
-        font-weight: 500 !important;
+        font-weight: 700 !important;
+        margin-left: -0.1rem;
     }
 
     .welcome-title {
@@ -3532,8 +3581,8 @@ swiper-container {
 
     }
 
-    .mwel-btn {
-        margin-left: 1rem;
+    .readmore-btn {
+        margin-top: 1rem;
     }
 
     /* End of welcome Section */
@@ -3661,16 +3710,28 @@ swiper-container {
 
     /* End of client */
     /* quote section */
+    .quote {
+        padding: 0.5rem;
+    }
+
     .fa-pen-to-square {
         margin-top: 0.5rem;
         margin-right: 0rem;
-        font-size: 20px;
+        font-size: 15px;
         color: #ffff;
     }
 
     .text-title {
         margin-left: -4rem;
-        width: 500%;
+        width: 380%;
+    }
+
+    .text-title>h2 {
+        font-size: 15px;
+    }
+
+    .text-title>p {
+        font-size: 12.5px;
     }
 
     .text-title>h2>p {
@@ -3704,30 +3765,12 @@ swiper-container {
     .btn-quote {
         background-color: rgba(0, 0, 0, 0.15);
         display: inline-block;
-        padding: 0.5rem 0.5rem;
+        padding: 0.4rem 0.1rem;
         border: none;
         border-radius: 100px;
         color: white;
         cursor: pointer;
         text-align: center;
-    }
-
-    .btn-quote::after {
-        background: radial-gradient(circle,
-                rgba(255, 255, 255, 0.25) 0%,
-                rgba(255, 255, 255, 0) 70%);
-        transform: scale(0);
-        transition: transform 0.5s ease;
-    }
-
-    .btn-quote:hover::after {
-        transform: scale(4);
-    }
-
-    .btn-quote:hover {
-        border-color: #666666;
-        background: #01090e;
-
     }
 
     /* end of quote section */
@@ -4670,10 +4713,49 @@ swiper-container {
 
 /* Responsive Mobile M */
 @media (max-width:400px) {
+
     .logo {
         margin-left: 4.1rem;
         margin-right: 3rem;
     }
+
+    /* Our service */
+    .services-title>h1 {
+        font-size: 20px;
+    }
+
+    .s-img>img {
+        width: 300px;
+        margin-bottom: 0.5rem;
+    }
+
+    .ourservices {
+        margin-top: 7.5rem;
+        text-align: center;
+        margin-right: 1.3rem;
+    }
+
+    .grid-service {
+        display: block;
+        gap: 2rem;
+    }
+
+    .serviceone-title>a>h4 {
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .serviceone-title>a:hover h4 {
+        color: #00b3ff;
+    }
+
+    /* End of our service */
+    .text-title {
+        width: 390%;
+    }
+
+
+
 }
 
 /* End of Responsive Mobile M */
@@ -4682,6 +4764,10 @@ swiper-container {
     .logo {
         margin-left: 3.6rem;
         margin-right: 2rem;
+    }
+
+    .text-title {
+        width: 480%;
     }
 }
 
@@ -4692,6 +4778,59 @@ swiper-container {
         margin-top: 0.5rem;
     }
 
+    /* Our service */
+
+    .services-title>h1 {
+        font-size: 20px;
+    }
+
+    .ourservices {
+        margin-top: 5rem;
+    }
+
+    .grid-service {
+        display: block;
+        margin: 3rem 1rem 5rem 2rem;
+        gap: 2rem;
+    }
+
+    .serviceone-title>a>h4 {
+        margin-top: 0.5rem;
+        font-weight: 400;
+        font-size: 15px;
+    }
+
+    .s-img>img {
+        width: 100%;
+    }
+
+    /* End of our service */
+    .quote {
+        padding: 0.4rem;
+    }
+
+    .text-title {
+        width: 600%;
+    }
+
+    .f-service {
+        margin-top: -10rem;
+    }
+     /* search */
+    .s-box input[type="text"] {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+
+    .s-suggestions {
+        margin-left: 1.5rem;
+    }
+
+    .s-suggestions li {
+        padding: 10px;
+    }
+
+    /* end of search bar */
 }
 
 /* End of Responsive Mobile S */

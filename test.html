@@ -1,46 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Box with Suggestions</title>
-    <style> 
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="scripts.js"></script>
+    <title>Search Box</title>
+    <style>
+        .s-bar {
+            display: flex;
+            margin-left: 2rem;
+            color: rgb(139, 139, 139);
+            margin: 0.5rem 0rem 0rem 0rem;
+        }
+
+        .s-container {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .o-lay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(to bottom, #313b45 0%, #3393b8 100%);
+            overflow-x: hidden;
+            transition: width 0.8s;
+        }
+
+        .o-lay>a:hover {
+            text-decoration: none;
+        }
+
         .over-lay-content {
             position: relative;
-            top: 25%;
+            top: 10%;
             width: 100%;
             text-align: left;
             margin-top: 3px;
         }
+
         .close-btn {
             position: absolute;
             top: 20px;
             right: 45px;
-            font-size: 60px;
-            text-decoration: none;
+            font-size: 30px;
+
             color: white;
         }
-        .s-box {
+
+        .close0 .s-box {
             position: absolute;
             top: 5%;
             width: 100%;
             text-align: center;
             margin-top: 30px;
         }
+
         .s-box input[type="text"] {
             width: calc(120% - 50%);
             padding: 5px;
-            border: 1px solid #947878; 
+            border: 1px solid #fff5f5;
             border-top: none;
             font-size: 20px;
             width: 80%;
             padding: 10px;
             border: none;
-            border-bottom: 2px solid #ccc;
+            border-bottom: 2px solid #ffffff;
             background-color: transparent;
             outline: none;
-            color: rgb(174, 78, 78);
+            color: white;
         }
+
         .s-box button {
             font-size: 20px;
             padding: 10px 20px;
@@ -50,10 +86,12 @@
             margin-top: 3rem;
             margin-left: 40rem;
         }
+
         .s-box button a {
             text-decoration: none;
             color: black;
         }
+
         .s-suggestions {
             list-style: none;
             padding: 0;
@@ -61,124 +99,119 @@
             text-align: left;
             max-height: 200px;
             overflow-y: auto;
+            display: none;
         }
+
         .s-suggestions li {
             padding: 10px;
             border-bottom: 1px solid #ccc;
         }
+
         .s-suggestions li a {
             text-decoration: none;
-            color: rgb(210, 100, 100);
+            color: white;
         }
+
         .s-suggestions li:hover {
-            background: #ab4e4e;
+            background: #f0f0f0;
         }
+
         .s-suggestions li.no-results {
             text-align: center;
-            color: rgb(221, 147, 147);
+            color: white;
         }
     </style>
 </head>
+
 <body>
-    <div class="s-box">
-        <input type="text" id="s-input" placeholder="Search...........">
-        <button id="s-button"><a href="#" id="s-link">Search</a></button>
-        <ul class="s-suggestions" id="s-suggestions">
-            <li><a href="Phy-analysis.html">Physico-Chemical Analysis</a></li>
-            <li><a href="Food-analysis.html">Analysis Fees For Food</a></li>
-            <li><a href="analysisfees.html">Analysis Fees For Water and Waste Water</a></li>
-            <li><a href="La-analysis.html">Labiocert Analysis</a></li>
-            <li><a href="service-one.html">Pharmaceutical Testing</a></li>
-            <li><a href="welcomebio.html">Welcome to Labiocert</a></li>
-            <li><a href="service-two.html">Food and Feed Testing</a></li>
-            <li><a href="service-three.html">Water and Wastewater Testing</a></li>
-            <li><a href="getquote.html">Get a quote</a></li>
-            <li><a href="Eventone.html">New year and double birthday</a></li>
-            <li><a href="Eventtwo.html">Launch of KEM</a></li>
-            <li><a href="Eventthree.html">KINAL is the symbol of the effective pain-killer</a></li>
-            <li><a href="location.html">Location and Contact</a></li>
-            <li><a href="group-ppm.html">The Group PPM/Confirel announces the launch of KEM</a></li>
-        </ul>
+    <div class="search-container">
+        <li class="menu-item search-icon"><i class="fas fa-search"></i></li>
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Search...........">
+            <ul class="search-suggestions" id="search-suggestions"></ul>
+        </div>
     </div>
 
+   
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const input = document.getElementById('s-input');
-            const suggestions = document.getElementById('s-suggestions');
-            const suggestionItems = suggestions.querySelectorAll('li');
-            const searchButton = document.getElementById('s-button');
-            const searchLink = document.getElementById('s-link');
+        function initializeSearch() {
+            const suggestions = [
+                { text: 'Physico-Chemical Analysis', link: 'Phy-analysis.html' },
+                { text: 'Analysis Fees For Food', link: 'Food-analysis.html' },
+                { text: 'Analysis Fees For Water and Waste Water', link: 'analysisfees.html' },
+                { text: 'Labiocert Analysis', link: 'La-analysis.html' },
+                { text: 'Pharmaceutical Testing', link: 'service-one.html' },
+                { text: 'Welcome to Labiocert', link: 'welcomebio.html' },
+                { text: 'Food and Feed Testing', link: 'service-two.html' },
+                { text: 'Water and Wastewater Testing', link: 'service-three.html' },
+                { text: 'Get a quote', link: 'getquote.html' },
+                { text: 'New year and double birthday', link: 'Eventone.html' },
+                { text: 'Launch of KEM', link: 'Eventtwo.html' },
+                { text: 'KINAL is the symbol of the effective pain-killer', link: 'Eventthree.html' },
+                { text: 'Location and Contact', link: 'location.html' },
+                { text: 'The Group PPM/Confirel announces the launch of KEM', link: 'group-ppm.html' }
+            ];
 
-            input.addEventListener('input', function () {
-                const query = input.value.toLowerCase().trim();
-                if (query === '') {
-                    suggestions.style.display = 'none';
-                    return;
-                }
+            const searchInput = document.getElementById('search-input');
+            const searchSuggestions = document.getElementById('search-suggestions');
 
-                let matches = 0;
-                suggestionItems.forEach(item => {
-                    const text = item.textContent.toLowerCase();
-                    if (text.includes(query)) {
-                        item.style.display = 'block';
-                        matches++;
+            // Function to create suggestion items
+            function createSuggestionItems() {
+                searchSuggestions.innerHTML = ''; // Clear any existing suggestions
+                suggestions.forEach(suggestion => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = suggestion.link;
+                    a.textContent = suggestion.text;
+                    li.appendChild(a);
+                    searchSuggestions.appendChild(li);
+                });
+            }
+
+            createSuggestionItems();
+
+            searchInput.oninput = function () {
+                const filter = searchInput.value.toLowerCase();
+                let hasResults = false;
+
+                Array.from(searchSuggestions.getElementsByTagName('li')).forEach(item => {
+                    const text = item.textContent || item.innerText;
+                    if (text.toLowerCase().includes(filter) && text.toLowerCase().startsWith(filter[0])) {
+                        item.style.display = '';
+                        hasResults = true;
                     } else {
                         item.style.display = 'none';
                     }
                 });
 
-                if (matches === 0) {
-                    const noResults = document.createElement('li');
-                    noResults.className = 'no-results';
-                    noResults.textContent = 'No results found';
-                    suggestions.appendChild(noResults);
-                } else {
-                    const noResults = suggestions.querySelector('.no-results');
-                    if (noResults) {
-                        noResults.remove();
+                searchSuggestions.style.display = hasResults ? 'block' : 'none';
+            };
+
+            searchInput.onfocus = function () {
+                searchSuggestions.style.display = searchInput.value ? 'block' : 'none';
+            };
+
+            document.onclick = function (e) {
+                if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                    searchSuggestions.style.display = 'none';
+                }
+            };
+
+            searchInput.onkeydown = function (e) {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.toLowerCase();
+                    const match = suggestions.find(suggestion => suggestion.text.toLowerCase() === query);
+                    if (match) {
+                        window.location.href = match.link;
                     }
                 }
+            };
+        }
 
-                suggestions.style.display = matches > 0 ? 'block' : 'none';
-            });
+        document.addEventListener('DOMContentLoaded', initializeSearch);
 
-            input.addEventListener('focus', function () {
-                if (input.value.trim() !== '') {
-                    suggestions.style.display = 'block';
-                }
-            });
-
-            input.addEventListener('blur', function () {
-                setTimeout(() => { suggestions.style.display = 'none'; }, 100);
-            });
-
-            suggestionItems.forEach(item => {
-                item.addEventListener('click', function () {
-                    input.value = item.textContent;
-                    suggestions.style.display = 'none';
-                });
-            });
-
-            searchButton.addEventListener('click', function (event) {
-                event.preventDefault();
-                const query = input.value.toLowerCase().trim();
-                let found = false;
-
-                suggestionItems.forEach(item => {
-                    const text = item.textContent.toLowerCase();
-                    if (text === query) {
-                        searchLink.href = item.querySelector('a').href;
-                        found = true;
-                    }
-                });
-
-                if (found) {
-                    window.location.href = searchLink.href;
-                } else {
-                    alert('No matching result found.');
-                }
-            });
-        });
     </script>
 </body>
+
 </html>
