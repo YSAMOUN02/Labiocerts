@@ -3,6 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript">
+    <meta name="" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <title>Labiocert</title>
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -13,8 +16,8 @@
 </head>
 
 <body>
-        <!-- Navigation -->
-
+    <!-- Navigation -->
+    <header>
         <div class=" main-nav" translate="no">
             <nav class="navbar" id="navbar">
                 <div class="logo mobile-logo">
@@ -156,7 +159,8 @@
                 </div>
             </div>
         </div>
-        <!-- End of navigation -->
+    </header>
+    <!-- End of navigation -->
 
     <!-- Slider Section-->
     <swiper-container class="mySwiper" pagination="true" pagination-type="progressbar" navigation="true" autoplay="true"
@@ -368,19 +372,69 @@
                 </div>
             </div>
         </div>
-    </footer>
-    <div class="copy">
-        <div class="copy-right ">
-            <h4 class="title-copy-right">
-                Copyright <i class="fa-regular fa-copyright"></i> 2024 LOBIOCERT. All rights reserved.
-            </h4>
+        <div class="copy">
+            <div class="copy-right ">
+                <h4 class="title-copy-right">
+                    Copyright <i class="fa-regular fa-copyright"></i> 2024 LOBIOCERT. All rights reserved.
+                </h4>
+            </div>
         </div>
+    </footer>
 
-        <!--End Footer-->
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-        <script src="../assets/js/script.js"></script>
-        <script src="../assets/js/mobile.js"></script>
+
+    <!--End Footer-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/mobile.js"></script>
+    <script>
+        
+        // Example of swiper initialization
+        var swiper = new Swiper('.swiper-container', {
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'progressbar',
+            },
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+        });
+        // Client 
+        var swiper = new Swiper('.swiper', {
+            slidesPerView: 4,
+            direction: getDirection(),
+            loop: true,
+            speed: 800,
+            navigation: {
+                nextEl: '.button-next',
+                prevEl: '.button-prev',
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            on: {
+                resize: function () {
+                    swiper.changeDirection(getDirection());
+                },
+            },
+        });
+
+        function getDirection() {
+            var windowWidth = window.innerWidth;
+            return windowWidth <= 300 ? 'vertical' : 'horizontal';
+        }
+        document.querySelector('.button-next').addEventListener('click', function () {
+            swiper.slideNext();
+        });
+
+
+        document.querySelector('.button-prev').addEventListener('click', function () {
+            swiper.slidePrev();
+        });
+
+    </script>
 </body>
 
 </html>
