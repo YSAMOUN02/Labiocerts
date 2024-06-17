@@ -22,16 +22,16 @@ body{
     overflow: hidden;
     position: relative;
 }
+/* Aside bar */
 .nav{
-    width: 200px;
+    width: 250px;
     height: 100vh;
 
     padding:0 5px 0 5px;
     position: relative;
     z-index: 99;
     color: var(--color-nav);
-   
-
+    font-size: 20px;
 }
 .click-left{
     position: absolute;
@@ -50,7 +50,10 @@ body{
     height:90%;
     background-color: var(--nav-background);
     padding: 5px;
-    
+    overflow-y: scroll;
+}
+.list-nav::-webkit-scrollbar{
+    display: none;
 }
 .nav .logo{
     height: 15%;
@@ -74,21 +77,29 @@ body{
     flex-direction: column;
 }
 .nav ul li {
+    
     width: 90%;
-    padding: 8px 0;
-    background-color: rgb(0, 198, 216);
-    margin: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    align-items: center;
-    font-size: 15px;
+    align-items:start;
+    justify-content:center;
+    background-color: rgb(0, 198, 216);
+    margin: 5px;
     position: relative;
+    font-size: 16px;
+    font-weight: 500;
+    cursor:pointer;
 }
 .nav ul li button{
     border: none;
     background-color: transparent;
     color: var(--color-nav);
+}
+.nav ul li i{
+    position: absolute;
+    top: 40%;
+    transform: translate(-50%,-50%);
+    right: 10px;
 }
 .drop-down{
     position: absolute;
@@ -99,11 +110,11 @@ body{
     position: absolute;
     top:0;
     right: 0;
-    width: 15px;
-    height: 15px;
-    font-size: 8px;
+    width: 20px;
+    height: 20px;
+    font-size: 15px;
     font-weight: 500;
-    background-color: rgb(255, 78, 78);
+    background-color: rgb(255, 0, 0);
     color: var(--color-nav);
     display: flex;
     justify-content: center;
@@ -112,23 +123,43 @@ body{
 .nav ul a {
     text-decoration: none;
     color: var(--color-nav);
-    font-size: 15px;
+    font-size: 16px;
 }
 .nav ul ul{
     width: 100%;
-    margin: 0;
+    margin: 10px 0 0 0;
     padding: 0;
 }
 .nav ul ul li{
     padding: 5px   0 0 0;
     margin: 4px 0 0 0;
     width: 100%;  
-    font-size: 10px;
+    font-size: 12px ;
+
 }
+
 .nav ul ul li:nth-child(1){
     padding: 5px 0;
 
 }
+#ads, #logo_client , #user-manage ,#media-manage{
+    display: none;
+}
+.padded{
+
+    width: 100%;
+
+    height: 100%;
+    padding: 10px 20px;
+}
+.padded a {
+    width: 200px;
+    font-weight: bold;
+}
+/* End aside Bar */
+
+
+/* Main Body Dashboard */
 .body{
 
     width: 90%;
@@ -240,7 +271,7 @@ table td:last-child button{
     align-items: center;
     background-color: rgb(255, 149, 125);
 }
-.alert-confirm{
+.alert-confirm ,.alert-confirm-logout{
     position: absolute;
     top: 100px;
     left: 50%;
@@ -256,19 +287,80 @@ table td:last-child button{
     justify-content: center;
     flex-direction: column;
     animation:  fade_down 1s forwards;
-    display: none;
+    visibility: hidden;
+    
 }
+
 .alert-confirm-btn {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-   
 }
 .preview-logo{
     display: flex;
     flex-direction: column;
 }
+
+/* Login */
+.container-login{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-bar{
+    font-size: 16px;
+    width: 400px;
+    height: 500px;
+    background-color: rgb(0, 132, 219);
+    padding: 10px  30px;
+    animation: fade_down 1s forwards;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px black;
+}
+.inner-login{
+    margin-top: 20px;
+}
+.login-bar span {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+.login-bar form {
+    padding: 0;
+    margin: 0;
+}
+
+.login-bar button{
+    width: 100%;
+    border: none;
+    margin-top: 70px;
+    padding: 10px;
+    background-color: blue;
+    color: white;
+}
+
+.fade1{
+    animation: fade 1s forwards;
+}
+.fade2{
+    animation: fade 2s forwards;
+}
+@keyframes fade{
+    0%{
+        transform: translateY(10px);
+        backdrop-filter: blur(5px);
+    }
+    100%{
+        transform: translateY(0);
+        backdrop-filter: blur(0);
+    }
+}
+
 @keyframes fade_down{
     0%{
         opacity: 0;

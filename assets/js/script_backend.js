@@ -22,19 +22,111 @@ function maximize(){
 
 
 // Menu Drop Down when Click
-var state_service = 0;
-function drop_down_service(){
+var state_ads = 0;
+function drop_down_ads(){
   
-    if(state_service == 0){
-        document.getElementById('service-set').style.display = 'block';
-        document.getElementById('icon-service').style.transform = 'rotate(180deg)';
-        state_service++;
-    }else{
-        document.getElementById('service-set').style.display = 'none';
-        document.getElementById('icon-service').style.transform = 'rotate(0deg)';
-        state_service = 0;
-    }
+    if(state_ads == 0){
+        document.getElementById('ads').style.display = 'block';
+        document.getElementById('ads-icon').style.transform = 'rotate(180deg)';
+        document.getElementById('ads-icon').style.top = '20%';
+     state_ads = 1;
 
+     state_client = 1;
+     drop_down_logo_client();
+
+     state_user = 1;
+     drop_down_logo_user();
+
+     state_media = 1;
+     drop_down_media();
+
+    }else{
+        document.getElementById('ads').style.display = 'none';
+        document.getElementById('ads-icon').style.transform = 'rotate(0deg)';
+        document.getElementById('ads-icon').style.top = '20%';
+        state_ads = 0;
+    }
+}
+
+
+var state_client = 0;
+function drop_down_logo_client(){
+  
+    if(state_client == 0){
+        document.getElementById('logo_client').style.display = 'block';
+        document.getElementById('logo_client_icon').style.transform = 'rotate(180deg)';
+        document.getElementById('logo_client_icon').style.top = '20%';
+     state_client = 1;
+
+
+     state_ads = 1;
+     drop_down_ads();
+
+     state_user = 1;
+     drop_down_logo_user();
+
+     state_media = 1;
+     drop_down_media();
+    }else{
+        document.getElementById('logo_client').style.display = 'none';
+        document.getElementById('logo_client_icon').style.transform = 'rotate(0deg)';
+        document.getElementById('logo_client_icon').style.top = '20%';
+        state_client = 0;
+    }
+}
+
+
+var state_user = 0;
+function drop_down_logo_user(){
+  
+    if(state_user == 0){
+        document.getElementById('user-manage').style.display = 'block';
+        document.getElementById('user-manage_icon').style.transform = 'rotate(180deg)';
+        document.getElementById('user-manage_icon').style.top = '20%';
+     state_user = 1;
+
+     state_ads = 1;
+     drop_down_ads();
+
+     state_client = 1;
+     drop_down_logo_client();
+
+     state_media = 1;
+     drop_down_media();
+
+    }else{
+        document.getElementById('user-manage').style.display = 'none';
+        document.getElementById('user-manage_icon').style.transform = 'rotate(0deg)';
+        document.getElementById('user-manage_icon').style.top = '20%';
+        state_user = 0;
+    }
+}
+
+
+var state_media = 0;
+function drop_down_media(){
+  
+    if(state_media == 0){
+        document.getElementById('media-manage').style.display = 'block';
+        document.getElementById('media_icon').style.transform = 'rotate(180deg)';
+        document.getElementById('media_icon').style.top = '20%';
+     state_media = 1;
+
+     state_ads = 1;
+     drop_down_ads();
+
+     state_client = 1;
+     drop_down_logo_client();
+
+     state_user = 1;
+     drop_down_logo_user();
+
+    }else{
+        document.getElementById('media-manage').style.display = 'none';
+        document.getElementById('media_icon').style.transform = 'rotate(0deg)';
+        document.getElementById('media_icon').style.top = '20%';
+        state_media = 0;
+    }
 }
 
 // Alert For User 
@@ -43,6 +135,12 @@ function fade_alert(){
     document.querySelector('.alert-confirm').style.display = 'none'
 }
 
+function alert_logout(){
+    document.querySelector('.alert-confirm-logout').style.visibility= 'visible  ';
+}
+function close_alert_logout(){
+    document.querySelector('.alert-confirm-logout').style.visibility= 'hidden';
+}
 // For Preview File Imag
 function loadFile(event) {
     var reader = new FileReader();
