@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
     
     public function homepage(){
+        // return 123;
         return view('frontend.homepage');
     }
 }

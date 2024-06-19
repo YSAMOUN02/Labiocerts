@@ -21,7 +21,7 @@
         <div class=" main-nav" translate="no">
             <nav class="navbar" id="navbar">
                 <div class="logo mobile-logo">
-                    <a href="#"><img id="logo" src="{{URL('assets/image/img1.jpg')}}" alt=""></a>
+                    <a href="#"><img id="logo" src="{{URL('/assets/image/img1.jpg')}}" alt=""></a>
                 </div>
                 <ul class="nav-detail">
                     <li class="menu-item" id="home"><a href="/" id="menu" class="menu-link"
@@ -51,7 +51,7 @@
                                     <a href="Eventtwo.html" class="img-menu" style="text-decoration: none;"><img
                                             src="{{URL('/assets/image/allimg2.jpg')}}" alt="">Launch Of KEM</a>
                                     <a href="Eventthree.html" class="img-menu" style="text-decoration: none;"><img
-                                            src="{{URL('/assets/image/allimg3.jpg')}}" alt="">KINAL is the symbol of the effective
+                                            src=" {{URL('/assets/image/allimg3.jpg')}}" alt="">KINAL is the symbol of the effective
                                         pain-killer</a>
                                     <a href="group-ppm.html" class="img-menu" style="text-decoration: none;"><img
                                             src="{{URL('/assets/image/allimg4.jpg')}}" alt="">The Group PPM/Confirel announces the
@@ -78,10 +78,10 @@
                                 </a>
                                 <div class="rownews new-mig rowmenu menu3" id="menu3">
                                     <a href="group-ppm.html" class="img-menu" style="text-decoration: none;"><img
-                                            src="{{URL('/assets/img/allimg4.jpg')}}" alt="">The Group PPM/Confirel announces the
+                                            src="{{URL('/assets/image/allimg4.jpg')}}" alt="">The Group PPM/Confirel announces the
                                         launch of KEM</a>
                                     <a href="group-ppm.html" class="img-menu" style="text-decoration: none;"
-                                        submenu><img src="{{URL('/assets/image/allimg4.jpg')}}" alt="">The Group PPM/Confirel
+                                        submenu><img src=" {{URL('/assets/image/allimg4.jpg')}}" alt="">The Group PPM/Confirel
                                         announces the launch of KEM</a>
                                 </div>
                             </li>
@@ -91,7 +91,7 @@
                             onclick="navigate(event)">LOCATION AND CONTACT</a></li>
                     <ul class="menu-language">
                         <li class="menu-lang"><a href="#" id="khmer" lang="km"><img
-                                    src="{{URL('/assets/image/KhmerLanguage.jpg')}}" alt="Khmer Language"></a></li>
+                                    src="{{URL('/assets/image/KhmerLanguage.jpg')}} " alt="Khmer Language"></a></li>
                         <li class="menu-lang"><a href="#" id="english" lang="en"><img
                                     src="{{URL('/assets/image/English-lang.jpg')}}" alt="English Language"></a></li>
                     </ul>
@@ -162,132 +162,12 @@
     </header>
     <!-- End of navigation -->
 
-    <!-- Slider Section-->
-    <swiper-container class="mySwiper" pagination="true" pagination-type="progressbar" navigation="true" autoplay="true"
-        autoplay-delay="3000">
-        <swiper-slide><img src="{{URL('/assets/image/slide1.jpg')}}" alt=""></swiper-slide>
-        <swiper-slide><img src="{{URL('/assets/image/Silde2.jpg')}}" alt=""></swiper-slide>
-        <swiper-slide><img src="{{URL('/assets/image/Silde3.jpg')}}" alt=""></swiper-slide>
-        <swiper-slide><img src="{{URL('/assets/image/Silde4.jpg')}}" alt=""></swiper-slide>
+        @yield('content')
 
-    </swiper-container>
-    <!-- End of Slider Section -->
 
-    <!-- Welcome section -->
-    <section class="welcome-section grid1x2 container-width ">
-        <div class="welcome-img">
-            <img src="../assets/img/welcome-img.jpg" alt="">
-        </div>
-        <div class="welcome-title-section">
-            <h1 class="welcome-title">WELCOME TO LABIOCERT</h1>
-            <p class="welcome-title">
-                Labiocert provide a one-stop service for testing a wide range of products, from raw materials to
-                finished products.
-                With our existing laboratory located in Chomchao, Phnom Penh and internationally recognized partner
-                laboratories,
-                we are pleased to support you in quality analysis and related consultancy.
-                Our team of experienced scientists will work hand-in-hand with you to meet your analytical needs in
-                our state of the art facility.
-                All work is performed under strict confidentiality following the requirements of good laboratory
-                practices...
-            </p>
-            <div class="readmore-btn mwel-btn">
-                <a href="welcomebio.html" class="btn1 btn-color btn-size btn-sizes">
-                    <button class="read-btn style-bt">Read more <i class="fa-solid fa-angles-right"></i></button>
-                </a>
-            </div>
-        </div>
-    </section>
-    <!-- End of welcome section -->
-
-    <!-- Service Section -->
-    <section class="service-section container-width">
-        <div class="service-title-section">
-            <h1 class="service-title">OUR OVERALL SERVICES</h1>
-        </div>
-        <div class="grid1x3 service-section-detil">
-            <div class="pharma-test">
-                <i class="fa-solid fa-flask-vial"></i>
-
-                <div class="pharma-title-service">
-                    <h3 class="pharmat-title">Pharmaceutical testing</h3>
-                </div>
-                <p class="pharma-title-detail">
-                    Would you need test results to prove your product conformance with defined specifications?
-                    Would you need to check whether your materials...
-                </p>
-                <div class="readmore-btn">
-                    <a href="service-one.html" class="btn1 btn-color btn-size btn-sizes">
-                        <button class="read-btn style-bt btn-pharma btn-service">Read more <i
-                                class="fa-solid fa-angles-right"></i></button>
-                    </a>
-                </div>
-            </div>
-            <div class="food-test">
-                <i class="fa-solid fa-mortar-pestle"></i>
-                <div class="food-title-service">
-                    <h3 class="food-titl text">Food and Feed Testing</h3>
-                </div>
-                <p class="food-title-detail">
-                    Laboratory testing is an important process, which relies on scientific analysis
-                    to gauge one or more characteristics of a product...
-                </p>
-                <div class="readmore-btn">
-                    <a href="service-two.html" class="btn1 btn-color btn-size btn-sizes">
-                        <button class="read-btn style-bt btn-food btn-service">Read more <i
-                                class="fa-solid fa-angles-right"></i></button>
-                    </a>
-                </div>
-            </div>
-            <div class="water-test">
-                <i class="fas fa-tint water-icon"></i>
-                <div class="water-title-service">
-                    <h3 class="water-title">Water and Wastewater Testing</h3>
-                </div>
-                <p class="water-test">
-                    Is your water potable? Is your wastewater is good enough for the environment?
-                    We can help you check this at Labiocert laboratory...
-                </p>
-                <div class="readmore-btn water-btn">
-                    <a href="service-three.html" class="btn1 btn-color btn-size btn-sizes">
-                        <button class="read-btn style-bt btn-water btn-service">Read more <i
-                                class="fa-solid fa-angles-right"></i></button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End of service section -->
-
-    <!-- Client section -->
-    <div class="client-section container-width">
-        <div class="client-title-section">
-            <h3 class="client-title">OUR CLIENTS</h3>
-        </div>
-        <div class="swiper">
-            <div class="swiper-wrapper m-client">
-                <div class="swiper-slide"><a href=""><img src="../assets/img/Logo_BTB_Rice.jpg" alt=""></a></div>
-                <div class="swiper-slide"><a href=""><img src="../assets/img/Logo_kinal.jpg" alt=""></a></div>
-                <div class="swiper-slide"><a href=""><img src="../assets/img/Logo_PPM.jpg" alt=""></a></div>
-                <div class="swiper-slide"><a href="https://www.confirel.com/en"><img
-                            src="../assets/img/Logo_confirel.jpg" alt=""></a></div>
-                <div class="swiper-slide"><a href=""><img src="../assets/img/Logo_techneola.jpg" alt=""></a></div>
-            </div>
-            <div class="swiper-button">
-                <div class="nextt-btn">
-                    <button class="button-next"><i class="fa-solid fa-chevron-left"></i></button>
-                </div>
-                <div class="prevv-btn">
-                    <button class="button-prev"><i class="fa-solid fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- End of Client Section-->
 
     <!--Footer-->
-    <div class="quote ">
+    <!-- <div class="quote ">
         <div class="container-width footer quote-grid">
             <div class=" quote-section quote-grid">
                 <i class="fa-solid fa-pen-to-square"></i>
@@ -305,11 +185,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <footer>
         <div class="grid1x3 social container-width">
             <div class="footer-img">
-                <img src="../assets/img/Logo_labocert_footer.JPG" alt="">
+                <img src="{{URL('/assets/image/img1.jpg')}}" alt="">
                 <h3 class="open-hour-title"><span>Opening Hours</span>
                     <hr class="open-line">
                 </h3>
@@ -357,7 +237,7 @@
                 </div>
             </div>
             <div class="social-network">
-                <img src="../assets/img/Science_art.jpg" alt="">
+                <img src="{{URL('/assets/image/Science_art.jpg')}}" alt="">
                 <div class="social-title">
                     <h4>Social Networks
                         <hr class="open-line">
@@ -368,7 +248,6 @@
                         <a href="#" class="icon-twit"><i class="fa-brands fab fa-x-twitter"></i></a>
                         <a href="#" class="icon-you"><i class="fab sfab  fa-square-youtube"></i></a>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -385,8 +264,8 @@
     <!--End Footer-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/mobile.js"></script>
+    <script src="{{URL('/assets/js/script.js')}}"></script>
+    <script src="{{URL('/assets/js/mobile.js')}}"></script>
     <script>
         
         // Example of swiper initialization
