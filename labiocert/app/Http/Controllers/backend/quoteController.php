@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class website_info extends Controller
+class quoteController extends Controller
 {
     //
 }
