@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class ServiceController extends Controller
 {
     public function service(){
+        // return 123;
         return view('frontend.service'); 
     }
 }
