@@ -1,5 +1,5 @@
- @extends('frontend.master');
- @section('content'); 
+@extends('frontend.master')
+@section('content')
  <!-- Location section -->
  <section>
 

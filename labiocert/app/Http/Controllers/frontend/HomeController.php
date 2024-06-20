@@ -12,4 +12,7 @@ class HomeController extends Controller
         // return 123;
         return view('frontend.homepage');
     }
+    public function welcomelabiocert(){
+        return view('frontend.welcome-labio');
+    }
 }
