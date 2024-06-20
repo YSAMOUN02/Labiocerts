@@ -29,11 +29,11 @@
                     <li class="menu-item" id="our-service"><a href="/service" id="menu" class="menu-link"
                             onclick="navigate(event)">OUR SERVICE</a><i class="fa-solid fa-chevron-down"></i>
                         <ul class="submenu">
-                            <li class="submenu-tropdown"><a href="service-one.html" class="menu-link"
+                            <li class="submenu-tropdown"><a href="/service/pharmaceutical" class="menu-link"
                                     onclick="navigate(event)">Pharmaceutical Testing</a></li>
-                            <li class="submenu-tropdown"><a href="service-two.html" class="memu-link"
+                            <li class="submenu-tropdown"><a href="/service/foodtesting" class="memu-link"
                                     onclick="navigate(event)">Food and Feed Tesing</a></li>
-                            <li class="submenu-tropdown"><a href="service-three.html" class="menu-link"
+                            <li class="submenu-tropdown"><a href="/service/watertesting" class="menu-link"
                                     onclick="navigate(event)">Water and Wastewate Testing</a></li>
                         </ul>
                     </li>
@@ -42,45 +42,45 @@
                         <i class="fa-solid fa-chevron-down"></i>
                         <ul class="sub-media">
                             <li class="submenu-tropdown alls allmenu" id="alls">
-                                <a href="media.html" class="m-txt">
+                                <a href="/media" class="m-txt">
                                     <h3>All</h3>
                                 </a>
                                 <div class="menu1 rowmenu" id="menu1">
-                                    <a href="Eventone.html" class="img-menu" style="text-decoration: none;"><img
+                                    <a href="/media/newyear" class="img-menu" style="text-decoration: none;"><img
                                             src="{{URL('/assets/image/allimg1.jpg')}}" alt="">New year and double birthday</a>
-                                    <a href="Eventtwo.html" class="img-menu" style="text-decoration: none;"><img
+                                    <a href="/media/launchofKEM" class="img-menu" style="text-decoration: none;"><img
                                             src="{{URL('/assets/image/allimg2.jpg')}}" alt="">Launch Of KEM</a>
-                                    <a href="Eventthree.html" class="img-menu" style="text-decoration: none;"><img
+                                    <a href="/media/kinal" class="img-menu" style="text-decoration: none;"><img
                                             src=" {{URL('/assets/image/allimg3.jpg')}}" alt="">KINAL is the symbol of the effective
                                         pain-killer</a>
-                                    <a href="group-ppm.html" class="img-menu" style="text-decoration: none;"><img
+                                    <a href="/media/ppmandconfirel" class="img-menu" style="text-decoration: none;"><img
                                             src="{{URL('/assets/image/allimg4.jpg')}}" alt="">The Group PPM/Confirel announces the
                                         launch of KEM</a>
                                 </div>
                             </li>
                             <li class="submenu-tropdown events allmenu" id="events">
-                                <a href="Events.html" class="m-txt">
+                                <a href="/media/events" class="m-txt">
                                     <h3>Events</h3>
                                 </a>
                                 <div class="rowevent event-img rowmenu menu2" id="menu2">
-                                    <a href="Eventone.html" class="img-menu" style="text-decoration: none;"><img
+                                    <a href="/media/newyear" class="img-menu" style="text-decoration: none;"><img
                                             src="{{URL('/assets/image/allimg1.jpg')}}" alt="">New year and double birthday</a>
-                                    <a href="Eventtwo.html" class="img-menu" style="text-decoration: none;"><img
+                                    <a href="/media/launchofKEM" class="img-menu" style="text-decoration: none;"><img
                                             src="{{URL('/assets/image/allimg2.jpg')}}" alt="">Launch Of KEM</a>
-                                    <a href="Eventthree.html" class="img-menu" style="text-decoration: none;"><img
+                                    <a href="/media/kinal" class="img-menu" style="text-decoration: none;"><img
                                             src="{{URL('/assets/image/allimg3.jpg')}}" alt="">KINAL is the symbol of the effective
                                         pain-killer</a>
                                 </div>
                             </li>
                             <li class="submenu-tropdown news allmenu" id="news">
-                                <a href="News.html" class="m-txt">
+                                <a href="/media/news" class="m-txt">
                                     <h3>News</h3>
                                 </a>
                                 <div class="rownews new-mig rowmenu menu3" id="menu3">
-                                    <a href="group-ppm.html" class="img-menu" style="text-decoration: none;"><img
+                                    <a href="/media/ppmandconfirel" class="img-menu" style="text-decoration: none;"><img
                                             src="{{URL('/assets/image/allimg4.jpg')}}" alt="">The Group PPM/Confirel announces the
                                         launch of KEM</a>
-                                    <a href="group-ppm.html" class="img-menu" style="text-decoration: none;"
+                                    <a href="/media/ppmandconfirel" class="img-menu" style="text-decoration: none;"
                                         submenu><img src=" {{URL('/assets/image/allimg4.jpg')}}" alt="">The Group PPM/Confirel
                                         announces the launch of KEM</a>
                                 </div>
@@ -119,9 +119,9 @@
                             <i class="fa-solid fa-chevron-right dropdown-icon" onclick="toggleDropdown(this)"></i>
                         </div>
                         <ul class="na-dropdown">
-                            <li><a href="service-one.html">Pharmaceutical Testing</a></li>
-                            <li><a href="service-two.html">Food and Feed Testing</a></li>
-                            <li><a href="service-three.html">Water and Wastewater Testing</a></li>
+                            <li><a href="/service/pharmaceutical">Pharmaceutical Testing</a></li>
+                            <li><a href="/service/foodtesting">Food and Feed Testing</a></li>
+                            <li><a href="/service/watertesting">Water and Wastewater Testing</a></li>
                         </ul>
                     </li>
                     <li class="dropdown-container">
@@ -167,29 +167,10 @@
 
 
     <!--Footer-->
-    <!-- <div class="quote ">
-        <div class="container-width footer quote-grid">
-            <div class=" quote-section quote-grid">
-                <i class="fa-solid fa-pen-to-square"></i>
-                <div class="text-title">
-                    <h2 class="text-title-detail">We're here to help you improve your business continually.</h2>
-                    <p class="text-detail">
-                        In search of excellence and competitive advantage, there is a need to continually improve the
-                        business...
-                    </p>
-                </div>
-                <div class="readmore-btn mquote-btn">
-                    <a href="getquote.html" class="btn1 btn-color btn-size btn-sizes">
-                        <span class="btn-quote">GET A QUOTE</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <footer>
         <div class="grid1x3 social container-width">
             <div class="footer-img">
-                <img src="{{URL('/assets/image/img1.jpg')}}" alt="">
+                <img src="{{URL('/assets/image/Logo_labocert_footer.JPG')}}" alt="">
                 <h3 class="open-hour-title"><span>Opening Hours</span>
                     <hr class="open-line">
                 </h3>
@@ -264,8 +245,9 @@
     <!--End Footer-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="{{URL('/assets/js/script.js')}}"></script>
-    <script src="{{URL('/assets/js/mobile.js')}}"></script>
+    <script src="{{ URL('/assets/js/script.js') }}"></script>
+    <script src="{{ URL('/assets/js/mobile.js') }}"></script>
+
     <script>
         
         // Example of swiper initialization
