@@ -19,6 +19,7 @@ class service_backendController extends Controller
     }
 
     public function service_parameter(){
+        // return 123;
         return view('backend.service-parameter');
     }
 }

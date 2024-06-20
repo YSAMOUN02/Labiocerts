@@ -22,59 +22,6 @@ function maximize(){
 
 
 // Menu Drop Down when Click
-var state_ads = 0;
-function drop_down_ads(){
-  
-    if(state_ads == 0){
-        document.getElementById('ads').style.display = 'block';
-        document.getElementById('ads-icon').style.transform = 'rotate(180deg)';
-        document.getElementById('ads-icon').style.top = '20%';
-     state_ads = 1;
-
-     state_client = 1;
-     drop_down_logo_client();
-
-     state_user = 1;
-     drop_down_logo_user();
-
-     state_media = 1;
-     drop_down_media();
-
-    }else{
-        document.getElementById('ads').style.display = 'none';
-        document.getElementById('ads-icon').style.transform = 'rotate(0deg)';
-        document.getElementById('ads-icon').style.top = '20%';
-        state_ads = 0;
-    }
-}
-
-
-var state_client = 0;
-function drop_down_logo_client(){
-  
-    if(state_client == 0){
-        document.getElementById('logo_client').style.display = 'block';
-        document.getElementById('logo_client_icon').style.transform = 'rotate(180deg)';
-        document.getElementById('logo_client_icon').style.top = '20%';
-     state_client = 1;
-
-
-     state_ads = 1;
-     drop_down_ads();
-
-     state_user = 1;
-     drop_down_logo_user();
-
-     state_media = 1;
-     drop_down_media();
-    }else{
-        document.getElementById('logo_client').style.display = 'none';
-        document.getElementById('logo_client_icon').style.transform = 'rotate(0deg)';
-        document.getElementById('logo_client_icon').style.top = '20%';
-        state_client = 0;
-    }
-}
-
 
 var state_user = 0;
 function drop_down_logo_user(){
@@ -84,12 +31,6 @@ function drop_down_logo_user(){
         document.getElementById('user-manage_icon').style.transform = 'rotate(180deg)';
         document.getElementById('user-manage_icon').style.top = '20%';
      state_user = 1;
-
-     state_ads = 1;
-     drop_down_ads();
-
-     state_client = 1;
-     drop_down_logo_client();
 
      state_media = 1;
      drop_down_media();
@@ -112,11 +53,6 @@ function drop_down_media(){
         document.getElementById('media_icon').style.top = '20%';
      state_media = 1;
 
-     state_ads = 1;
-     drop_down_ads();
-
-     state_client = 1;
-     drop_down_logo_client();
 
      state_user = 1;
      drop_down_logo_user();
@@ -149,4 +85,20 @@ function loadFile(event) {
         output.src = reader.result;
     };
     reader.readAsDataURL(event.target.files[0]);
+}
+// For Preview File Imag
+function loadFile2(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+        var output = document.getElementById('output2');
+        output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+function fade_in_nav(){
+    document.querySelector('.nav').style.display = 'block';
+}
+function fade_nav(){
+    document.querySelector('.nav').style.display = 'none';
 }

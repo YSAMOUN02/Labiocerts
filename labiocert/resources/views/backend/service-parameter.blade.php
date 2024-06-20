@@ -17,29 +17,31 @@
     </div>
 
     <div class="category-info">
-        <div class="row">
-         <div class="col-2">
-             <label for="">Add Parameter</label>
-             <input type="text" class="form-control" placeholder="No">
-         </div>
-         <div class="col-4">
-             <label for=""></label>
-             <input type="text" class="form-control" placeholder="Parameter">
-         </div>
-         <div class="col-3">
-            <label for=""></label>
-            <input type="text" class="form-control" placeholder="Duration Analysis">
-        </div>
-        <div class="col-3">
-            <label for=""></label>
-            <input type="text" class="form-control" placeholder="Method">
-        </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-12">
-                <button class="btn-success">Add</button>
-            </div>
-         </div>
+        <form action="">
+            <div class="row">
+                <div class="col-2">
+                    <label for="">Add Parameter</label>
+                    <input type="text" class="form-control" placeholder="No">
+                </div>
+                <div class="col-4">
+                    <label for=""></label>
+                    <input type="text" class="form-control" placeholder="Parameter">
+                </div>
+                <div class="col-3">
+                   <label for=""></label>
+                   <input type="text" class="form-control" placeholder="Duration Analysis">
+               </div>
+               <div class="col-3">
+                   <label for=""></label>
+                   <input type="text" class="form-control" placeholder="Method">
+               </div>
+               </div>
+               <div class="row mt-3">
+                   <div class="col-12">
+                       <button class="btn-success">Add</button>
+                   </div>
+                </div>
+        </form>
      </div>
     
     <table class="mt-4">

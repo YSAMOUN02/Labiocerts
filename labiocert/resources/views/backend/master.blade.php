@@ -37,6 +37,8 @@
     <!-- Main aside bar -->
     <main>
       <div class="container-fluid">
+        <button id="menu-mobile" onclick="fade_in_nav()">   <i  class="fa-solid fa-bars"></i></button>
+     
         <!-- alert confirm for user aware -->
         <div class="alert-confirm">
           <form action="">
@@ -73,20 +75,25 @@
               <i class="fa-solid fa-caret-left"></i>
             </button>
           </div>
+          <div class="click-left-mobile">
+            <button onclick="fade_nav()">
+              <i class="fa-solid fa-caret-left"></i>
+            </button>
+          </div>
           <div class="logo">
             <img src="/assets/image_backend/Logo-Labiocert.png" alt="" />
           </div>
           <div class="list-nav">
             <ul>
               <li>
-                <span class="padded"><a href="#">Dashboard</a></span>
+                <span class="padded"><a href="/admin">Dashboard</a></span>
               </li> 
               <li>
                 <span class="padded"><a href="/admin/service">Service </a></span>
               </li>
               <li>
                 <span class="padded"
-                  ><a href="#"
+                  ><a href="/admin/quote/view"
                     >Quote Request
                     <div class="quote_req">1</div></a
                   ></span
@@ -123,16 +130,8 @@
                 <span class="padded"><a href="/admin/logoClient">Logo Clients</a></span>
               </li>
               <li onclick="drop_down_ads()">
-                <span class="padded">Ads</span
-                ><i id="ads-icon" class="fa-solid fa-caret-down"></i>
-                <ul id="ads">
-                  <li class="fade1">
-                    <span class="padded"><a href="">Add Ads</a></span>
-                  </li>
-                  <li class="fade2">
-                    <span class="padded"><a href="">View Ads</a></span>
-                  </li>
-                </ul>
+                <span class="padded"><a href="/admin/advertising">Advertising</a></span
+                >
               </li>
               <li onclick="alert_logout()"><span class="padded">Logout</span></li>
             </ul>
