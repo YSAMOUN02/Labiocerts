@@ -112,10 +112,10 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
                     style="text-decoration: none;">&times;</a>
                 <div class="overlayy-content">
-                    <li><a href="index.html" style="text-decoration: none;">Home</a></li>
+                    <li><a href="/" style="text-decoration: none;">Home</a></li>
                     <li class="dropdown-container">
                         <div class="fa-cc dropdown-container">
-                            <a href="ourservice.html" style="text-decoration: none;">Our Services</a>
+                            <a href="/service" style="text-decoration: none;">Our Services</a>
                             <i class="fa-solid fa-chevron-right dropdown-icon" onclick="toggleDropdown(this)"></i>
                         </div>
                         <ul class="na-dropdown">
@@ -126,15 +126,15 @@
                     </li>
                     <li class="dropdown-container">
                         <div class="fa-cc dropdown-container">
-                            <a href="media.html" style="text-decoration: none;">Media Center</a>
+                            <a href="/media" style="text-decoration: none;">Media Center</a>
                             <i class="fa-solid fa-chevron-right dropdown-icon" onclick="toggleDropdown(this)"></i>
                         </div>
                         <ul class="na-dropdown">
-                            <li><a href="Events.html">Events</a></li>
-                            <li><a href="News.html">News</a></li>
+                            <li><a href="/media/events">Events</a></li>
+                            <li><a href="/media/news">News</a></li>
                         </ul>
                     </li>
-                    <li><a href="location.html" style="text-decoration: none;">Location and Contact</a></li>
+                    <li><a href="/location" style="text-decoration: none;">Location and Contact</a></li>
                 </div>
             </div>
             <div class="nav-ham ">
@@ -142,7 +142,7 @@
                     <span class="" style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776; </span>
                 </div>
                 <div class="logo mobile-logo">
-                    <a href="#" class="m-logo"><img id="logo" src="{{URL('/assets/image/img1.jpg')}}" alt=""></a>
+                    <a href="/" class="m-logo"><img id="logo" src="{{URL('/assets/image/img1.jpg')}}" alt=""></a>
                 </div>
                 <div class="s-bar">
                     <span class="s-icon" style="font-size:30px;cursor:pointer" onclick="oNav()"><i
@@ -161,11 +161,7 @@
         </div>
     </header>
     <!-- End of navigation -->
-
         @yield('content')
-
-
-
     <!--Footer-->
     <footer>
         <div class="grid1x3 social container-width">
@@ -240,16 +236,13 @@
             </div>
         </div>
     </footer>
-
-
     <!--End Footer-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="{{ URL('/assets/js/script.js') }}"></script>
-    <script src="{{ URL('/assets/js/mobile.js') }}"></script>
-
+    <script src="{{URL('/assets/js/script.js')}}"></script>
+    <script src="{{URL('/assets/js/mobile.js')}}"></script>
     <script>
-        
+
         // Example of swiper initialization
         var swiper = new Swiper('.swiper-container', {
             pagination: {
@@ -281,7 +274,6 @@
                 },
             },
         });
-
         function getDirection() {
             var windowWidth = window.innerWidth;
             return windowWidth <= 300 ? 'vertical' : 'horizontal';
@@ -289,8 +281,6 @@
         document.querySelector('.button-next').addEventListener('click', function () {
             swiper.slideNext();
         });
-
-
         document.querySelector('.button-prev').addEventListener('click', function () {
             swiper.slidePrev();
         });

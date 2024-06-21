@@ -67,7 +67,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ads-eventhree fixed ads-service">
+            <div class="adversting fixed ads-service">
                 <div class="last-new">
                     <span class="lastnew">LASTEST NEWS</span>
                 </div>
