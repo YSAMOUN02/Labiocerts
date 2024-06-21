@@ -89,23 +89,25 @@
                 </div>
                 <aside>
                 <div class="quote-adversting fixed ads-service">
-            <div class="last-new">
-                <span class="lastnew">LASTEST NEWS</span>
-            </div>
-            <div class="lastnew-detail">
-                <div class="img-khmernew ">
-                    <a href="Eventone.html" class="img-lastnew"><img src="{{('/assets/image/allimg1.jpg')}}" alt=""></a>
-                    <a href="Eventone.html" class="text-lastnew">New year and double birthday</a>
+                <div class="quote-adversting fixed ads-service">
+                    <div class="last-new">
+                        <span class="lastnew">LASTEST NEWS</span>
+                    </div>
+                    <div class="lastnew-detail">
+                                <div class="img-khmernew ">
+                                    <a href="/media/newyear" class="img-lastnew"><img src="{{URL('/assets/image/allimg1.jpg')}}" alt=""></a>
+                                    <a href="/media/newyear" class="text-lastnew">New year and double birthday</a>
+                                </div>
+                                <div class="img-launchnew ">
+                                    <a href="/media/launchofKEM" class="img-lastnew"><img src="{{URL('/assets/image/allimg2.jpg')}}" alt=""></a>
+                                    <a href="/media/launchofKEM" class="text-lastnew">Launch of KEM</a>
+                                </div>
+                                <div class="img-kinal ">
+                                    <a href="/media/kinal" class="img-lastnew"><img src="{{URL('/assets/image/allimg3.jpg')}}" alt=""></a>
+                                    <a href="/media/kinal" class="text-lastnew">KINAL is the symbol of the effective pain-killer</a>
+                                </div>
                 </div>
-                <div class="img-launchnew ">
-                    <a href="Eventtwo.html" class="img-lastnew"><img src="{{('/assets/image/allimg2.jpg')}}" alt=""></a>
-                    <a href="Eventtwo.html" class="text-lastnew">Launch of KEM</a>
-                </div>
-                <div class="img-kinal ">
-                    <a href="Eventthree.html" class="img-lastnew"><img src="{{('/assets/image/allimg3.jpg')}}" alt=""></a>
-                    <a href="Eventthree.html" class="text-lastnew">KINAL is the symbol of the effective pain-killer</a>
-                </div>
-            </div>
+        </div>
         </div>
                 </aside>
                 
@@ -113,5 +115,8 @@
         </div>
 </section>
     <!-- End of Quote Section -->
+<script> 
+  
 
+</script>
 @endsection 
