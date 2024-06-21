@@ -96,9 +96,48 @@ function loadFile2(event) {
     reader.readAsDataURL(event.target.files[0]);
 }
 
+function loadFile3(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+        var output = document.getElementById('output3');
+        output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+function clearimagethumbnail(){
+
+    document.getElementById('output3').src = "";
+    document.getElementById('clearimage3').value = "";
+    
+}
+
+function loadFile4(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+        var output = document.getElementById('output4');
+        output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+function clearimagethumbnail4(){
+
+    document.getElementById('output4').src = "";
+    document.getElementById('clearimage4').value = "";
+    
+}
+
+
+
 function fade_in_nav(){
     document.querySelector('.nav').style.display = 'block';
 }
 function fade_nav(){
     document.querySelector('.nav').style.display = 'none';
 }
+
+// tinymce
+tinymce.init({
+
+    selector: '.textarea',
+    plugins: 'image link',
+  });

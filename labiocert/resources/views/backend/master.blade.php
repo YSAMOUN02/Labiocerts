@@ -31,6 +31,9 @@
       type="image/x-icon"
     />
 
+    {{-- Tiny MCE --}}
+    <script src="https://cdn.tiny.cloud/1/lz3mqdi05log95h6wsj46p0sqpw78cu3z3ibzdfw9ck0xaqy/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
     <title>Labiocert -Backend Dashboard</title>
   </head>
   <body>
@@ -104,7 +107,7 @@
                 ><i id="media_icon" class="fa-solid fa-caret-down"></i>
                 <ul id="media-manage">
                   <li class="fade1">
-                    <span class="padded"><a href="">Add Media</a></span>
+                    <span class="padded"><a href="/admin/media/add">Add Media</a></span>
                   </li>
                   <li class="fade2">
                     <span class="padded"><a href="">View Media</a></span>

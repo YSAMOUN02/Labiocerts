@@ -4,7 +4,7 @@
     <form action="">
         <div class="row">
             <div class="col-6">
-                <label for="">Logo client</label>
+                <label for="">Advertising</label>
                 <input type="file" accept="image/*" onchange="loadFile2(event)" class="form-control">
             </div>
             <div class="col-6">
