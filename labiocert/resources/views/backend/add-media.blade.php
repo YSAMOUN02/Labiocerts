@@ -1,12 +1,12 @@
 @extends('backend.master')
 @section('content')
 
-<form  action="/admin/media/submit" method="POST">
+<form  action="/admin/media/submit" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-6">
             <label for="">Title</label>
-            <input type="text" name="title" class="form-control">
+            <input type="text" name="title" class="form-control" required>
         </div>
         <div class="col-6">
             <label for="">Status</label>
@@ -16,25 +16,33 @@
             </select>
         </div>
     </div>
-    <div class="row mt-3">
-        <label for="">Thumbnail</label>
-        <div class="col-6">
-            <input type="file" name="file1" onchange="loadFile3(event)" id="clearimage3" class="form-control">
-        </div>
-        <div class="col-6">
-            <button type="button" onclick="clearimagethumbnail()" class="trash-button">Clear Thumbnail<i  class="fa-solid fa-trash"></i></button>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col-6 thumbnail">
-            <img width="100%"  src="" id="output3" alt="">
+
+    <div class="row">
+        <div class="col-12">
+            <small class="text-danger">Double tap to remove image</small><br>
+            <small>First Image is Thumbnail</small>
+        
         </div>
     </div>
     <div class="row">
-        <div class="col-12 mt-3">
-            <textarea class="textarea" name="" id="" rows="4"></textarea>
+        <div class="col-12">
+            <div class="input">
+                <div class="input-child">
+                    
+                    <input type="text" name="state" class="d-none" id="state">
+                </div>
+            </div>
         </div>
     </div>
-    <button class="btn btn-success" type="submit">Submit</button>
+   
+
+<div class="add-image">
+    <button type="button" onclick="append_image()"><i class="fa-regular fa-image"></i> </button>
+    <button type="button" onclick="append_textbox()"><i class="fa-solid fa-pen-to-square"></i></button>
+    <button type="submit">Submit</button>
+   
+</div>
+ 
 </form>
+
 @endsection
