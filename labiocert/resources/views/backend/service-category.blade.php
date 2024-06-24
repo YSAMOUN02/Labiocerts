@@ -24,6 +24,7 @@
           <label for=""></label>
           <input type="text" class="form-control" placeholder="Service Category">
       </div>
+      
       <div class="col-3">
          <label for=""></label>
          <select name="" id="" class="form-control">
