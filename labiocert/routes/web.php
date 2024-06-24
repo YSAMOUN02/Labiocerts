@@ -35,7 +35,6 @@ Route::put('/admine/service/{id}', [service_backendController::class, 'update'])
 Route::delete('/admin/service/{id}', [service_backendController::class, 'destroy']);
 
 
-
 // frontend
 
 Route::get('/', [HomeController::class, 'homepage']);
