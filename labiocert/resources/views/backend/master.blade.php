@@ -32,7 +32,9 @@
     />
 
     {{-- Tiny MCE --}}
-    <script src="https://cdn.tiny.cloud/1/lz3mqdi05log95h6wsj46p0sqpw78cu3z3ibzdfw9ck0xaqy/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- Place the first <script> tag in your HTML's <head> -->
+      <script src="{{URL('https://cdn.tiny.cloud/1/lz3mqdi05log95h6wsj46p0sqpw78cu3z3ibzdfw9ck0xaqy/tinymce/7/tinymce.min.js')}}" referrerpolicy="origin"></script>
+
 
     
     <title>Labiocert -Backend Dashboard</title>
@@ -111,7 +113,7 @@
                     <span class="padded"><a href="/admin/media/add">Add Media</a></span>
                   </li>
                   <li class="fade2">
-                    <span class="padded"><a href="/admin/media/view">View Media</a></span>
+                    <span class="padded"><a href="/admin/media/list">View Media</a></span>
                   </li>
                 </ul>
               </li>
@@ -163,6 +165,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script src="{{URL('assets/js/tinymce.min.js')}}"></script>
     <script src="{{URL('assets/js/script_backend.js')}}"></script>
   </body>
 </html>

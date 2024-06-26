@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('image_box', function (Blueprint $table) {
             $table->id();
             $table->string('post_id');
+            $table->string('type')->default('image');
             $table->integer('order');
             $table->longText('name');
             $table->timestamps();

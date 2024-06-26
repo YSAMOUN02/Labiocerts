@@ -115,15 +115,22 @@ tinymce.init({
 
 
 var state = 0;
-var class_no = 1;
 var output =  'output'; 
+var class_no = 1;
 var input = 'input';
-function append_image(){
-   
+var state_child = 0;
+
+function append_image(qty_child){
+    if(state_child == 0){
+        class_no += qty_child;
+        state_child =1;
+    }
+    
     var append_child = document.querySelector(".input-child");
 
 
     if (append_child) {
+        // alert(class_no);
         var output_id = output_id = output + class_no.toString();
         var input_class = input+class_no.toString();
     
@@ -160,8 +167,11 @@ function append_image(){
 }
 
 
-function append_textbox(){
- 
+function append_textbox(qty_child){
+    if(state_child == 0){
+        class_no += qty_child;
+        state_child =1;
+    }
          
     var append_child = document.querySelector(".input-child");
 
@@ -173,44 +183,43 @@ function append_textbox(){
         var new_class = "textBox"+class_no.toString();
         new_div.classList.add(new_class);
         new_div.style.position = 'relative';
-    
         new_div.innerHTML = `
                 <div class="row mt-3">
                         <div class="col-12">
-                            <textarea name="${input_class2}" class="textarea" id="${input_class2}" cols="30" rows="10">Test lorem 123rdsdfkofkw ev</textarea>
+                            <textarea name="${input_class2}" class="textarea" id="${input_class2}" cols="30" rows="10"></textarea>
                             <button class="clear-text-box" type="button" onclick="clearTextbox('${new_class}')"><i class="fa-solid fa-minus"></i></button>
                         </div>
                 </div>
             
                 `;
   
-         
+              
         append_child.appendChild(new_div);
+        tinymce.init({
+            selector: `.textarea`,
+            plugins: 'image link'
+        });  
         class_no ++ ;
         state ++ ;
-        document.getElementById('state').value = state;
-     
-                // tinymce
-                tinymce.init({
-                    selector: `.textarea`,
-                    plugins: 'image link'
-                });   
-                        
+        document.getElementById('state').value = class_no;                  
     } 
     else {
         console.log("Element with class 'appen-child' not found");
     }
 }
 function clearTextbox(id_box){
-    // alert(123);
     document.querySelector("."+id_box).style.display = 'none';
-    document.querySelector("."+id_box).value = "";
+    document.querySelector("#"+id_box).value = "";
+    // console.log(123);
+
+    
 }
 
 
 
 // Clear Image from input Dynamic
 function clearImageThumbnail(inputId ,outputId,disable_class) {
+    // alert(disable_class);
     // alert(disable_class);
     document.querySelector('.'+disable_class).style.display = 'none';
     document.getElementById(inputId).value = "";
@@ -227,3 +236,4 @@ function loadFileDynamic(event,output_data) {
     };
     reader.readAsDataURL(event.target.files[0]);
 }
+

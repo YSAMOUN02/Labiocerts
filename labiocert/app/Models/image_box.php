@@ -21,5 +21,9 @@ class image_box extends Model
         'order' => 'integer',
         'name' => 'string'
     ];
-
+    protected  $primaryKey = 'id';
+    public function media()
+    {
+        return $this->belongsTo(Media::class, 'post_id');
+    }
 }

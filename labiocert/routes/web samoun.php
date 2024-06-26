@@ -53,8 +53,14 @@ Route::get('/admin/advertising', [advertisingController::class, 'advertising_sho
 Route::get('/admin/quote/view', [quoteController::class, 'quote_show']);
 Route::get('/admin/media/add', [media_backendController::class, 'media_add']);
 Route::post('/admin/media/submit', [media_backendController::class, 'media_add_submit']);
-Route::post('/admin/media/view', [media_backendController::class, 'media_show']);
+Route::get('/admin/media/list', [media_backendController::class, 'media_show']);
+Route::get('/admin/media/update/{id}', [media_backendController::class, 'media_update']);
+Route::post('/admin/media/update/submit', [media_backendController::class, 'media_update_submit']);
 
+
+Route::post('/admin/service', [service_backendController::class, 'store']);
+Route::put('/admine/service/{id}', [service_backendController::class, 'update']);
+Route::delete('/admin/service/{id}', [service_backendController::class, 'destroy']);
 
 
 

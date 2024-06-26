@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('text_box', function (Blueprint $table) {
             $table->id();
             $table->string('post_id');
+            $table->string('type')->default('text');
             $table->integer('order');
             $table->longText('description')->nullable();
             $table->timestamps();

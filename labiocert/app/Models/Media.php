@@ -19,6 +19,15 @@ class Media extends Model
         'status' => 'integer',
  
     ];
+    protected  $primaryKey = 'id';
+    public function imageBoxes()
+    {
+        return $this->hasMany(image_box::class, 'post_id');
+    }
 
+    public function textBoxes()
+    {
+        return $this->hasMany(text_box::class, 'post_id');
+    }
   
 }

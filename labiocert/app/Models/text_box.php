@@ -21,5 +21,9 @@ class text_box extends Model
         'order' => 'integer',
         'description' => 'string'
     ];
-
+    protected  $primaryKey = 'id';
+    public function media()
+    {
+        return $this->belongsTo(Media::class, 'post_id');
+    }
 }

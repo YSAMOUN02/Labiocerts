@@ -388,9 +388,11 @@ table td:last-child button{
     margin-left: 4px;
 }
 .add-image{
-    position: fixed;
+    
+    position: fixed ;
     bottom: 30px ;
     right: 50px;
+    z-index: 9999;
 }
 .add-image button{
     margin: 3px;
@@ -402,9 +404,6 @@ table td:last-child button{
     background-color: rgb(0, 255, 0);
 }
 
-.textarea{
-    position: relative !important;
-}
  .clear-text-box{
     position: absolute;
     top: 20px;

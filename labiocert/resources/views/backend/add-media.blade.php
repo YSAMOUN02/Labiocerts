@@ -37,8 +37,8 @@
    
 
 <div class="add-image">
-    <button type="button" onclick="append_image()"><i class="fa-regular fa-image"></i> </button>
-    <button type="button" onclick="append_textbox()"><i class="fa-solid fa-pen-to-square"></i></button>
+    <button type="button" onclick="append_image(0)"><i class="fa-regular fa-image"></i> </button>
+    <button type="button" onclick="append_textbox(0)"><i class="fa-solid fa-pen-to-square"></i></button>
     <button type="submit">Submit</button>
    
 </div>
