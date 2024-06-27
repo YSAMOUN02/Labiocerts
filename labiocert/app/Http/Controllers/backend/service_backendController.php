@@ -5,90 +5,116 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Models\ServiceCategory;
+use App\Models\service_categories;
 use App\Models\Service;
 
 class service_backendController extends Controller
 {
-/**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
+
     public function service_show()
     {
         $services = Service::all();
         return view('backend.service', compact('services'));
     }
-      /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
-    public function store(Request $request)
+
+
+    public function service_submit(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
+
+        $validatedData = $request->validate([
+            'no' => 'required',
+            'service' => 'required',
+            'status' => 'required|in:0,1',
             'reference' => 'required',
-            'status' => 'required',
         ]);
-        Service::create($request->all()); 
-        return redirect()->route('backend.service')->with('success', 'Service created successfully.'); 
-        
-    }
 
-    public function service_submit(Request $request){
-        // return $request;
-
-        $data = new Service();
-        $data->no = $request->input('no');
-        $data->title = $request->input('service');
-        $data->status = $request->input('status');
-        $data->reference = $request->input('reference');       
-        $data->save();
-
+        $service = new Service();
+        $service->no = $validatedData['no'];
+        $service->title = $validatedData['service'];
+        $service->status = $validatedData['status'];
+        $service->reference = $validatedData['reference'];
+        $service->save();
         return redirect('/admin/service');
     }
-    /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-    public function update(Request $request, $id)
+
+    public function service_update(Request $request, $id)
     {
         $request->validate([
             'title' => 'required',
             'reference' => 'required',
             'status' => 'required',
         ]);
-
-        $services = Service::find($id);
-        $services->update($request->all());
-
-        return redirect()->route('backend.service')->with('success', 'Service update succesfully.');
+        $statusMap = [
+            'Active' => 1,
+            'Inactive' => 0,
+        ];
+        $service = Service::find($id);
+        if ($service) {
+            $data = $request->all();
+            if (isset($statusMap[$data['status']])) {
+                $data['status'] = $statusMap[$data['status']];
+            } else {
+                return back()->withErrors(['status' => 'Invalid status value']);
+            }
+            $service->update($data);
+        }
+        return redirect('/admin/service');
     }
-    /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
+
+
     public function destroy($id)
     {
-        $services = Service::find($id);
-        $services->delete();
-
-        return redirect()->route('backend.service')->with('success', 'Service deleted successfully');
+        $service = Service::find($id);
+        if ($service) {
+            $service->delete();
+            return redirect('/admin/service');
+        } else {
+            return redirect('/admin/service');
+        }
     }
-  
-    public function service_category()
+
+    //Category 
+    public function showServiceCategory($id)
     {
-        return view('backend.service-category');
+        $service = Service::findOrFail($id);
+
+        $services_category = service_categories::all(); // Ensure this line is present to pass the categories to the view
+        return view('backend.service-category', compact('service', 'services_category'));
     }
 
+    public function category_show($service_id)
+    {
+    $services_category = service_categories::where('service_id', $service_id)->get();
+    return view('backend.service-category', compact('services_category'));
+    }
+
+    public function category_submit(Request $request)
+    {
+        $validatedData = $request->validate([
+          
+            'no' => 'required|integer',
+            'category' => 'required|string|max:255',
+            'status' => 'required|in:0,1',
+        ]);
+    
+        $service_category = new service_categories();
+       
+        $service_category->no = $validatedData['no'];
+        $service_category->title_category = $validatedData['category'];
+        $service_category->status = $validatedData['status'];
+        $service_category->save();
+    
+        return redirect('/admin/service/service-category');
+    }
+
+
+    // public function category_show()
+    // {
+    //    $services_category = Service_Category::all();
+    //     return view('backend.service-category', compact('services_category'));
+    // }
+
+    //parameter
     public function service_parameter()
     {
         // return 123;

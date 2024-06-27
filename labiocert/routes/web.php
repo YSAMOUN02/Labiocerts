@@ -12,31 +12,30 @@ use App\Http\Controllers\backend\advertisingController;
 use App\Http\Controllers\backend\quoteController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Service;
-
+use App\Models\ServiceCategories;
 
 
 // Back End
 
 Route::get('/login', [adminController::class, 'login']);
 Route::get('/admin', [adminController::class, 'admin']);
-Route::get('/admin/service', [service_backendController::class, 'service_show']);
+
 Route::post('/admin/service/submit', [service_backendController::class, 'service_submit']);
+Route::get('/admin/service', [service_backendController::class, 'service_show']);
+Route::put('/admin/service/update/{id}', [service_backendController::class, 'service_update']);
+Route::delete('/admin/service/delete/{id}', [service_backendController::class, 'destroy']);
+Route::get('/admin/service/category/{service_id}', [service_backendController::class, 'showServiceCategory']);
 
-Route::get('/admin/service/category', [service_backendController::class, 'service_category']);
-Route::get('/admin/service/category/parameter', [service_backendController::class, 'service_parameter']);
+Route::post('/admin/service/categorysubmit', [service_backendController::class,'category_submit']);
+Route::get('/admin/service/service-category/{service_id}', [service_backendController::class, 'category_show'])->name('backend.service-category'); 
+Route::put('/admin/service/categoryupdate/{id}', [service_backendController::class, 'category_update']);
+Route::delete('/admin/service/categorydelete/{id}', [service_backendController::class, 'category_destroy']);
+
 Route::get('/admin/logoClient', [logo_clientController::class, 'logoClient']);
-
 Route::get('/admin/advertising', [advertisingController::class, 'advertising_show']);
-
 Route::get('/admin/quote/view', [quoteController::class, 'quote_show']);
 
-Route::post('/admin/service', [service_backendController::class, 'store']);
-Route::put('/admine/service/{id}', [service_backendController::class, 'update']);
-Route::delete('/admin/service/{id}', [service_backendController::class, 'destroy']);
-
-
 // frontend
-
 Route::get('/', [HomeController::class, 'homepage']);
 Route::get('/welcomelabiocert', [HomeController::class, 'welcomelabiocert']); 
 Route::get('/service', [ServiceController::class, 'service']);
