@@ -26,7 +26,7 @@
                     <option value="0" {{ old('status') == 0 ? 'selected' : ''}}>Inactive</option>
                 </select>
                 @error('status')
-                <div class="text-danget">{{ $message }}</div>
+                <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
         </div>
@@ -40,7 +40,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-12">
-                <button type="submit" class="btn-success">Add</button>
+                <button type="submit" class="btn btn-success">Add</button>
             </div>
         </div>
 </div>
@@ -65,7 +65,7 @@
                 <td>
 
                 <a href="{{ route('backend.service-category', $service->id) }}">
-                    <button class="btn-primary">
+                    <button class=" btn btn-primary">
                         Category
                     </button>
                 </a>

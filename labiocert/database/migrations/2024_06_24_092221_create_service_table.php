@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('no');
             $table->string('title');
             $table->longText('reference');
-            $table->tinyinteger('status');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
