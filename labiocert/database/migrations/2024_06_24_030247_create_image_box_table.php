@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('type')->default('image');
             $table->integer('order');
             $table->longText('name');
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

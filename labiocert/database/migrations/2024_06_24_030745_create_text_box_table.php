@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('type')->default('text');
             $table->integer('order');
             $table->longText('description')->nullable();
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

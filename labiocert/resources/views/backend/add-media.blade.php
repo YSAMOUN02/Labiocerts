@@ -1,7 +1,7 @@
 @extends('backend.master')
 @section('content')
 
-<form  action="/admin/media/submit" method="POST" enctype="multipart/form-data">
+<form  action="/admin/media/submit" method="POST" enctype="multipart/form-data" onsubmit="validation(event)">
     @csrf
     <div class="row">
         <div class="col-6">
@@ -16,9 +16,23 @@
             </select>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-6">
+            <div class="col-6">
+                <label for="category">Category</label>
+                <select name="category" class="form-control" id="category">
+                    <option value="1">News</option>
+                    <option value="2">Internal</option>
+                    <option value="3">Social</option>
+                    <option value="4">Science</option>
+                    <option value="5"></option>
+                </select>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12">
+            
             <small class="text-danger">Double tap to remove image</small><br>
             <small>First Image is Thumbnail</small>
         

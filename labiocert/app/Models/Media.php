@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+
+use App\ImageBox;
+use App\TextBox;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,5 +32,11 @@ class Media extends Model
     {
         return $this->hasMany(text_box::class, 'post_id');
     }
-  
+    public function image() {
+        return $this->hasOne('App\Models\image_box', 'post_id', 'id');
+    }
+
+    public function text() {
+        return $this->hasOne('App\Models\text_box', 'post_id', 'id');
+    }
 }

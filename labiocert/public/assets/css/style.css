@@ -1413,6 +1413,12 @@ swiper-slide img {
     line-height: 1.6;
 }
 
+.ads img{
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
 /* End of event three section */
 /* Group PPM */
 .group-section {
@@ -1425,7 +1431,10 @@ swiper-slide img {
 .ppm-section {
     width: 65%;
 }
-
+.ppm-section img{
+    margin: 50px 0px;
+    width: 100%;
+}
 .ppm-text {
     line-height: 1.6;
 }
@@ -1638,10 +1647,33 @@ table td {
 
 }
 
+.img-media>img {
+    width: 200px;
+
+}
 .service-f-analysis>p {
     line-height: 1;
 }
-
+.category{
+    width: 100%;
+   display: flex;
+   flex-direction: column;
+}
+.category-text{
+    color: white;
+    width: 15%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #0084ff;
+    clip-path: polygon(0 0, 76% 0, 100% 100%, 0% 100%);
+}
+.category-line{
+    width: 100%;
+    height: 3px;
+    background-color: #0084ff;
+}
 /* End of Food-Analysis */
 /* Phy-analysis */
 .p-analysis {
@@ -1685,9 +1717,9 @@ table td {
 
 /* End of Analysis Fees  */
 /* Media Section */
-.media-title>h1 {
+.media-title>h2 {
     font-size: 25px;
-    text-align: center;
+    text-align: left;
 }
 
 .mediacenter-section {
@@ -1699,17 +1731,44 @@ table td {
 }
 
 .media-image {
+    height: 400px;
+    width: 100%;
     display: flex;
-    gap: 0.5rem;
+    justify-content: space-between;
+ 
+}
+.group-media-ff{
+    width: 30%;
+    height: 100%;
+
 }
 
-.media-ff {
-    position: relative;
+.media-image .right_box_media{
     width: 100%;
+    height: 198px;
+
+}
+.right_box_media:first-child{
+    margin-bottom: 4px;
+}
+.right_box_media img {
+    /* object-fit: cover; */
+    width: 100%;
+    height: 100%;
+}
+.media-ff {
+    width: 69.5%;
+    height: 100%;
     max-width: auto;
     cursor: pointer;
+    position: relative;
 }
 
+.media-ff img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .mediaf-own {
     display: block;
     width: 100%;
@@ -1735,7 +1794,12 @@ table td {
 .media-ff:hover .overlay {
     opacity: 1;
 }
-
+.right_box_media{
+    position: relative;
+}
+.right_box_media:hover .overlay {
+    opacity: 1;
+}
 .media-s {
     position: relative;
     width: 100%;
@@ -1784,7 +1848,7 @@ table td {
 }
 
 .alldetail-text {
-    width: 75%;
+    width: 100%;
 }
 
 .knl-txt>a>h5 {
@@ -1804,6 +1868,35 @@ table td {
 }
 .m-txt:hover > h3{
     background-color: #00b3ff;
+}
+.news_box{
+    height: 230px;
+
+}
+.news_box > .image{
+    width: 100%;
+    height: 60%;
+    background-color: rebeccapurple;
+}
+ .image > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.news_box > .text{
+    width: 100%;
+    height: 40%;
+    padding: 5px 0px;
+    font-size: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.inner-text {
+    overflow: hidden;
+}
+.post-by-category{
+    margin-top: 20px;
 }
 /* End of Media Section */
 
@@ -2104,8 +2197,6 @@ footer {
 
 }
 
-.social-icon>a {}
-
 .icon-in {
     margin-right: 1rem;
     margin-left: 1rem;
@@ -2133,7 +2224,6 @@ footer {
 /*End Footer */
 
 /* Compyright */
-.copy {}
 
 .copy-right>h4 {
     width: 100%;
@@ -2225,7 +2315,7 @@ footer {
         background: linear-gradient(to bottom, #313b45 0%, #3393b8 100%);
         overflow-x: hidden;
         transition: 0.8s;
-
+        pointer-events: none;
     }
 
     .overlayy-content {
@@ -2697,7 +2787,6 @@ footer {
 
     }
 
-    .social-icon>a {}
 
     .icon-in {
         margin-right: 1rem;
@@ -3266,8 +3355,8 @@ footer {
     }
 
     .alldetail-text {
-        width: 95%;
-        margin-left: 1rem;
+        width: 100%;
+        padding: 5px !important;
     }
 
     .knl-txt>a>h5 {
@@ -3468,6 +3557,44 @@ footer {
     .tell>a:hover {
         color: #22a3d6;
     }
+    .media-ff{
+        
+        width: 100%;
+        height: 300px;
+    }
+    .media-image{
+        height: auto ;
+        display: flex;
+        flex-direction: column;
+
+    }
+    .group-media-ff{
+        width: 100%;
+        
+
+    }
+    .right_box_media{
+       display: flex;
+       flex-direction: column;
+        width: 100% !important;
+    }
+    .media-ff{
+        height: 200px;
+    }
+    .over-lay{
+        opacity: 0;
+    }
+    
+    .category-text{
+        padding: 2px 2px;
+        width: 25%;
+    }
+    .alldetail-text{
+        width: 100% !important;
+        padding: 0 !important;
+        
+    }
+
 
     /* End of Location Section */
 }
@@ -4436,7 +4563,7 @@ footer {
         margin-right: 1rem;
     }
 
-    .f-table {}
+
 
     .an-fes {
         margin-top: 7rem;
@@ -4458,7 +4585,7 @@ footer {
 
     /* End of Analysis Fees  */
     /* Media Section */
-    .media-title>h1 {
+    .media-title>h2 {
         font-size: 20px;
         margin-bottom: 1.5rem;
     }
@@ -4877,7 +5004,7 @@ footer {
 
     }
 
-    .social-icon>a {}
+
 
     .icon-in {
         margin-right: 1rem;
