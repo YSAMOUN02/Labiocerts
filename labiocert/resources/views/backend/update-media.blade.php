@@ -9,6 +9,7 @@ $child = 0;
         <div class="col-6">
             <label for="">Title</label>
             <input type="text" name="title" class="form-control" value="{{$media_header->title}}" required>
+            <input type="text" name="media-id" value="{{$media_header->id}}" class="d-none">
         </div>
         <div class="col-6">
             <label for="">Status</label>
@@ -23,12 +24,37 @@ $child = 0;
         
             </select>
         </div>
+      
     </div>
     <div class="row">
         <div class="col-6">
             <label for="">Publish Date</label>
             <input type="datetime-local" name="created_at" value="{{$media_header->created_at}}" class="form-control">
         </div>
+        <div class="col-6">
+            <label for="category">Category</label>
+            <select name="category" class="form-control" id="category">
+                <option value="1">News</option>
+                <option value="2">Internal</option>
+                <option value="3">Social</option>
+                <option value="4">Science</option>
+                <option value="5"></option>
+            </select>
+        </div>  
+    </div>
+    <div class="row">
+
+            <div class="col-6">
+                <label for="category">Author</label>
+                <select name="category" class="form-control" id="category">
+                    <option value="Samoun">Samoun</option>
+                    <option value="Chiveng">Chiveng</option>
+                    <option value="Mang Seyha">Mang Seyha</option>
+                    <option value="4"></option>
+                    <option value="5"></option>
+                </select>
+            </div>
+  
     </div>
     <div class="row">
         <div class="col-12">
@@ -64,6 +90,7 @@ $child = 0;
                                     <div class="col-6">
                                         {{-- <input type="file"  name="input_class{{$item->order}}" value="{{$item->data->name}}" onchange="loadFileDynamic(event,'output_id{{$item->order}}')" id="input_class{{$item->order}}" class="form-control d-none"> --}}
                                         <input type="text" value="{{$item->data->name}}" name="input{{$item->order}}"  id="input_class{{$item->order}}" class="d-none">
+                                        <input type="text" name="state_image{{$item->order}}" value="1" class="d-none">
                                     </div>
                                     </div>
                                     <div class="row mt-3">

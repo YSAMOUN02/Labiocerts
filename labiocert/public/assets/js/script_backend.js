@@ -201,7 +201,7 @@ function append_textbox(qty_child){
         });  
         class_no ++ ;
         state ++ ;
-        document.getElementById('state').value = class_no;                  
+        state_child =   document.getElementById('state').value = class_no;                  
     } 
     else {
         console.log("Element with class 'appen-child' not found");
@@ -237,3 +237,16 @@ function loadFileDynamic(event,output_data) {
     reader.readAsDataURL(event.target.files[0]);
 }
 
+
+function validation(event){
+    // alert(123);
+       // Check if file input is empty
+    
+
+    if (fileInput.files.length === 0) {
+        event.preventDefault(); // Prevent form submission
+        errorMessage.textContent = 'Please select a file before submitting.';
+    } else {
+        errorMessage.textContent = ''; // Clear any previous error message
+    }
+}

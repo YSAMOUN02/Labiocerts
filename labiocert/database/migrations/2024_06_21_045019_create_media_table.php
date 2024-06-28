@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->integer('category');
             $table->tinyInteger('status');
+            $table->integer('viewer')->default(0);
+            $table->integer('created_by');
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

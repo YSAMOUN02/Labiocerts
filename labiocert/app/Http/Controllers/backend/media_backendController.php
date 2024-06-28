@@ -16,6 +16,7 @@ class media_backendController extends Controller
 {
 
     public function media_show(){
+        
         $data = DB::table('media as M')
         ->select("*",DB::raw("date(M.created_at) as date") )
         ->get();
@@ -32,10 +33,11 @@ class media_backendController extends Controller
         $new_media = new Media();
         $new_media->title = $request->title;
         $new_media->status = $request->status;
-        $new_media->category = 1;
+        $new_media->category = $request->category;
+        $new_media->created_by = 1;
         $new_media->save();
 
-    return $request;
+
         // Check and loop for all text and Image
         if($request->state != null){
             // return $request->state;
@@ -50,6 +52,7 @@ class media_backendController extends Controller
                         $text->description = $request->input($name.strval($i));
                         $text->order = $i;
                         $text->post_id = $new_media->id;
+                        $text->created_by = 1;
                         $text->save();
 
 
@@ -59,6 +62,7 @@ class media_backendController extends Controller
                                 $image->name = $this->upload_file($file);
                                 $image->order = $i;
                                 $image->post_id = $new_media->id;
+                                $image->created_by = 1;
                                 $image->save();
                     }
 
@@ -71,7 +75,7 @@ class media_backendController extends Controller
         $media_header = Media::find($id);
         $media = Media::with(['imageBoxes', 'textBoxes'])->findOrFail($id);
 
-
+        
         // Ensure collections are not null
         $imageBoxes = $media->imageBoxes ?? collect();
         $textBoxes = $media->textBoxes ?? collect();
@@ -102,6 +106,72 @@ class media_backendController extends Controller
     }
 
     public function media_update_submit(Request $request){
-        return $request;
+        $media = Media::find($request->input('media-id'));
+        $media->title = $request->input('title');
+        $media->created_at = $request->input('created_at');
+        $media->status = $request->input('status');
+        $media->updated_at = today();
+        $media->created_by = 1;
+        $media->updated_by = 1;
+        $media->save();
+
+        $delete_text = text_box::where('post_id',$request->input('media-id'));
+        $delete_text->delete();
+        $delete_image = image_box::where('post_id',$request->input('media-id'));
+        $delete_image->delete();
+        // return $request;
+   
+   
+        for($i = 1 ; $i <= $request->state ; $i++){
+            $inputName = 'input'.strval($i);
+            $state_image = "state_image".strval($i);
+            if(!empty($request->input($inputName)) && !empty($request->input($state_image))){
+                    // Work
+                    // return 1;
+                        $image = new image_box();
+                        $image->name = $request->input($inputName);
+                        $image->order = $i;
+                        $image->post_id = $media->id;
+                        $image->created_by = 1;
+                        $image->save();
+                
+            }elseif(!empty($request->input($inputName))){
+                    // Work
+                    // return 2;
+                        $text = new text_box();
+                        $text->description = $request->input($inputName);
+                        $text->order = $i;
+                        $text->post_id = $media->id;
+                        $text->created_by = 1;
+                        $text->save();
+            }elseif ($request->hasFile($inputName)) {
+              
+                        $file = $request->file($inputName);
+                        $image = new image_box();
+                        $image->name = $this->upload_file($file);
+                        $image->order = $i;
+                        $image->post_id = $media->id;
+                        $image->created_by = 1;
+                        $image->save();
+            }
+            
+           
+        }
+        return redirect('/admin/media/list');
+        // if()
+
+
+        // Delete media by primary key
+        // Media::destroy($mediaId);
+
+
+        // "_token": "0YOpwyNvZxxnvqgFg2z2NthuXMu0Ip335cTo4s9q",
+        // "title": "Test",
+        // "status": "1",
+        // "created_at": "2024-06-27T01:06:46",
+        // "input1": "\u003Cp\u003E123\u003C/p\u003E",
+        // "input2": "\u003Cp\u003E123\u003C/p\u003E",
+        // "input3": "938-Slide Banner in the afternoon..jpg",
+        // "state": "3"
     }
 }

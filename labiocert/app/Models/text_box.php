@@ -26,4 +26,5 @@ class text_box extends Model
     {
         return $this->belongsTo(Media::class, 'post_id');
     }
+    
 }

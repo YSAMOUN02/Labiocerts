@@ -13,6 +13,11 @@
     <script src="https://kit.fontawesome.com/5041c59df8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
+    <link
+      rel="shortcut icon"
+      href="/assets/image_backend/download (1).png"
+      type="image/x-icon"
+    />
 </head>
 
 <body>
