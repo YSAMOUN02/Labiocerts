@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('service_category', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('service_id'); 
+            $table->integer('service_id');
             $table->integer('no');
             $table->string('title_category');
-            $table->tinyInteger('status');
+            $table->boolean('status');
             $table->timestamps();
-
-            $table->foreign('service_id')->references('id')->on('service')->onDelete('cascade');
         });
     }
 
