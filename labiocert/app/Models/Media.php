@@ -39,4 +39,12 @@ class Media extends Model
     public function text() {
         return $this->hasOne('App\Models\text_box', 'post_id', 'id');
     }
+    public function categorys()
+    {
+        return $this->belongsTo(category_media::class, 'category_id');
+    }
+
+    public function category_one() {
+        return $this->hasOne('App\Models\category_media','id' , 'category_id');
+    }
 }

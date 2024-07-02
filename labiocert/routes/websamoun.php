@@ -9,6 +9,7 @@ use App\Http\Controllers\backend\adminController;
 use App\Http\Controllers\backend\logo_clientController;
 use App\Http\Controllers\backend\service_backendController;
 use App\Http\Controllers\backend\advertisingController;
+use App\Http\Controllers\backend\category_mediaController;
 use App\Http\Controllers\backend\media_backendController;
 use App\Http\Controllers\backend\quoteController;
 use App\Models\Media;
@@ -77,10 +78,14 @@ Route::get('/admin/media/list', [media_backendController::class, 'media_show']);
 Route::get('/admin/media/update/{id}', [media_backendController::class, 'media_update']);
 Route::post('/admin/media/update/submit', [media_backendController::class, 'media_update_submit']);
 
+// Category Media
+Route::get('/admin/media/add', [media_backendController::class, 'media_add']);
 
 
+// frontend
 
-
+Route::get('/media/category', [category_mediaController::class, 'media_category']);
+Route::post('/media/category/add/submit', [category_mediaController::class, 'media_category_add']);
 
 
 
@@ -95,8 +100,5 @@ Route::get('/admin/advertising', [advertisingController::class, 'advertising_sho
 Route::get('/admin/quote/view', [quoteController::class, 'quote_show']);
 
 
-// frontend
-
 Route::get('/media/page={id}', [MediaController::class, 'media_detail']);
-
 
