@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\category_media;
 use App\Models\image_box;
 use App\Models\Media;
 use App\Models\text_box;
@@ -17,14 +18,34 @@ class media_backendController extends Controller
 
     public function media_show(){
         
-        $data = DB::table('media as M')
-        ->select("*",DB::raw("date(M.created_at) as date") )
+        // $data = DB::table('media as M')
+        // ->select("*",DB::raw("date(M.created_at) as date") )
+        // ->get();
+        $data = Media::with('categorys')
         ->get();
+
+
         // return $data;
+        // $media = Media::with(['imageBoxes', 'textBoxes'])->findOrFail($id);
         return view('backend.list-media', ['data' => $data]);
     }
+
+
+
+
+
+
+
+
+
+
+
     public function media_add(){
-        return view('backend.add-media');
+
+        $category = category_media::select('id', 'category_name')->orderBy('order','asc')->get();
+
+      
+        return view('backend.add-media',['category' => $category]);
     }
 
     // Submit All Media Part
@@ -33,7 +54,7 @@ class media_backendController extends Controller
         $new_media = new Media();
         $new_media->title = $request->title;
         $new_media->status = $request->status;
-        $new_media->category = $request->category;
+        $new_media->category_id = $request->category;
         $new_media->created_by = 1;
         $new_media->save();
 

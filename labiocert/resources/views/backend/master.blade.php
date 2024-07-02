@@ -116,6 +116,9 @@
                     <span class="padded"><a href="/admin/media/list">View Media</a></span>
                   </li>
                   <li class="fade2">
+                    <span class="padded"><a href="/media/category">Media Category</a></span>
+                  </li>
+                  <li class="fade2">
                     <span class="padded"><a href="/admin/media/list">Slide Show</a></span>
                   </li>
                 </ul>

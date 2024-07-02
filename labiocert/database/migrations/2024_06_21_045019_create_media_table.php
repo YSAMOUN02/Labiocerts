@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('media', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->integer('category');
+            $table->integer('category_id')->nullable();
             $table->tinyInteger('status');
             $table->integer('viewer')->default(0);
             $table->integer('created_by');

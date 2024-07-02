@@ -21,11 +21,13 @@
             <div class="col-6">
                 <label for="category">Category</label>
                 <select name="category" class="form-control" id="category">
-                    <option value="1">News</option>
-                    <option value="2">Internal</option>
-                    <option value="3">Social</option>
-                    <option value="4">Science</option>
-                    <option value="5"></option>
+                    <option value="0">N/A</option>
+
+                    @if(!empty($category))
+                        @foreach ($category as $item)
+                            <option value="{{$item->id}}">{{$item->category_name}}</option> 
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
