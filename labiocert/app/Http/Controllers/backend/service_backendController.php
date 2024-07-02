@@ -25,9 +25,10 @@ class service_backendController extends Controller
             'status' => 'required|in:0,1',
             'reference' => 'required',
         ]);
-        
+        $maxNo = Service::max('no');
+        $nextNo = $maxNo + 1;
         $service = new Service();
-        $service->no = $validatedData['no'];
+        $service->no = $nextNo;
         $service->title = $validatedData['service'];
         $service->status = $validatedData['status'];
         $service->reference = $validatedData['reference'];
@@ -63,7 +64,14 @@ class service_backendController extends Controller
     {
         $service = Service::find($id);
         if ($service) {
+            // Get the current no before deleting
+            $deletedNo = $service->no;
             $service->delete();
+
+            // Reorder the services to fill in the gap
+            Service::where('no', '>', $deletedNo)
+                ->decrement('no');
+
             return redirect('/admin/service');
         } else {
             return redirect('/admin/service');
@@ -75,6 +83,13 @@ class service_backendController extends Controller
     {
         $service = Service::findOrFail($id);
         $services_category = service_categories::where('service_id', $id)->get();
+
+        foreach ($services_category as $index => $service_category) {
+            $service_category->no = $index + 1;
+            $service_category->save();
+        }
+
+
         return view('backend.service-category', compact('service', 'services_category'));
     }
 
@@ -140,13 +155,23 @@ class service_backendController extends Controller
     public function showCategoryParameter($id)
     {
         $service_category = service_categories::findOrFail($id);
-        $services_parameter = ServiceParameter::where('service_category_id', $id)->get();
+        $services_parameter = ServiceParameter::where('service_category_id', $id)->orderBy('id')->get();
+
+        foreach ($services_parameter as $index => $parameter) {
+            $parameter->no = $index + 1;
+            $parameter->save();
+        }
         return view('backend.service-parameter', compact('service_category', 'services_parameter'));
     }
     public function parameter_show($service_category_id, $id)
     {
         $service_category = service_categories::findOrFail($id);
-        $services_parameter = ServiceParameter::where('service_category_id', $service_category_id)->get();
+        $services_parameter = ServiceParameter::where('service_category_id', $service_category_id)->orderBy('id')->get();
+
+        foreach ($services_parameter as $index => $parameter) {
+            $parameter->no = $index + 1;
+            $parameter->save();
+        }
         return view('backend.service-parameter', compact('service_category', 'services_parameter'));
     }
     public function parameter_submit(Request $request)
@@ -154,8 +179,8 @@ class service_backendController extends Controller
         $validatedData = $request->validate([
             'no' => 'required|integer',
             'title_parameter' => 'required|string|max:255',
-            'duration' => 'required|string|max:255',
-            'method' => 'required|string|max:255',
+            'duration' => 'nullable|string|max:255',
+            'method' => 'nullable|string|max:255',
             'service_category_id' => 'required|integer',
         ]);
 
@@ -171,7 +196,7 @@ class service_backendController extends Controller
         $service_parameter->no = $validatedData['no'];
         $service_parameter->title_parameter = $validatedData['title_parameter'];
         $service_parameter->duration = $validatedData['duration'];
-        $service_parameter->method = $validatedData['method'];
+        $service_parameter->method = $validatedData['method'] ?? '';
         $service_parameter->service_category_id = $validatedData['service_category_id']; // Ensure this line is included
         $service_parameter->save();
 
@@ -180,14 +205,14 @@ class service_backendController extends Controller
     public function parameter_update(Request $request, $id)
     {
         $validatedData = $request->validate([
-           'title_parameter' => 'required|string|max:255',
-            'duration' => 'required|string|max:255',
-            'method' => 'required|string|max:255',
+            'title_parameter' => 'required|string|max:255',
+            'duration' => 'nullable|string|max:255',
+            'method' => 'nullable|string|max:255',
         ]);
         $service_parameter = ServiceParameter::findOrFail($id);
         $service_parameter->title_parameter = $validatedData['title_parameter'];
         $service_parameter->duration = $validatedData['duration'];
-        $service_parameter->method = $validatedData['method'];
+        $service_parameter->method = $validatedData['method'] ?? '';
         $service_parameter->save();
 
         return redirect()->route('backend.service-parameter', ['service_category_id' => $service_parameter->service_category_id]);

@@ -48,10 +48,10 @@
                 </div>
                 <div class="col-3">
                     <label for="method"></label>
-                    <input type="text" name="method" class="form-control" placeholder="Method" value="{{ old('method') }}">
-                    @error('method')
+                    <input type="text" name="method" class="form-control" placeholder="Method" >
+                    <!-- @error('method')
                     <div class="text-danger">{{ $message }}</div>
-                    @enderror
+                    @enderror -->
                 </div>
             </div>
             <div class="row mt-3">
@@ -82,23 +82,22 @@
                     <button type="button" class="btn btn-primary update-btn" data-id="{{ $service_parameter->id }}">Update</button>
 
                     <!-- Update Form -->
-                    <form action="{{ ('/admin/service/service-category/parameterupdate/'.$service_parameter->id)}}" class="update-form" method="POST" style="display: none;">
+                    <form action="{{ url('/admin/service/service-category/parameterupdate/'.$service_parameter->id) }}" class="update-form" method="POST" style="display: none;">
                         @csrf
                         @method('PUT')
                         <input type="text" name="title_parameter" value="{{ $service_parameter->title_parameter }}">
-                        <input type="text" name="duration" value="{{ $service_parameter->duration}}">
-                        <input type="text" name="method" value="{{ $service_parameter->method}}">
+                        <input type="text" name="duration" value="{{ $service_parameter->duration }}">
+                        <input type="text" name="method" value="{{ $service_parameter->method }}">
                         <button type="submit" class="btn btn-primary">Save</button>
                         <button type="button" class="btn btn-secondary cancel-btn">Cancel</button>
                     </form>
 
                     <!-- Delete Form -->
-                    <form action="/admin/service/service-category/parameterdelete/{{ $service_parameter->id }}" method="POST" style="display: inline;">
+                    <form action="{{ url('/admin/service/service-category/parameterdelete/'.$service_parameter->id) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this service?');">Delete</button>
                     </form>
-
                 </td>
             </tr>
             @endif

@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Categories;
 use App\Parameter;
+use App\Models\Service;
+use App\Models\ServiceParameter;
+use App\Models\service_categories;
 class ServiceController extends Controller
 {
     public function service(){
@@ -23,7 +26,10 @@ class ServiceController extends Controller
         return view('frontend.quote'); 
     }
     public function testparameter(){
-        return view('frontend.test-parameter');
+        $services = Service::all();
+        $services_category = service_categories::all();
+        $services_parameter = ServiceParameter::all();
+        return view('frontend.test-parameter', compact('services', 'services_category', 'services_parameter'));
     }
     public function foodtesting(){
         return view('frontend.food-testing');
