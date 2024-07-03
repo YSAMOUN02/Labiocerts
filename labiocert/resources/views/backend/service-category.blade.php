@@ -86,9 +86,8 @@
                     </form>
                     <!-- Update Form (Initially hidden) -->
                     <div id="update-form-modal-{{ $service_category->id }}" class="modal" style="display:none; position:fixed; top:0; left:0; width: 100%; height:100%; background-color:rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); z-index: 100;">
-                        <div id="update-form-content-{{$service_category->id}}" class="modal-content">
-                            <span class="close" onclick="hideUpdateForm('{{ $service_category->id }}')" style="cursor: pointer; float:right; font-size:40px;">&times;</span>
-                            <form id="update-form-{{ $service_category->id }}" class="form-signin" action="/admin/service/update/{{ $service_category->id }}" method="POST">
+                        <div id="update-form-content-{{ $service_category->id }}" class="modal-content">
+                            <form id="update-form-{{ $service_category->id }}" class="form-signin" action="/admin/service/categoryupdate/{{ $service_category->id }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <h2 class="form-signin-heading">Update Category</h2>
@@ -101,18 +100,32 @@
                                         <option value="Inactive" {{ $service_category->status == 'Inactive' ? 'selected' : '' }}>Inactive</option>
                                     </select>
                                 </p>
+                                <p>Number
+                                    <input id="no-{{ $service_category->id }}" type="number" class="form-control" name="no" value="{{ $service_category->no }}" placeholder="Number" required>
+                                </p>
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
                                 <button type="button" class="btn btn-lg btn-secondary btn-block cancel-btn" onclick="hideUpdateForm('{{ $service_category->id }}')">Cancel</button>
                             </form>
                         </div>
                     </div>
 
-                    <!-- Delete Form -->
-                    <form action="/admin/service/categorydelete/{{ $service_category->id }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this service?');">Delete</button>
-                    </form>
+                    <!-- Delete Button -->
+                    <button type="button" class="btn btn-danger delete-btn" onclick="showDeleteConfirm('{{ $service_category->id }}')">Delete</button>
+                    <!-- Delete Confirmation Modal -->
+                    <div id="delete-confirm-modal-{{ $service_category->id }}" class="modal" style="display:none; position:fixed; top:0; left:0; width: 100%; height:100%; background-color:rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); z-index: 100;">
+                        <div id="delete-confirm-content-{{ $service_category->id }}" class="modal-content" style="background-color: #fefefe; margin: 10% auto; padding: 20px 0px; border: 1px solid #888;  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
+                            <div class="form-signin">
+                                <h2 class="form-signin-heading">Confirm Delete</h2>
+                                <p>Are you sure you want to delete this service?</p>
+                                <form action="{{ url('/admin/service/categorydelete/'.$service_category->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-lg btn-danger btn-block" type="submit">Delete</button>
+                                    <button type="button" class="btn btn-lg btn-secondary btn-block cancel-btn" onclick="hideDeleteConfirm('{{ $service_category->id }}')">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             @endif
@@ -122,12 +135,12 @@
 </div>
 @endsection
 <script>
-   function showUpdateForm(servicecategoryId) {
-        const modal = document.getElementById(`update-form-modal-${servicecategoryId}`);
+    function showUpdateForm(serviceCategoryId) {
+        const modal = document.getElementById(`update-form-modal-${serviceCategoryId}`);
         modal.style.display = 'block';
 
         // Adjust modal content
-        const modalContent = document.getElementById(`update-form-content-${servicecategoryId}`);
+        const modalContent = document.getElementById(`update-form-content-${serviceCategoryId}`);
         modalContent.style.backgroundColor = '#fefefe';
         modalContent.style.margin = '10% auto';
         modalContent.style.padding = '20px';
@@ -136,8 +149,8 @@
         modalContent.style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)';
 
         // Adjust form elements
-        const titleInput = document.getElementById(`title_category-${servicecategoryId}`);
-        const statusSelect = document.getElementById(`status-${servicecategoryId}`);
+        const titleInput = document.getElementById(`title-${serviceCategoryId}`);
+        const statusSelect = document.getElementById(`status-${serviceCategoryId}`);
 
         applyStyle(titleInput);
         applyStyle(statusSelect);
@@ -153,8 +166,27 @@
         element.style.fontSize = '16px';
     }
 
-    function hideUpdateForm(servicecategoryId) {
-        const modal = document.getElementById(`update-form-modal-${servicecategoryId}`);
+    function hideUpdateForm(serviceCategoryId) {
+        const modal = document.getElementById(`update-form-modal-${serviceCategoryId}`);
+        modal.style.display = 'none';
+    }
+    //delete
+    function showDeleteConfirm(serviceParameterId) {
+        const modal = document.getElementById(`delete-confirm-modal-${serviceParameterId}`);
+        modal.style.display = 'block';
+
+        // Adjust modal content
+        const modalContent = document.getElementById(`delete-confirm-content-${serviceParameterId}`);
+        modalContent.style.backgroundColor = '#fefefe';
+        modalContent.style.margin = '10% auto';
+        modalContent.style.padding = '20px';
+        modalContent.style.border = '1px solid #888';
+        modalContent.style.width = '15%';
+        modalContent.style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)';
+    }
+
+    function hideDeleteConfirm(serviceParameterId) {
+        const modal = document.getElementById(`delete-confirm-modal-${serviceParameterId}`);
         modal.style.display = 'none';
     }
 </script>

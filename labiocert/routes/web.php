@@ -10,6 +10,7 @@ use App\Http\Controllers\backend\logo_clientController;
 use App\Http\Controllers\backend\service_backendController;
 use App\Http\Controllers\backend\advertisingController;
 use App\Http\Controllers\backend\quoteController;
+use App\Models\ClientLogo;
 use Illuminate\Support\Facades\Route;
 use App\Models\Service;
 use App\Models\ServiceCategories;
@@ -39,6 +40,10 @@ Route::put('/admin/service/service-category/parameterupdate/{id}', [service_back
 Route::delete('/admin/service/service-category/parameterdelete/{id}', [service_backendController::class, 'parameter_destroy']);
 
 Route::get('/admin/logoClient', [logo_clientController::class, 'logoClient']);
+Route::post('/admin/logoClient/store', [logo_clientController::class, 'store']); 
+Route::put('/admin/logoClient/update/{id}', [logo_clientController::class, 'update']); 
+Route::delete('/admin/logoClient/delete/{id}',[logo_clientController::class, 'destroy']);
+
 Route::get('/admin/advertising', [advertisingController::class, 'advertising_show']);
 Route::get('/admin/quote/view', [quoteController::class, 'quote_show']);
 

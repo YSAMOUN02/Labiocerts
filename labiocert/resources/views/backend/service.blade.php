@@ -101,12 +101,23 @@
                             </form>
                         </div>
                     </div>
-                    <!-- Delete Form -->
-                    <form action="/admin/service/delete/{{ $service->id }}" method="POST" style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this service?');">Delete</button>
-                    </form>
+                   <!-- Delete Button -->
+                   <button type="button" class="btn btn-danger delete-btn" onclick="showDeleteConfirm('{{ $service->id }}')">Delete</button>
+                   <!-- Delete Confirmation Modal -->
+                   <div id="delete-confirm-modal-{{ $service->id }}" class="modal" style="display:none; position:fixed; top:0; left:0; width: 100%; height:100%; background-color:rgba(0, 0, 0, 0.5); backdrop-filter: blur(5px); z-index: 100;">
+                        <div id="delete-confirm-content-{{ $service->id }}" class="modal-content" style="background-color: #fefefe; margin: 10% auto; padding: 20px 0px; border: 1px solid #888;  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
+                            <div class="form-signin">
+                                <h2 class="form-signin-heading">Confirm Delete</h2>
+                                <p>Are you sure you want to delete this service?</p>
+                                <form action="{{ url('/admin/service/delete/'.$service->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-lg btn-danger btn-block" type="submit">Delete</button>
+                                    <button type="button" class="btn btn-lg btn-secondary btn-block cancel-btn" onclick="hideDeleteConfirm('{{ $service->id }}')">Cancel</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </td>
             </tr>
             @endforeach
@@ -153,6 +164,25 @@
 
     function hideUpdateForm(serviceId) {
         const modal = document.getElementById(`update-form-modal-${serviceId}`);
+        modal.style.display = 'none';
+    }
+    //update 
+    function showDeleteConfirm(serviceParameterId) {
+        const modal = document.getElementById(`delete-confirm-modal-${serviceParameterId}`);
+        modal.style.display = 'block';
+
+        // Adjust modal content
+        const modalContent = document.getElementById(`delete-confirm-content-${serviceParameterId}`);
+        modalContent.style.backgroundColor = '#fefefe';
+        modalContent.style.margin = '10% auto';
+        modalContent.style.padding = '20px';
+        modalContent.style.border = '1px solid #888';
+        modalContent.style.width = '15%';
+        modalContent.style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)';
+    }
+
+    function hideDeleteConfirm(serviceParameterId) {
+        const modal = document.getElementById(`delete-confirm-modal-${serviceParameterId}`);
         modal.style.display = 'none';
     }
 </script>
