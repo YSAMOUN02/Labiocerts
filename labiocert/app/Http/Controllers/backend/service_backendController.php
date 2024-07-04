@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\service_categories;
 use App\Models\Service;
 use App\Models\ServiceParameter;
+use Illuminate\Support\Facades\DB;
 
 class service_backendController extends Controller
 {
@@ -124,34 +125,32 @@ class service_backendController extends Controller
 
         return redirect()->route('backend.service-category', ['service_id' => $validatedData['service_id']]);
     }
-    public function category_update(Request $request, $id) {
+    public function category_update(Request $request, $id)
+    {
+
         $validatedData = $request->validate([
             'no' => 'required|integer',
             'title_category' => 'required|string|max:255',
             'status' => 'required|in:Active,Inactive',
-        ]); 
-    
+        ]);
+
         $statusMap = [
             'Active' => 1,
             'Inactive' => 0,
-        ]; 
-    
-        $new_no = $validatedData['no'];
+        ];
+
         $service_category = service_categories::findOrFail($id);
-    
-        // Update the 'no' field for other records
-        service_categories::where('no', '>=', $new_no)
-            ->where('id', '!=', $id)
-            ->increment('no');
-    
-        // Update the current record
-        $service_category->title_category = $validatedData['title_category']; 
+
+        $service_category->title_category = $validatedData['title_category'];
         $service_category->status = $statusMap[$validatedData['status']];
-        $service_category->no = $new_no;
-        $service_category->save(); 
-    
+        $service_category->save();
+
         return redirect()->route('backend.service-category', ['service_id' => $service_category->service_id]);
     }
+
+
+
+
     public function category_destroy($id)
     {
         $service_category = service_categories::findOrFail($id);
@@ -218,13 +217,13 @@ class service_backendController extends Controller
             'duration' => 'nullable|string|max:255',
             'method' => 'nullable|string|max:255',
         ]);
-    
+
         $service_parameter = ServiceParameter::findOrFail($id);
         $service_parameter->title_parameter = $validatedData['title_parameter'];
         $service_parameter->duration = $validatedData['duration'];
         $service_parameter->method = $validatedData['method'] ?? '';
         $service_parameter->save();
-    
+
         return redirect()->route('backend.service-parameter', ['service_category_id' => $service_parameter->service_category_id]);
     }
 
