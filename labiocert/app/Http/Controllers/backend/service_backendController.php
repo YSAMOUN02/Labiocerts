@@ -70,8 +70,7 @@ class service_backendController extends Controller
             $service->delete();
 
             // Reorder the services to fill in the gap
-            Service::where('no', '>', $deletedNo)
-                ->decrement('no');
+            Service::where('no', '>', $deletedNo)->decrement('no');
 
             return redirect('/admin/service');
         } else {
@@ -83,13 +82,7 @@ class service_backendController extends Controller
     public function showServiceCategory($id)
     {
         $service = Service::findOrFail($id);
-        $services_category = service_categories::where('service_id', $id)->get();
-
-        foreach ($services_category as $index => $service_category) {
-            $service_category->no = $index + 1;
-            $service_category->save();
-        }
-
+        $services_category = service_categories::where('service_id', $id)->orderBy('no')->get();
 
         return view('backend.service-category', compact('service', 'services_category'));
     }
@@ -97,10 +90,11 @@ class service_backendController extends Controller
     public function category_show($service_id, $id)
     {
         $service = Service::findOrFail($id);
-        $services_category = service_categories::where('service_id', $service_id)->get();
+        $services_category = service_categories::where('service_id', $service_id)
+            ->orderBy('no', 'asc')
+            ->get();
         return view('backend.service-category', compact('service', 'services_category'));
     }
-
     public function category_submit(Request $request)
     {
         $validatedData = $request->validate([
@@ -109,47 +103,81 @@ class service_backendController extends Controller
             'status' => 'required|in:0,1',
             'service_id' => 'required|integer',
         ]);
-
-        $existingCategory = service_categories::where('no', $validatedData['no'])->where('service_id', $validatedData['service_id'])->first();
-
-        if ($existingCategory) {
-            return back()->withErrors(['no' => 'This number is already in use for the specified service.']);
-        }
-
+    
+        $newNo = $validatedData['no'];
+        Log::info('Submitting new category', $validatedData);
+    
+        $this->adjustCategoryNumbers($validatedData['service_id'], $newNo);
+    
         $service_category = new service_categories();
-        $service_category->no = $validatedData['no'];
+        $service_category->no = $newNo;
         $service_category->title_category = $validatedData['title_category'];
         $service_category->status = $validatedData['status'];
         $service_category->service_id = $validatedData['service_id'];
         $service_category->save();
-
-        return redirect()->route('backend.service-category', ['service_id' => $validatedData['service_id']]);
+    
+        Log::info('New category saved', ['id' => $service_category->id]);
+    
+        return redirect()->route('backend.service-category', ['service_id' => $validatedData['service_id']])
+            ->with('success', 'Category created successfully.');
     }
-    public function category_update(Request $request, $id)
-    {
+   public function category_update(Request $request, $id)
+{
+    $validatedData = $request->validate([
+        'no' => 'required|integer',
+        'title_category' => 'required|string|max:255',
+        'status' => 'required|in:Active,Inactive',
+    ]);
 
-        $validatedData = $request->validate([
-            'no' => 'required|integer',
-            'title_category' => 'required|string|max:255',
-            'status' => 'required|in:Active,Inactive',
-        ]);
+    $statusMap = [
+        'Active' => 1,
+        'Inactive' => 0,
+    ];
 
-        $statusMap = [
-            'Active' => 1,
-            'Inactive' => 0,
-        ];
+    $service_category = service_categories::findOrFail($id);
+    $oldNo = $service_category->no;
+    $newNo = $validatedData['no'];
 
-        $service_category = service_categories::findOrFail($id);
+    Log::info('Updating category', ['id' => $id, 'oldNo' => $oldNo, 'newNo' => $newNo]);
 
-        $service_category->title_category = $validatedData['title_category'];
-        $service_category->status = $statusMap[$validatedData['status']];
-        $service_category->save();
-
-        return redirect()->route('backend.service-category', ['service_id' => $service_category->service_id]);
+    if ($oldNo != $newNo) {
+        $this->adjustCategoryNumbers($service_category->service_id, $newNo, $oldNo);
     }
 
+    $service_category->no = $newNo;
+    $service_category->title_category = $validatedData['title_category'];
+    $service_category->status = $statusMap[$validatedData['status']];
+    $service_category->save();
 
+    Log::info('Category updated', ['id' => $service_category->id]);
 
+    return redirect()->route('backend.service-category', ['service_id' => $service_category->service_id])
+        ->with('success', 'Category updated successfully.');
+}
+
+public function adjustCategoryNumbers($serviceId, $newNo, $oldNo = null)
+{
+    Log::info('Adjusting category numbers', ['service_id' => $serviceId, 'newNo' => $newNo, 'oldNo' => $oldNo]);
+
+    if ($oldNo === null) {
+        Log::info('Incrementing numbers greater than or equal to', ['newNo' => $newNo]);
+        service_categories::where('service_id', $serviceId)
+            ->where('no', '>=', $newNo)
+            ->increment('no');
+    } else {
+        if ($newNo > $oldNo) {
+            Log::info('Decrementing numbers between', ['oldNo' => $oldNo + 1, 'newNo' => $newNo]);
+            service_categories::where('service_id', $serviceId)
+                ->whereBetween('no', [$oldNo + 1, $newNo])
+                ->decrement('no');
+        } else {
+            Log::info('Incrementing numbers between', ['newNo' => $newNo, 'oldNo' => $oldNo - 1]);
+            service_categories::where('service_id', $serviceId)
+                ->whereBetween('no', [$newNo, $oldNo - 1])
+                ->increment('no');
+        }
+    }
+}
 
     public function category_destroy($id)
     {

@@ -6,7 +6,7 @@
     @php
     $service1 = $services->where('no', 1)->first();
     $service2 = $services->where('no', 2)->first();
-    $service3 = $services->where('no', 3)->first(); 
+    $service3 = $services->where('no', 3)->first();
     @endphp
     @if($service1)
     <div class="labiocert-analysis tenzero container-width">
@@ -19,71 +19,69 @@
                 @endif
                 @endforeach
             </ol>
-
             <table class="la-table la-tbl">
-                <tbody class="latbl-txt categories">
-                    @foreach($services_category as $index => $service_category)
-                    <tr>
-                        <td><strong>{{ $service_category->no }}</strong></td>
-                        <td colspan="3"><strong>{{ $service_category->title_category }}</strong></td>
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Parameter</td>
-                        <td>Remarks</td>
-                        <td>Method</td>
-                    </tr>
-                    @foreach($services_parameter as $service_parameter)
-                    @if($service_parameter->service_category_id == $service_category->id)
-                    <tr>
-                        <td>{{ $service_parameter->no }}</td>
-                        <td>{{ $service_parameter->title_parameter }}</td>
-                        <td>{{ $service_parameter->duration }}</td>
-                        <td>{{ $service_parameter->method }}</td>
-                    </tr>
-                    @endif
-                    @endforeach
-                    @if($index < $services_category->count() -1)
-                        @endif
-                        @endforeach
-                </tbody>
-            </table>
+            <table class="la-table la-tbl">
+    <tbody class="latbl-txt categories">
+        @foreach($services_category as $index => $service_category)
+        <tr>
+            <td><strong>{{ $service_category->no }}</strong></td>
+            <td colspan="3"><strong>{{ $service_category->title_category }}</strong></td>
+        </tr>
+        <tr>
+            <td>No.</td>
+            <td>Parameter</td>
+            <td>Remarks</td>
+            <td>Method</td>
+        </tr>
+        @foreach($services_parameter as $service_parameter)
+        @if($service_parameter->service_category_id == $service_category->id)
+        <tr>
+            <td>{{ $service_parameter->no }}</td>
+            <td>{{ $service_parameter->title_parameter }}</td>
+            <td>{{ $service_parameter->duration }}</td>
+            <td>{{ $service_parameter->method }}</td>
+        </tr>
+        @endif
+        @endforeach
+        @endforeach
+    </tbody>
+</table>
         </div>
     </div>
     @endif
     @if($service2)
     <div class="labiocert-analysis tenzero container-width">
-            <article>
-                <div class="abbreviation-text lan-txt">
-                    <h5>{{ $service2->title }}</h5>
-                    <div class="abbreviation-list lan-txt">
-                        @foreach(explode("\n", $service2->reference) as $reference)
-                        @if(!empty(trim($reference)))
-                        <p>{!! nl2br(trim($reference)) !!}</p>
-                        @endif
-                        @endforeach
-                    </div>
-                   
-                   
+        <article>
+            <div class="abbreviation-text lan-txt">
+                <h5>{{ $service2->title }}</h5>
+                <div class="abbreviation-list lan-txt">
+                    @foreach(explode("\n", $service2->reference) as $reference)
+                    @if(!empty(trim($reference)))
+                    <p>{!! nl2br(trim($reference)) !!}</p>
+                    @endif
+                    @endforeach
                 </div>
-            </article>       
+
+
+            </div>
+        </article>
     </div>
     @endif
     @if($service3)
-        <div class="labiocert-analysis ">
-            <ul class="reference-text">
-                <h5>{{ $service3->title}}</h5>
-                <div class="abbreviation-list lan-txt">
-                        @foreach(explode("\n", $service3->reference) as $reference)
-                        @if(!empty(trim($reference)))
-                        <li>{!! nl2br(trim($reference)) !!}</li>
-                        @endif
-                        @endforeach
-                </div><br>
-                <p>For more details regarding test method, please refer to Customer Service</p> 
-            </ul>
-        </div>
-       
+    <div class="labiocert-analysis ">
+        <ul class="reference-text">
+            <h5>{{ $service3->title}}</h5>
+            <div class="abbreviation-list lan-txt">
+                @foreach(explode("\n", $service3->reference) as $reference)
+                @if(!empty(trim($reference)))
+                <li>{!! nl2br(trim($reference)) !!}</li>
+                @endif
+                @endforeach
+            </div><br>
+            <p>For more details regarding test method, please refer to Customer Service</p>
+        </ul>
+    </div>
+
     @endif
     <aside>
         <div class="adversting fixed ads-service">
