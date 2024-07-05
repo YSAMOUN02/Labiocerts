@@ -88,7 +88,7 @@ class media_backendController extends Controller
                     }
 
             }
-            return redirect('/admin/media/list');
+            return redirect('/admin/media/list')->with('sucess','Added 1 Media.');
         }
     }
     public function media_update($id){
@@ -179,20 +179,23 @@ class media_backendController extends Controller
            
         }
         return redirect('/admin/media/list');
-        // if()
+
+    }
 
 
-        // Delete media by primary key
-        // Media::destroy($mediaId);
+    public function media_delete(Request $request){
+        image_box::where('post_id',$request->id)
+        ->delete();
+        text_box::where('post_id',$request->id)
+        ->delete();
+        $delete = media::where('id',$request->id)
+        ->delete();
+      
 
-
-        // "_token": "0YOpwyNvZxxnvqgFg2z2NthuXMu0Ip335cTo4s9q",
-        // "title": "Test",
-        // "status": "1",
-        // "created_at": "2024-06-27T01:06:46",
-        // "input1": "\u003Cp\u003E123\u003C/p\u003E",
-        // "input2": "\u003Cp\u003E123\u003C/p\u003E",
-        // "input3": "938-Slide Banner in the afternoon..jpg",
-        // "state": "3"
+        if($delete){
+            return redirect('/admin/media/list')->with('sucess','Deleted 1 Media');
+        }else{
+            return redirect('/admin/media/list')->with('fail','Opp! Something when wronge.');
+        }
     }
 }

@@ -45,6 +45,8 @@
       <div class="container-fluid">
         <button id="menu-mobile" onclick="fade_in_nav()">   <i  class="fa-solid fa-bars"></i></button>
      
+
+    
         <!-- alert confirm for user aware -->
         <div class="alert-confirm">
           <form action="">
@@ -116,7 +118,7 @@
                     <span class="padded"><a href="/admin/media/list">View Media</a></span>
                   </li>
                   <li class="fade2">
-                    <span class="padded"><a href="/media/category">Media Category</a></span>
+                    <span class="padded"><a href="/admin/media/category/id=0">Media Category</a></span>
                   </li>
                   <li class="fade2">
                     <span class="padded"><a href="/admin/media/list">Slide Show</a></span>
@@ -139,7 +141,7 @@
                 </ul>
               </li>
               <li onclick="drop_down_logo_client()">
-                <span class="padded"><a href="/admin/logoClient">Logo Clients</a></span>
+                <span class="padded"><a href="/admin/logoClient/0">Logo Clients</a></span>
               </li>
               <li onclick="drop_down_ads()">
                 <span class="padded"><a href="/admin/advertising">Advertising</a></span

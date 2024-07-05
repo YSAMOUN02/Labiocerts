@@ -66,9 +66,9 @@ function drop_down_media() {
 }
 
 // Alert For User 
-function fade_alert() {
+function fade_alert(class_hide) {
 
-    document.querySelector('.alert-confirm').style.display = 'none'
+    document.querySelector(class_hide).style.visibility = 'hidden';
 }
 
 function alert_logout() {
@@ -250,3 +250,23 @@ function validation(event){
         errorMessage.textContent = ''; // Clear any previous error message
     }
 }
+
+
+function delete_category(id){
+    document.querySelector('#category_id').value = id;
+    document.querySelector('#delect_category').style.visibility = 'visible';
+   
+}
+function delete_media(id){
+    document.querySelector('#media_id').value = id;
+    document.querySelector('#delect_media').style.visibility = 'visible';
+   
+}
+function delete_logo_client(id){
+    document.querySelector('#logo_client_id').value = id;
+    document.querySelector('#delete_logo_client').style.visibility = 'visible';
+   
+}
+function test(){
+    alert(123);
+  }

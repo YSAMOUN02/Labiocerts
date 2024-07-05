@@ -402,6 +402,30 @@ table td:last-child button{
     background-color: black;
     color: white;
 }
+.message-box{
+    width: 400px;
+    padding: 10px 15px;
+
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fade_out 5s forwards ;
+}
+.fail{
+    background-color: red;
+}
+.sucess{
+    background-color: greenyellow;
+}
+.message-box span{
+    font-size: 20px;
+    font-weight: bold;
+}
 @keyframes fade{
     0%{
         transform: translateY(10px);
@@ -409,6 +433,15 @@ table td:last-child button{
     }
     100%{
         transform: translateY(0);
+        backdrop-filter: blur(0);
+    }
+}
+@keyframes fade_out{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
         backdrop-filter: blur(0);
     }
 }

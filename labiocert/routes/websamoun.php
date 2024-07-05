@@ -59,8 +59,7 @@ Route::get('/admin/service', [service_backendController::class, 'service_show'])
 // Route::delete('/admin/service/delete/{id}', [service_backendController::class, 'destroy']);
 // Route::get('/admin/service/category/{service_id}', [service_backendController::class, 'showServiceCategory']);
 
-// Logo Client
-Route::get('/admin/logoClient', [logo_clientController::class, 'logoClient']);
+
 
 
 // Advertising
@@ -77,15 +76,24 @@ Route::post('/admin/media/submit', [media_backendController::class, 'media_add_s
 Route::get('/admin/media/list', [media_backendController::class, 'media_show']);
 Route::get('/admin/media/update/{id}', [media_backendController::class, 'media_update']);
 Route::post('/admin/media/update/submit', [media_backendController::class, 'media_update_submit']);
+Route::post('/admin/media/delete/submit', [media_backendController::class, 'media_delete']);
+
 
 // Category Media
-Route::get('/admin/media/add', [media_backendController::class, 'media_add']);
 
+Route::get('/admin/media/category/id={id}', [category_mediaController::class, 'media_category']);                //view
+Route::post('/admin/media/category/add/submit', [category_mediaController::class, 'media_category_add']);        //Add  AND  Update
+Route::post('/admin/media/category/delete/submit', [category_mediaController::class, 'media_category_delete']);  //Delete
+
+
+// Logo Client
+Route::get('/admin/logoClient/{id}', [logo_clientController::class, 'logoClient']);                         //view
+Route::post('/admin/client/logo/add/submit', [logo_clientController::class, 'logo_client_add_submit']);     //Add  AND  Update
+Route::post('/admin/logo_client/delete/submit', [logo_clientController::class, 'logo_client_delete_submit']);  //delete
+ 
 
 // frontend
 
-Route::get('/media/category', [category_mediaController::class, 'media_category']);
-Route::post('/media/category/add/submit', [category_mediaController::class, 'media_category_add']);
 
 
 

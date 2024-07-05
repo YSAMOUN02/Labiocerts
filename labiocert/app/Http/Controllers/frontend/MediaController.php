@@ -18,7 +18,7 @@ class MediaController extends Controller
 
         // Initailize Collection 
         $popular_media = null;
-
+        $collection_no_category = null;
         // Browse Data from Medai which Popular
         $pupular_media_all = Media::select('id', 'title',  DB::raw('DATE(created_at) as created_at'))
         ->with([
@@ -77,6 +77,7 @@ class MediaController extends Controller
             ->select('id', 'title', 'status', 'category_id')
             ->limit(8)
             ->get();
+           
             $collection_no_category = new Collection();
             foreach ($no_category as $item) {
                 $collection_no_category->push((object)[

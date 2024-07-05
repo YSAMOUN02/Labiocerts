@@ -101,18 +101,19 @@
     <!-- End of service section -->
 
     <!-- Client section -->
+    @if(!empty($client_logo))
     <div class="client-section container-width">
         <div class="client-title-section">
             <h3 class="client-title">OUR CLIENTS</h3>
         </div>
         <div class="swiper">
             <div class="swiper-wrapper m-client">
-                <div class="swiper-slide"><a href=""><img src="{{URL('/assets/image/Logo_BTB_Rice.jpg')}}" alt=""></a></div>
-                <div class="swiper-slide"><a href=""><img src="{{URL('/assets/image/Logo_kinal.jpg')}}" alt=""></a></div>
-                <div class="swiper-slide"><a href=""><img src="{{URL('/assets/image/Logo_PPM.jpg')}}" alt=""></a></div>
-                <div class="swiper-slide"><a href="https://www.confirel.com/en"><img
-                            src="{{URL('/assets/image/Logo_confirel.jpg')}}" alt=""></a></div>
-                <div class="swiper-slide"><a href=""><img src="{{URL('/assets/image/Logo_techneola.jpg')}}" alt=""></a></div>
+     
+                @foreach ($client_logo as $item)
+                
+                    <div class="swiper-slide"><a href="{{$item->link}}"  target="_blank"><img src="/assets/uploads_logo/{{$item->thumbnail}}" alt="Client Logo"></a></div>
+                @endforeach
+               
             </div>
             <div class="swiper-button">
                 <div class="nextt-btn">
@@ -124,7 +125,7 @@
             </div>
         </div>
     </div>
-
+    @endif
     <!-- End of Client Section-->
     <div class="quote ">
         <div class="container-width footer quote-grid">

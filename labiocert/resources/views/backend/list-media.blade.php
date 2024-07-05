@@ -1,5 +1,30 @@
 @extends('backend.master')
 @section('content')
+@if(Session::has('success'))
+<div class="message-box sucess">
+    <span>{{Session::get('sucess')}}</span>
+</div>
+@elseif(Session::has('fail'))
+<div class="message-box fail">
+    <span>{{Session::get('fail')}}</span>
+
+</div>
+
+@endif
+<!-- alert confirm for user aware -->
+  <div class="alert-confirm " id="delect_media">
+    <form action="/admin/media/delete/submit" method="POST">
+        @csrf
+      <span>Are you sure?</span>
+      <input type="text" class="d-none" name="id" id="media_id">
+      <div class="alert-co    nfirm-btn mt-3">
+        <button type="submit " class="btn-success">Yes</button>
+        <button class="btn-danger" type="button" onclick="fade_alert('#delect_media')">
+          No
+        </button>
+      </div>
+    </form>
+  </div>
 <table class="mt-2">
    <thead>
     <tr>
@@ -54,7 +79,7 @@
         </td>
         <td>
             <a href="/admin/media/update/{{$item->id}}"><button class="btn-primary">Update</button></a>
-            <a href="#"><button class="btn-danger">Delete</button></a>
+            <button onclick="delete_media({{$item->id}})" class="btn-danger">Delete</button>
         </td>
     </tr>
     @php
