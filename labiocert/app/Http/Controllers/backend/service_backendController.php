@@ -24,7 +24,7 @@ class service_backendController extends Controller
             'no' => 'required',
             'service' => 'required',
             'status' => 'required|in:0,1',
-            'reference' => 'required',
+            'reference' => 'nullable|required',
         ]);
         $maxNo = Service::max('no');
         $nextNo = $maxNo + 1;
@@ -82,9 +82,9 @@ class service_backendController extends Controller
     public function showServiceCategory($id)
     {
         $service = Service::findOrFail($id);
-        $services_category = service_categories::where('service_id', $id)->orderBy('no')->get();
-
-        return view('backend.service-category', compact('service', 'services_category'));
+        $services_category = service_categories::orderBy('no')->get();
+        $services_parameter = ServiceParameter::all();
+        return view('backend.service-category', compact('service', 'services_category','services_parameter'));
     }
 
     public function category_show($service_id, $id)
@@ -191,27 +191,18 @@ public function adjustCategoryNumbers($serviceId, $newNo, $oldNo = null)
     public function showCategoryParameter($id)
     {
         $service_category = service_categories::findOrFail($id);
-        $services_parameter = ServiceParameter::where('service_category_id', $id)->orderBy('id')->get();
-
-        foreach ($services_parameter as $index => $parameter) {
-            $parameter->no = $index + 1;
-            $parameter->save();
-        }
+        $services_parameter = ServiceParameter::orderBy('no')->get(); 
         return view('backend.service-parameter', compact('service_category', 'services_parameter'));
     }
     public function parameter_show($service_category_id, $id)
     {
         $service_category = service_categories::findOrFail($id);
-        $services_parameter = ServiceParameter::where('service_category_id', $service_category_id)->orderBy('id')->get();
-
-        foreach ($services_parameter as $index => $parameter) {
-            $parameter->no = $index + 1;
-            $parameter->save();
-        }
+        $services_parameter = ServiceParameter::where('service_category_id', $service_category_id)
+        ->orderBy('no', 'asc')
+        ->get();
         return view('backend.service-parameter', compact('service_category', 'services_parameter'));
     }
-    public function parameter_submit(Request $request)
-    {
+    public function parameter_submit(Request $request) {
         $validatedData = $request->validate([
             'no' => 'required|integer',
             'title_parameter' => 'required|string|max:255',
@@ -219,42 +210,76 @@ public function adjustCategoryNumbers($serviceId, $newNo, $oldNo = null)
             'method' => 'nullable|string|max:255',
             'service_category_id' => 'required|integer',
         ]);
-
-        $existingParameter = ServiceParameter::where('no', $validatedData['no'])
-            ->where('service_category_id', $validatedData['service_category_id'])
-            ->first();
-
-        if ($existingParameter) {
-            return back()->withErrors(['no' => 'This number is already in use for the specified service category.']);
-        }
-
+    
+        $newNo = $validatedData['no']; 
+        Log::info('Submitting new parameter', $validatedData); 
+    
+        $this->adjustParameterNumbers($validatedData['service_category_id'], $newNo);
+    
         $service_parameter = new ServiceParameter();
         $service_parameter->no = $validatedData['no'];
         $service_parameter->title_parameter = $validatedData['title_parameter'];
         $service_parameter->duration = $validatedData['duration'];
         $service_parameter->method = $validatedData['method'] ?? '';
-        $service_parameter->service_category_id = $validatedData['service_category_id']; // Ensure this line is included
+        $service_parameter->service_category_id = $validatedData['service_category_id'];
         $service_parameter->save();
-
-        return redirect()->route('backend.service-parameter', ['service_category_id' => $validatedData['service_category_id']]);
+    
+        Log::info('New Parameter saved', ['id' => $service_parameter->id]); 
+        return redirect()->route('backend.service-parameter', ['service_category_id' => $validatedData['service_category_id']])
+            ->with('success', 'Parameter created successfully.');
     }
-    public function parameter_update(Request $request, $id)
-    {
+    public function parameter_update(Request $request, $id) {
         $validatedData = $request->validate([
+            'no' => 'required|integer', 
             'title_parameter' => 'required|string|max:255',
             'duration' => 'nullable|string|max:255',
             'method' => 'nullable|string|max:255',
         ]);
-
+    
         $service_parameter = ServiceParameter::findOrFail($id);
+        $oldNo = $service_parameter->no; 
+        $newNo = $validatedData['no']; 
+        Log::info('Updating parameter', ['id' => $id, 'old' => $oldNo, 'newNo' => $newNo]); 
+        
+        if ($oldNo != $newNo) {
+            $this->adjustParameterNumbers($service_parameter->service_category_id, $newNo, $oldNo); 
+        }
+    
+        $service_parameter->no = $newNo; 
         $service_parameter->title_parameter = $validatedData['title_parameter'];
         $service_parameter->duration = $validatedData['duration'];
         $service_parameter->method = $validatedData['method'] ?? '';
         $service_parameter->save();
-
-        return redirect()->route('backend.service-parameter', ['service_category_id' => $service_parameter->service_category_id]);
+    
+        Log::info('Parameter updated', ['id' => $service_parameter->id]); 
+        return redirect()->route('backend.service-parameter', ['service_category_id' => $service_parameter->service_category_id])
+            ->with('success', 'Parameter updated successfully.');
     }
-
+    public function adjustParameterNumbers($serviceCategoryId, $newNo, $oldNo = null) {
+        Log::info('Adjusting category numbers', ['service_category_id' => $serviceCategoryId, 'newNo' => $newNo, 'oldNo' => $oldNo]);
+    
+        if ($oldNo == null) {
+            // Increment numbers greater than or equal to the new number
+            Log::info('Incrementing numbers greater than or equal to', ['newNo' => $newNo]);
+            ServiceParameter::where('service_category_id', $serviceCategoryId)
+                ->where('no', '>=', $newNo)
+                ->increment('no');
+        } else {
+            if ($newNo > $oldNo) {
+                // Decrement numbers between oldNo and newNo (exclusive)
+                Log::info('Decrementing numbers between', ['oldNo' => $oldNo + 1, 'newNo' => $newNo]);
+                ServiceParameter::where('service_category_id', $serviceCategoryId)
+                    ->whereBetween('no', [$oldNo + 1, $newNo])
+                    ->decrement('no');
+            } else {
+                // Increment numbers between newNo and oldNo (inclusive)
+                Log::info('Incrementing numbers between', ['newNo' => $newNo, 'oldNo' => $oldNo - 1]);
+                ServiceParameter::where('service_category_id', $serviceCategoryId)
+                    ->whereBetween('no', [$newNo, $oldNo - 1])
+                    ->increment('no');
+            }
+        }
+    }
 
     public function parameter_destroy($id)
     {

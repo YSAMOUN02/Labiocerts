@@ -48,7 +48,7 @@
         </div>
 </div>
 </form>
-<div class="view-servce">
+<div class="view-service">
     <table class="mt-4">
         <tr>
             <th>No</th>

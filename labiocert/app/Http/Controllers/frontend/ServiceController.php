@@ -35,13 +35,23 @@ class ServiceController extends Controller
         return view('frontend.food-testing');
     }
     public function analysisfeesforfood(){
-        return view('frontend.food-analysis'); 
+        $services = Service::all();
+        $services_category = service_categories::all(); 
+        $services_parameter = ServiceParameter::all();
+        return view('frontend.food-analysis', compact('services', 'services_category', 'services_parameter')); 
+       
     }
     public function physicoanalysis(){
-        return view('frontend.physico-analysis');
+        $services = Service::all();
+        $services_category = service_categories::all(); 
+        $services_parameter = ServiceParameter::all();
+        return view('frontend.physico-analysis', compact('services', 'services_category', 'services_parameter'));
     }
     public function analysisfees(){
-        return view('frontend.analysis-fees'); 
+        $services = Service::all();
+        $services_category = service_categories::all(); 
+        $services_parameter = ServiceParameter::all();
+        return view('frontend.analysis-fees', compact('services', 'services_category', 'services_parameter')); 
     }
     
 }
