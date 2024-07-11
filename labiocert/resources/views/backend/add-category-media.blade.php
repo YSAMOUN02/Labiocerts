@@ -130,7 +130,7 @@
                 </button>
             </a>
         
-                <button type="button" onclick="delete_category({{$item->id}})" class="btn-danger btn-delete-category" >
+                <button type="button" onclick="delete_value({{$item->id}} ,'#category_id', '#delect_category' )" class="btn-danger btn-delete-category" >
                     Delete
                 </button>
     

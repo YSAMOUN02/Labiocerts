@@ -251,22 +251,20 @@ function validation(event){
     }
 }
 
+function delete_value(id , input , show_alert){
+    document.querySelector(input).value = id;
+    document.querySelector(show_alert).style.visibility = 'visible';
+}
 
-function delete_category(id){
-    document.querySelector('#category_id').value = id;
-    document.querySelector('#delect_category').style.visibility = 'visible';
+
+// }
+// function delete_media(id){
+//     document.querySelector('#media_id').value = id;
+//     document.querySelector('#delect_media').style.visibility = 'visible';
    
-}
-function delete_media(id){
-    document.querySelector('#media_id').value = id;
-    document.querySelector('#delect_media').style.visibility = 'visible';
+// }
+// function delete_logo_client(id ){
+//     document.querySelector('#logo_client_id').value = id;
+//     document.querySelector('#delete_logo_client').style.visibility = 'visible';
    
-}
-function delete_logo_client(id){
-    document.querySelector('#logo_client_id').value = id;
-    document.querySelector('#delete_logo_client').style.visibility = 'visible';
-   
-}
-function test(){
-    alert(123);
-  }
+// }

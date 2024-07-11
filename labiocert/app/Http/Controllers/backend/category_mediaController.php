@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\category_media;
+use App\Models\Media;
 use Illuminate\Http\Request;
 
 class category_mediaController extends Controller
@@ -53,10 +54,21 @@ class category_mediaController extends Controller
     public function media_category_delete(Request $request){
         // return $request->id;
 
-        $delete_item = category_media::where('id',$request->id)
+        $deleted = $delete_item = category_media::where('id',$request->id)
         ->delete();
+ 
+        $media = Media::where('category_id' , $request->id)
+        ->get();
 
-        if($delete_item){
+        foreach($media as $item){
+            $update = Media::where('id',$item->id)
+            ->first();
+            $update->category_id = 0;
+            $update->save();
+        }
+        
+
+        if($deleted){
             return redirect('/admin/media/category/id=0')->with('sucess','Deleted 1 Record.');
         }else{
             return redirect('/admin/media/category/id=0')->with('fail','Opp! Something when wronge.');

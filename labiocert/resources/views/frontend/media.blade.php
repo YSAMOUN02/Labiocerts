@@ -113,16 +113,18 @@
      
 
                     @if(!empty($collection_no_category))
-                    <div class="post-by-category">
-                 
-                            <div class="category">
-                                <div class="category-text">
-                                    Order Article
+                            @if(count($collection_no_category) != 0)
+                                <div class="post-by-category">
+                            
+                                        <div class="category">
+                                            <div class="category-text">
+                                                Order Article
+                                            </div>
+                                            <div class="category-line"></div>
+                                        </div>
+                                
                                 </div>
-                                <div class="category-line"></div>
-                            </div>
-                     
-                    </div>
+                        @endif
                     <div class=" post-by-category">
                         @php
                         $count_media_by_all_news =0;

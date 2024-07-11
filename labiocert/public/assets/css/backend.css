@@ -405,7 +405,6 @@ table td:last-child button{
 .message-box{
     width: 400px;
     padding: 10px 15px;
-
     position: absolute;
     top: 40px;
     left: 50%;
@@ -416,6 +415,11 @@ table td:last-child button{
     z-index: 999;
     animation: fade_out 5s forwards ;
 }
+.d-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
 .fail{
     background-color: red;
 }
@@ -425,6 +429,49 @@ table td:last-child button{
 .message-box span{
     font-size: 20px;
     font-weight: bold;
+}
+.container-slider{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.slide-style{
+    height: 600px !important;
+    width: 1000px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.slide-style img{
+    height: 600px !important;
+    width: 1000px;
+    object-fit: cover;
+}
+.slide_tool{
+    width: 1000px;
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+}
+.slide_tool span{
+    font-size: 25px;
+    font-weight: bold;
+}
+.slide_tool button{
+    border: none;
+    background-color: rgb(8, 0, 255);
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+.slide_tool i{
+    font-size: 25px;
+    color: rgb(255, 255, 255);
 }
 @keyframes fade{
     0%{
@@ -442,10 +489,18 @@ table td:last-child button{
     }
     100%{
         opacity: 0;
-        backdrop-filter: blur(0);
+ 
     }
 }
-
+@keyframes fade_out2{
+    0%{
+        display: block;
+    }
+    100%{
+        display: none;
+   
+    }
+}
 @keyframes fade_down{
     0%{
         opacity: 0;

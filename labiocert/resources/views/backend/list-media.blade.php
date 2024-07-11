@@ -1,6 +1,6 @@
 @extends('backend.master')
 @section('content')
-@if(Session::has('success'))
+@if(Session::has('sucess'))
 <div class="message-box sucess">
     <span>{{Session::get('sucess')}}</span>
 </div>
@@ -41,6 +41,7 @@
     @php
     $no = 1;
 @endphp
+
 @foreach ($data as $item)
     <tr>
         @php 
@@ -62,10 +63,11 @@
         <td>{{$item->title}}</td>
         <td>
             @if ($item->category_id != 0) 
-               
-                {{$item->categorys->category_name}}
+             
+                    {{$item->category_name}}
+           
             @else 
-            {{$item->category_id}}
+                
                
             @endif
         </td>
@@ -79,13 +81,14 @@
         </td>
         <td>
             <a href="/admin/media/update/{{$item->id}}"><button class="btn-primary">Update</button></a>
-            <button onclick="delete_media({{$item->id}})" class="btn-danger">Delete</button>
+            <button onclick="delete_value({{$item->id}}, '#media_id' , '#delect_media')" class="btn-danger">Delete</button>
         </td>
     </tr>
     @php
     $no ++;
     @endphp
     @endforeach
+
    </tbody>
   </table>
 @endsection

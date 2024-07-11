@@ -17,6 +17,7 @@
     <!-- {{-- Tiny --}} -->
     <script src="https://cdn.tiny.cloud/1/lz3mqdi05log95h6wsj46p0sqpw78cu3z3ibzdfw9ck0xaqy/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Labiocert</title>
     <style>
         *{
@@ -102,7 +103,7 @@
                         <div id="carouselExampleControls"  class="carousel slide  " data-bs-ride="carousel">
                             <div class="carousel-inner">
                               <div class="carousel-item active">
-                                <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/04/poster-of-jobless-reincarntion-of-rudeus-roxy-and-sylphy-in-a-wheat-farm.png" class="d-block w-100" alt="...">
+                                <img  src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/04/poster-of-jobless-reincarntion-of-rudeus-roxy-and-sylphy-in-a-wheat-farm.png" class="d-block w-100" alt="...">
                               </div>
                               <div class="carousel-item">
                                 <img src="https://p325k7wa.twic.pics/high/jujutsu-kaisen/jujutsu-kaisen-cursed-clash/00-page-setup/JJK-header-mobile2.jpg?twic=v1/resize=760/step=10/quality=80" class="d-block w-100" alt="...">
@@ -118,11 +119,11 @@
                               </div>
                            
                             </div>
-                            <button class="carousel-control-prev " style="background-color: rgba(0, 0, 0, 0.285)" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <button onclick="refresh_id(0)" class="carousel-control-prev " style="background-color: rgba(0, 0, 0, 0.285)" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                               <span class="carousel-control-prev-icon " aria-hidden="true"></span>
                               <span class="visually-hidden ">Previous</span>
                             </button>
-                            <button class="carousel-control-next"  style="background-color: rgba(0, 0, 0, 0.285)" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <button onclick="refresh_id(1)"   class="carousel-control-next"  style="background-color: rgba(0, 0, 0, 0.285)" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
                               <span class="carousel-control-next-icon" aria-hidden="true"></span>
                               <span class="visually-hidden">Next</span>
                             </button>
@@ -130,9 +131,20 @@
                         
                     </div>
                     <div class="slide_tool">
-                        <button><i class="fa-regular fa-trash-can"></i></button>
-                        <button><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button><i class="fa-solid fa-square-plus"></i></button>
+                        <button onclick=""><i class="fa-regular fa-trash-can"></i></button>
+                        <button onclick="browse_to_link()">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                          <form action="" id="slide_form" method="post" enctype="multipart/form-data" class="d-none">
+                            <input type="text" id="slide_id" name="id">
+                            <input type="file" name="update_thumbnail" id="slide_change" onchange="file_check()" class="d-none">
+                          </form>
+                        </button>
+                        <button onclick="add_slide()"> <i class="fa-solid fa-square-plus"></i>
+                          <form action="" id="form_slide_add" method="post" enctype="multipart/form-data" class="d-none">
+                           
+                            <input type="file" name="update_thumbnail" id="slide_change_add" onchange="file_check_add()" class="d-none">
+                          </form>
+                        </button>
                     </div> 
                 </div>
                 
@@ -141,23 +153,67 @@
         </div>
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <script src="/public/assets/script_backend.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script>
       $(document).ready(function() {
         $('#carouselExampleControls').carousel({
           interval: false
         });
       });
+      // $item[0]->id;
+      const array = [1,2,3,4,5,6];
+      var id = array[0];
+      var temp = 0;
+      const length = array.length;
+
+    
+      function refresh_id(i){
+        // negative
+        if(i == 0){
+          temp--;
+          if(temp < 0){
+            id = array[length-1];
+            temp = length-1;
+       
+          }
+          else{
+            id = array[temp];
+        
+          }
+        }
+        // positive
+        else if(i == 1){
+          temp++;
+          if(temp > length-1){
+            id = array[0];
+            temp = 0;
+      
+          }else{
+
+            id = array[temp];
+          }
 
 
+        }
+
+        alert(id);
+      }
+      function browse_to_link(){
+        document.querySelector('#slide_change').click();
+        document.querySelector('#slide_id').value = id;
+  
+      }
+      function file_check(){
+
+          document.querySelector('#slide_form').submit();
+      }
+
+      function add_slide(){
+        document.querySelector('#slide_change_add').click();
+      }
+      function file_check_add(){
+        document.querySelector('#form_slide_add').submit();
+      }
     </script>
   </body>
-  <script>
-
-  </script>
+  
 </html>

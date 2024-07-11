@@ -14,4 +14,5 @@ class category_media extends Model
     {
         return $this->hasMany(Media::class, 'category_id');
     }
+  
 }

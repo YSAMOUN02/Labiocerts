@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\category_media;
 use App\Models\image_box;
 use App\Models\Media;
+use App\Models\slide;
 use App\Models\text_box;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -18,15 +19,16 @@ class media_backendController extends Controller
 
     public function media_show(){
         
-        // $data = DB::table('media as M')
-        // ->select("*",DB::raw("date(M.created_at) as date") )
-        // ->get();
+
         $data = Media::with('categorys')
         ->get();
 
-
-        // return $data;
-        // $media = Media::with(['imageBoxes', 'textBoxes'])->findOrFail($id);
+        // Manipulate the data to replace null category names with empty string
+        $data->transform(function ($item) {
+            $item->category_name = $item->categorys ? $item->categorys->category_name : '';
+            return $item;
+        });
+ 
         return view('backend.list-media', ['data' => $data]);
     }
 
@@ -190,12 +192,71 @@ class media_backendController extends Controller
         ->delete();
         $delete = media::where('id',$request->id)
         ->delete();
-      
+        
+ 
+        
 
+      
         if($delete){
             return redirect('/admin/media/list')->with('sucess','Deleted 1 Media');
         }else{
             return redirect('/admin/media/list')->with('fail','Opp! Something when wronge.');
         }
+    }
+
+    public function slide_list(){
+        $slide = slide::orderby('id', 'desc')
+            ->select('id', 'name')
+            ->get();
+        return view('backend.slide-list', ['slide' => $slide]);
+    }
+    
+
+    public function slide_add( Request $request){
+        $file = $request->file('update_thumbnail');
+        $file_name = $this->upload_slide($file);
+        $slide = new slide();
+        $slide->name = $file_name;
+        $state = $slide->save();
+ 
+
+        if($state){
+            return redirect('/admin/media/slide/list')->with('sucess','Update Sucess.');
+        }else{
+            return redirect('/admin/media/slide/list')->with('fail','Opp! Something when wronge.');
+        }
+    }
+    public function slide_update( Request $request){
+      
+        $slide = slide::where('id',$request->id)
+        ->first();
+        $file = $request->file('update_thumbnail');
+        $file_name = $this->upload_slide($file);
+        
+        $slide->name = $file_name;
+        $state = $slide->save();
+
+        if($state){
+            return redirect('/admin/media/slide/list')->with('sucess','Update Sucess.');
+        }else{
+            return redirect('/admin/media/slide/list')->with('fail','Opp! Something when wronge.');
+        }
+    
+    }
+    public function slide_delete(Request $request){
+
+        $slide = slide::where('id',$request->id)->first();
+        $delete = $slide->delete();
+
+
+
+
+ 
+        if($delete){
+            return redirect('/admin/media/slide/list')->with('sucess','Delete Sucess.');
+        }else{
+            return redirect('/admin/media/slide/list')->with('fail','Opp! Something when wronge.');
+        }
+
     }
 }

@@ -14,6 +14,11 @@ abstract class Controller
         $file ->move('assets/uploads_logo',$thumbnail);
         return $thumbnail;
     }
+    public function upload_slide($file){
+        $thumbnail = rand(1,999).'-'.$file->getClientOriginalName();
+        $file ->move('assets/slide_uploads',$thumbnail);
+        return $thumbnail;
+    }
         function limitText($text, $limit)
         {
             $end = '...';

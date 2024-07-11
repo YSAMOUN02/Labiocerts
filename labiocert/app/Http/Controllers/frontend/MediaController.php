@@ -20,7 +20,7 @@ class MediaController extends Controller
         $popular_media = null;
         $collection_no_category = null;
         // Browse Data from Medai which Popular
-        $pupular_media_all = Media::select('id', 'title',  DB::raw('DATE(created_at) as created_at'))
+        $pupular_media_all = Media::select('id', 'title','viewer',  DB::raw('DATE(created_at) as created_at'))
         ->with([
             'image' => function($query) {
                 $query->select('post_id', 'name')->limit(1);
@@ -35,6 +35,7 @@ class MediaController extends Controller
         $collection = null;
         foreach ($pupular_media_all as $item) {
             $popular_media->push((object)[
+                // 'viewer' => $item->viewer,
                 'id' => $item->id,
                 'title' => $item->title,
                 'created_at' => $item->created_at,
@@ -42,7 +43,8 @@ class MediaController extends Controller
         
             ]);
         }
-  
+        // return $pupular_media_all;
+        // $popular_media = $popular_media->sort();
         // Count Array to Check condition
         $count_media = count($popular_media);
         
@@ -70,11 +72,13 @@ class MediaController extends Controller
             
             $no_category = Media::with(['image' => function ($query) {
                 $query->select('post_id', 'name'); // Ensure 'post_id' is included if it's the foreign key
+                
             }])
             ->where('category_id', 0)
             ->orderBy('id', 'desc')
             ->where('status', 1)
             ->select('id', 'title', 'status', 'category_id')
+            ->whereNotIn('id',[$popular_media[0]->id,$popular_media[1]->id,$popular_media[2]->id])
             ->limit(8)
             ->get();
            
