@@ -12,7 +12,9 @@ use App\Http\Controllers\backend\advertisingController;
 use App\Http\Controllers\backend\category_mediaController;
 use App\Http\Controllers\backend\media_backendController;
 use App\Http\Controllers\backend\quoteController;
-use App\Models\Media;
+
+use App\Models\ClientLogo;
+
 use Illuminate\Support\Facades\Route;
 
 // frontend
@@ -107,6 +109,10 @@ Route::put('/admin/service/categoryupdate/{id}', [service_backendController::cla
 Route::delete('/admin/service/categorydelete/{id}', [service_backendController::class, 'category_destroy']);
 
 Route::get('/admin/logoClient', [logo_clientController::class, 'logoClient']);
+Route::post('/admin/logoClient/store', [logo_clientController::class, 'store']); 
+Route::put('/admin/logoClient/update/{id}', [logo_clientController::class, 'update']); 
+Route::delete('/admin/logoClient/delete/{id}',[logo_clientController::class, 'destroy']);
+
 Route::get('/admin/advertising', [advertisingController::class, 'advertising_show']);
 Route::get('/admin/quote/view', [quoteController::class, 'quote_show']);
 
