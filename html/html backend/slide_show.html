@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Icon  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/assets/css/backend.css">
+
+    <!-- {{-- Tiny --}} -->
+    <script src="https://cdn.tiny.cloud/1/lz3mqdi05log95h6wsj46p0sqpw78cu3z3ibzdfw9ck0xaqy/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Labiocert</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .container-slider{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .slide-style{
+            height: 600px !important;
+            width: 1000px;
+     
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .slide-style img{
+            height: 600px !important;
+            width: 1000px;
+            object-fit: cover;
+        }
+        .slide_tool{
+            width: 1000px;
+            height: 80px;
+
+            display: flex;
+            align-items: center;
+        }
+        .slide_tool span{
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .slide_tool button{
+            border: none;
+            background-color: rgb(8, 0, 255);
+            padding: 5px 10px;
+            margin-right: 10px;
+        }
+        .slide_tool i{
+            font-size: 25px;
+            color: rgb(255, 255, 255);
+        }
+  
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+
+        <!-- minimize button -->
+        <div class="minimize">
+            <button onclick="minimize()"><i class="fa-solid fa-compress"></i></button>
+        </div>
+        <div class="nav">
+            <div class="click-left"><button onclick="maximize()"><i class="fa-solid fa-caret-left"></i></button></div>
+            <div class="logo">
+                <img src="/public/assets/image_backend/Logo-Labiocert.png" alt="">
+            </div>
+            <div class="list-nav">
+          
+            </div>
+        </div>
+
+        <!-- Dashboard main -->
+        <div class="body">
+            <div class="title">
+                <span>Slide Show</span>
+            </div>
+            <div class="body-box">
+                <div class="container-slider">
+                    <div class="slide_tool">
+                        <span>Slide No 1</span>
+                    </div>
+                    <div class="slide-style">
+                  
+                        <div id="carouselExampleControls"  class="carousel slide  " data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <img  src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/04/poster-of-jobless-reincarntion-of-rudeus-roxy-and-sylphy-in-a-wheat-farm.png" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="https://p325k7wa.twic.pics/high/jujutsu-kaisen/jujutsu-kaisen-cursed-clash/00-page-setup/JJK-header-mobile2.jpg?twic=v1/resize=760/step=10/quality=80" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="https://www.hindustantimes.com/ht-img/img/2023/11/13/550x309/toji_fushiguro_jujutsu_kaisen_season_2_1684754085068_1699878352232.jpeg" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQeTOiEt4mVSF2EUiiv-IKCcByroykrZE9nw&s" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2021/12/Mushoku-Tensei-Cover-Art-That-Includes-Roxy-Eris-Rudeus-And-Sylphie.jpg" class="d-block w-100" alt="...">
+                              </div>
+                           
+                            </div>
+                            <button onclick="refresh_id(0)" class="carousel-control-prev " style="background-color: rgba(0, 0, 0, 0.285)" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+                              <span class="visually-hidden ">Previous</span>
+                            </button>
+                            <button onclick="refresh_id(1)"   class="carousel-control-next"  style="background-color: rgba(0, 0, 0, 0.285)" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                          </div>
+                        
+                    </div>
+                    <div class="slide_tool">
+                        <button onclick=""><i class="fa-regular fa-trash-can"></i></button>
+                        <button onclick="browse_to_link()">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                          <form action="" id="slide_form" method="post" enctype="multipart/form-data" class="d-none">
+                            <input type="text" id="slide_id" name="id">
+                            <input type="file" name="update_thumbnail" id="slide_change" onchange="file_check()" class="d-none">
+                          </form>
+                        </button>
+                        <button onclick="add_slide()"> <i class="fa-solid fa-square-plus"></i>
+                          <form action="" id="form_slide_add" method="post" enctype="multipart/form-data" class="d-none">
+                           
+                            <input type="file" name="update_thumbnail" id="slide_change_add" onchange="file_check_add()" class="d-none">
+                          </form>
+                        </button>
+                    </div> 
+                </div>
+                
+       
+            </div>
+        </div>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+        $('#carouselExampleControls').carousel({
+          interval: false
+        });
+      });
+      // $item[0]->id;
+      const array = [1,2,3,4,5,6];
+      var id = array[0];
+      var temp = 0;
+      const length = array.length;
+
+    
+      function refresh_id(i){
+        // negative
+        if(i == 0){
+          temp--;
+          if(temp < 0){
+            id = array[length-1];
+            temp = length-1;
+       
+          }
+          else{
+            id = array[temp];
+        
+          }
+        }
+        // positive
+        else if(i == 1){
+          temp++;
+          if(temp > length-1){
+            id = array[0];
+            temp = 0;
+      
+          }else{
+
+            id = array[temp];
+          }
+
+
+        }
+
+        alert(id);
+      }
+      function browse_to_link(){
+        document.querySelector('#slide_change').click();
+        document.querySelector('#slide_id').value = id;
+  
+      }
+      function file_check(){
+
+          document.querySelector('#slide_form').submit();
+      }
+
+      function add_slide(){
+        document.querySelector('#slide_change_add').click();
+      }
+      function file_check_add(){
+        document.querySelector('#form_slide_add').submit();
+      }
+    </script>
+  </body>
+  
+</html>

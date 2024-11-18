@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form Submission Detection</title>
+    <style>
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        .google_form {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .google_form iframe {
+            width: 100%;
+            height: 100vh;
+            border: none; /* Ensure no border around the iframe */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Embed your Google Form here -->
+    <div class="google_form">
+        <iframe id="google-form" src="https://docs.google.com/forms/d/e/1FAIpQLSdmL7nlMEHIBwY-TMuOw7FM9RWU4Y8iFkOW8RUQwajuNb_AKw/viewform?embedded=true" width="640" height="645" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+
+    <!-- JavaScript to detect form submission -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const formIframe = document.getElementById('google-form');
+
+            // Polling to detect changes in the iframe URL
+            setInterval(function () {
+                try {
+                    const currentSrc = formIframe.contentWindow.location.href;
+                    if (currentSrc.includes('formResponse')) {
+                        console.log('Form submitted!');
+                        alert(1); // Replace with your desired action upon form submission
+                    }
+                } catch (error) {
+                    console.error('Error accessing iframe content:', error.message);
+                }
+            }, 1000); // Check every second
+        });
+    </script>
+
+</body>
+</html>
