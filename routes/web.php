@@ -117,6 +117,7 @@ Route::get('/media/newyear', [MediaController::class, 'newyear']);
 Route::get('/media/kinal', [MediaController::class, 'kinal']);
 Route::get('/media/ppmandconfirel', [MediaController::class, 'ppmandconfirel']);
 Route::get('/location', [LocationController::class, 'location']);
+Route::post('/contact/sending', [LocationController::class, 'contact_send'])->middleware('throttle:5,1'); // Contact form (email only)
 
 // Media Detail
 Route::get('/media/page={id}', [MediaController::class, 'media_detail']);

@@ -17,27 +17,31 @@
     <div class="c-section tenzero">
         <div class="contact-container">
             <div class="cont-text"><h1>CONTACT FORM</h1></div>
-                <form action="" id="c-Form">
+                <form action="{{ url('/contact/sending') }}" method="POST" id="c-Form">
+                    @csrf
+                    {{-- Honeypot: hidden from people, bots fill it --}}
+                    <input type="text" name="website" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
+
                     <label class="c-name" for="f-Name" >Full Name * <br></label>
-                    <input class=" c-text" type="text" name="f-Name" id="f-Name" required>
-                    <div class="eror-mes" id="f-NameError">The field is required.</div>
+                    <input class=" c-text" type="text" name="name" id="f-Name" maxlength="100" value="{{ old('name') }}" required>
+                    @error('name')<div class="eror-mes" style="display:block">{{ $message }}</div>@enderror
 
                     <label class="c-name" for="e-Address">Email Address * <br></label>
-                    <input  class="c-text" type="email" id="e-Address" name="e-Address" required><br>
-                    <div class="eror-mes" id="e-AddressError">The field is required.</div>
+                    <input  class="c-text" type="email" id="e-Address" name="email" maxlength="150" value="{{ old('email') }}" required><br>
+                    @error('email')<div class="eror-mes" style="display:block">{{ $message }}</div>@enderror
 
-                    <label class="c-name" for="subject" >Subject * <br></label>
-                    <input  class="c-text" type="text" id="s-text" name="s-text" required> <br>
-                    <div class="eror-mes" id="subejectError">The field is required.</div>
+                    <label class="c-name" for="s-text" >Subject * <br></label>
+                    <input  class="c-text" type="text" id="s-text" name="subject" maxlength="150" value="{{ old('subject') }}" required> <br>
+                    @error('subject')<div class="eror-mes" style="display:block">{{ $message }}</div>@enderror
 
                     <label class="c-name" for="y-Name">Your Message * <br></label>
-                    <textarea  class="c-text" name="y-Name" id="y-Name" class="y-Name" required></textarea><br>
-                    <div class="eror-mes" id="y-NameError">The field is required.</div>
+                    <textarea  class="c-text" name="message" id="y-Name" maxlength="5000" required>{{ old('message') }}</textarea><br>
+                    @error('message')<div class="eror-mes" style="display:block">{{ $message }}</div>@enderror
                 
                     <button type="submit" class="c-btnsub">Submit</button>
                 </form>
-                <div id="res-Message" class="hidden">Thank you for your message.It has been sent.</div>
-                <div id="alt-Message" class="hidden">One or more fields have an error. Please check and try again.</div>
+                <div id="res-Message" class="{{ session('contact_success') ? '' : 'hidden' }}" style="color:#1a7f37">Thank you for your message. It has been sent.</div>
+                <div id="alt-Message" class="{{ ($errors->any() || session('contact_error')) ? '' : 'hidden' }}">{{ session('contact_error') ?: 'One or more fields have an error. Please check and try again.' }}</div>
         </div>
         <div class="c-grid">
                 <div class="c-icon o-detail">
