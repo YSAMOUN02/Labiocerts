@@ -1,4 +1,7 @@
 @extends('backend.master')
+@section('title')
+    Add Advertising
+@endsection
 @section('content')
 <div class="category-info">
     <form action="">
@@ -11,7 +14,7 @@
                 <label for="">Link</label>
                 <input type="text" class="form-control">
             </div>
-            
+
         </div>
         <div class="row mt-3">
             <div class="col-12">

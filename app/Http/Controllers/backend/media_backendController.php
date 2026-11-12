@@ -18,7 +18,7 @@ class media_backendController extends Controller
 {
 
     public function media_show(){
-        
+
 
         $data = Media::with('categorys')
         ->get();
@@ -28,7 +28,7 @@ class media_backendController extends Controller
             $item->category_name = $item->categorys ? $item->categorys->category_name : '';
             return $item;
         });
- 
+
         return view('backend.list-media', ['data' => $data]);
     }
 
@@ -46,7 +46,7 @@ class media_backendController extends Controller
 
         $category = category_media::select('id', 'category_name')->orderBy('order','asc')->get();
 
-      
+
         return view('backend.add-media',['category' => $category]);
     }
 
@@ -69,7 +69,7 @@ class media_backendController extends Controller
                 // return  $name.strval($i);
                 // If Req is File Image
 
-                    if ($request->hasFile($request->file($name.strval($i)))) {
+                    if (!$request->file($name.strval($i))) {
                         $name = 'input';
                         $text = new text_box();
                         $text->description = $request->input($name.strval($i));
@@ -98,7 +98,7 @@ class media_backendController extends Controller
         $media_header = Media::find($id);
         $media = Media::with(['imageBoxes', 'textBoxes'])->findOrFail($id);
 
-        
+
         // Ensure collections are not null
         $imageBoxes = $media->imageBoxes ?? collect();
         $textBoxes = $media->textBoxes ?? collect();
@@ -143,8 +143,8 @@ class media_backendController extends Controller
         $delete_image = image_box::where('post_id',$request->input('media-id'));
         $delete_image->delete();
         // return $request;
-   
-   
+
+
         for($i = 1 ; $i <= $request->state ; $i++){
             $inputName = 'input'.strval($i);
             $state_image = "state_image".strval($i);
@@ -157,7 +157,7 @@ class media_backendController extends Controller
                         $image->post_id = $media->id;
                         $image->created_by = 1;
                         $image->save();
-                
+
             }elseif(!empty($request->input($inputName))){
                     // Work
                     // return 2;
@@ -168,7 +168,7 @@ class media_backendController extends Controller
                         $text->created_by = 1;
                         $text->save();
             }elseif ($request->hasFile($inputName)) {
-              
+
                         $file = $request->file($inputName);
                         $image = new image_box();
                         $image->name = $this->upload_file($file);
@@ -177,8 +177,8 @@ class media_backendController extends Controller
                         $image->created_by = 1;
                         $image->save();
             }
-            
-           
+
+
         }
         return redirect('/admin/media/list');
 
@@ -192,11 +192,11 @@ class media_backendController extends Controller
         ->delete();
         $delete = media::where('id',$request->id)
         ->delete();
-        
- 
-        
 
-      
+
+
+
+
         if($delete){
             return redirect('/admin/media/list')->with('sucess','Deleted 1 Media');
         }else{
@@ -205,20 +205,21 @@ class media_backendController extends Controller
     }
 
     public function slide_list(){
-        $slide = slide::orderby('id', 'desc')
+        $slide = slide::orderby('id', 'asc')
             ->select('id', 'name')
             ->get();
         return view('backend.slide-list', ['slide' => $slide]);
     }
-    
+
 
     public function slide_add( Request $request){
         $file = $request->file('update_thumbnail');
         $file_name = $this->upload_slide($file);
+   
         $slide = new slide();
         $slide->name = $file_name;
         $state = $slide->save();
- 
+
 
         if($state){
             return redirect('/admin/media/slide/list')->with('sucess','Update Sucess.');
@@ -227,12 +228,12 @@ class media_backendController extends Controller
         }
     }
     public function slide_update( Request $request){
-      
+
         $slide = slide::where('id',$request->id)
         ->first();
         $file = $request->file('update_thumbnail');
         $file_name = $this->upload_slide($file);
-        
+
         $slide->name = $file_name;
         $state = $slide->save();
 
@@ -241,7 +242,7 @@ class media_backendController extends Controller
         }else{
             return redirect('/admin/media/slide/list')->with('fail','Opp! Something when wronge.');
         }
-    
+
     }
     public function slide_delete(Request $request){
 
@@ -251,7 +252,7 @@ class media_backendController extends Controller
 
 
 
- 
+
         if($delete){
             return redirect('/admin/media/slide/list')->with('sucess','Delete Sucess.');
         }else{

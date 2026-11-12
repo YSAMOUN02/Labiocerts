@@ -1,4 +1,7 @@
 @extends('backend.master')
+@section('title')
+    Quote Requested
+@endsection
 @section('content')
     <!-- alert confirm for user aware -->
     <div class="alert-confirm " id="delect_quote">
@@ -22,9 +25,9 @@
      @elseif(Session::has('fail'))
       <div class="message-box fail">
           <span>{{Session::get('fail')}}</span>
-      
+
       </div>
-  
+
     @endif
 <div class="category-info ">
   <form action="/admin/quote/mail/change" method="post">
@@ -41,8 +44,8 @@
         <div class="col-6"></div>
 
     </div>
-  
-</div>  
+
+</div>
 <div class="row mt-1"><div class="col-12"><button type="submit" class="btn btn-primary">Change</button></div></div>
   </form>
 <div class="row mt-3" >
@@ -61,7 +64,7 @@
             </tr>
             <tbody>
                 @if(!empty($quote))
-                  
+
                     @foreach ($quote as $item)
                     <tr>
                         <td>{{$item->id}}</td>
@@ -69,16 +72,16 @@
                         <td>{{$item->service}}</td>
                         <td>{{$item->phone}}</td>
                         <td>
-                           @if($item->state == 0) 
+                           @if($item->state == 0)
                             <button class="btn btn-warning"><i class="fa-solid fa-envelope-circle-check"></i></button>
-                            @else 
+                            @else
                             <button class="btn btn-success"><i class="fa-solid fa-envelope-circle-check"></i></button>
                             @endif
                         </td>
                         <td>
                             {{-- <button class="btn btn-danger"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></button> --}}
-                       
-                            
+
+
                             <button type="button" onclick="delete_value({{$item->id}} ,'#quote_id', '#delect_quote' )" class="btn-danger btn-delete-category" >
                                 <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
                             </button>
@@ -88,12 +91,12 @@
                             <a href="view/quote_no={{$item->id}}"><button class="btn btn-primary"><i class="fa-regular fa-eye" style="color: #ffffff;"></i></button></a>
                         </td>
                     </tr>
-                      
+
                     @endforeach
 
                 @endif
-  
-            
+
+
             </tbody>
         </thead>
     </table>
@@ -115,7 +118,7 @@
               <li class="page-item"><a class="page-link" href="/admin/quote/view/page={{$page-4}}">{{$page-4}}</a></li>
               <li class="page-item"><a class="page-link" href="/admin/quote/view/page={{$page-3}}">{{$page-3}}</a></li>
               <li class="page-item"><a class="page-link" href="/admin/quote/view/page={{$page-2}}">{{$page-2}}</a></li>
-              <li class="page-item"><a class="page-link" href="/admin/quote/view/page={{$page-1}}">{{$page-1}}</a></li>  
+              <li class="page-item"><a class="page-link" href="/admin/quote/view/page={{$page-1}}">{{$page-1}}</a></li>
             @elseif($page == 4)
                 <li class="page-item"><a class="page-link" href="/admin/quote/view/page={{$page-3}}">{{$page-3}}</a></li>
                 <li class="page-item"><a class="page-link" href="/admin/quote/view/page={{$page-2}}">{{$page-2}}</a></li>
@@ -129,18 +132,18 @@
 
             @endif
             @php
-                $page_show = $page+10;    
+                $page_show = $page+10;
                 if($page_show > $all_page){
                     $page_show = $all_page;
                 }
             @endphp
             @for($i = $page ; $i <= $page_show ;$i++)
-               
+
                 @if($page == $i)
                     <li class="page-item active" aria-current="page">
                         <span class="page-link">{{$page}}</span>
                     </li>
-                @else 
+                @else
                     <li class="page-item"><a class="page-link" href="/admin/quote/view/page={{$i}}">{{$i}}</a></li>
                 @endif
             @endfor
@@ -150,13 +153,13 @@
             <a class="page-link" href="/admin/quote/view/page={{$all_page}}">Last</a>
           </li>
         @else
-          
+
         @endif
         </ul>
       </nav>
 
 
-      
-   
+
+
 </div>
 @endsection

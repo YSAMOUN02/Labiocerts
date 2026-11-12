@@ -1,4 +1,8 @@
 @extends('backend.master')
+@section('title')
+    Dashboard Admin
+@endsection
+
 @section('content')
 @if(Session::has('sucess'))
 <div class="message-box  sucess">

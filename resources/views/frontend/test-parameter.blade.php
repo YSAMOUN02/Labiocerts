@@ -1,44 +1,40 @@
 @extends('frontend.master')
 @section('content')
 
-@php 
+@php
     use App\Models\ServiceParameter;
-
+    $service = $data[0]->categories[0]->mainlist;
+    // dd($service);
 @endphp
 <!-- Labiocert Analysis -->
 <section>
-    @php
-    $service1 = $services->where('no', 1)->first();
-    @endphp
-    @if($service1)
-    <div class="labiocert-analysis tenzero container-width">
+
+
+    <div class="labiocert-analysis tenzero container-width mb-3 ">
         <div class="la-text">
-            <h1>{{ $service1->title }}</h1>
-            <ol>
-                @foreach(explode("\n", $service1->reference) as $reference)
-                @if(!empty(trim($reference)))
-                <li>{!! nl2br(e(trim($reference))) !!}</li>
-                @endif
-                @endforeach
-            </ol>
-            <table class="la-table la-tbl">
+
+            <h1 class=" title-style-text notranslate">{{ $data[0]->categories[0]->category}}</h1>
+            {{-- <ol>
+
+                <li>
+                    FPurified water		FWater for industry		FSurface water
+                </li>
+                <li>
+                    FDrinking Water, Portable water		FGround water		FSwimming pool water
+                </li>
+                <li>
+                    FBottled water		FWaste Water 		FFish pond water, other water
+                </li>
+
+            </ol> --}}
+            <table class="la-table la-tbl notranslate">
                 <tbody class="latbl-txt categories">
-                    @php
-                    $sorted_categories = $services_category->sortBy('no');
-                    @endphp
+                    @foreach ($service  as $item)
+                        <tr>
+                            <td colspan="4"  class="styled-text text-center"><strong >{{$item->list_name}}</strong></td>
+                        </tr>
+                        @if($item->type == 'service')
 
-                    @foreach($sorted_categories as $service_category)
-                    <tr>
-                 
-                        <td colspan="4" class="text-center"><strong >{{ $service_category->title_category }}</strong></td>
-                    </tr>
-                    @php 
-                        
-                        $count_parameter_to_show = 0;
-                        $count_parameter_to_show = count(ServiceParameter::where('service_category_id' , $service_category->id)->get());
-
-                    @endphp
-                    @if($count_parameter_to_show != 0)
                         <tr>
                             <th>No.</th>
                             <th>Parameter</th>
@@ -46,55 +42,91 @@
                             <th>Method</th>
                         </tr>
                         @php
-                        $sorted_parameter = $services_parameter->sortBy('no');
+                            $no = 1;
+                        @endphp
+                        @foreach ($item->sublist as $list)
+                        <tr>
+                            <td>{{$no}}</td>
+                            <td>{{$list->name}}</td>
+                            <td>{{$list->duration}}</td>
+                            <td >{{$list->method}}</td>
+                        </tr>
+                        @php
+                        $no ++;
+                        @endphp
+                        @endforeach
+                        @elseif ($item->type == 'product')
+                        <tr>
+                            <th>No.</th>
+                            <th >Product</th>
+                            <th colspan="2">Recommended Test Parameters</th>
+                        </tr>
+                        @php
+                        $no = 1;
+                     @endphp
+                        @foreach ($item->sublist as $list)
+                        <tr>
+                            <td>{{$no}}</td>
+                            <td >{{$list->name}}</td>
+                            <td  colspan="2">{{$list->method}}</td>
+
+
+
+                        </tr>
+                        @php
+                        $no ++;
+                        @endphp
+                        @endforeach
+
+                        @else
+
+                        <tr>
+                            <th>No.</th>
+                            <th colspan="2">Description</th>
+                            <th >Parameter</th>
+                        </tr>
+                        @php
                         $no = 1;
                         @endphp
-
-                        @foreach($sorted_parameter as $service_parameter)
-                        @if($service_parameter->service_category_id == $service_category->id)
-                        
+                        @foreach ($item->sublist as $list)
                         <tr>
-                            <td>{{ $no }}</td>
-                            <td>{{ $service_parameter->title_parameter }}</td>
-                            <td>{{ $service_parameter->duration }}</td>
-                            <td>{{ $service_parameter->method }}</td>
+                            <td>{{$no}}</td>
+                            <td colspan="2">{{$list->method}}</td>
+                            <td >{{$list->name}}</td>
+
+
                         </tr>
-                        @php 
-                            $no++;
+                        @php
+                        $no ++;
                         @endphp
-                        @endif
                         @endforeach
-                 
+                        @endif
 
-
-                    @endif
                     @endforeach
                 </tbody>
             </table>
+
         </div>
         <aside>
-            <div class="advertising fixed ads-service">
+            <div class="adversting fixed ads-service">
                 <div class="last-new">
-                    <span class="lastnew">LATEST NEWS</span>
+                    <span class="lastnew">LASTEST NEWS</span>
                 </div>
                 <div class="lastnew-detail">
-                    <div class="img-khmernew">
-                        <a href="/media/newyear" class="img-lastnew"><img src="{{ URL('/assets/image/allimg1.jpg') }}" alt=""></a>
-                        <a href="/media/newyear" class="text-lastnew">New year and double birthday</a>
+                @if(!empty($collection_lastest))
+                @foreach($collection_lastest as $item)
+                    <div class="img-launchnew ">
+                        <a href="/media/page={{$item->id}}" class="img-lastnew"><img src="/assets/uploads/{{$item->image}}"  alt=""></a>
+                        <a href="/media/page={{$item->id}}" class="text-lastnew">{{ Str::limit($item->title, 40) }}</a>
                     </div>
-                    <div class="img-launchnew">
-                        <a href="/media/launchofKEM" class="img-lastnew"><img src="{{ URL('/assets/image/allimg2.jpg') }}" alt=""></a>
-                        <a href="/media/launchofKEM" class="text-lastnew">Launch of KEM</a>
-                    </div>
-                    <div class="img-kinal">
-                        <a href="/media/kinal" class="img-lastnew"><img src="{{ URL('/assets/image/allimg3.jpg') }}" alt=""></a>
-                        <a href="/media/kinal" class="text-lastnew">KINAL is the symbol of the effective pain-killer</a>
-                    </div>
+                @endforeach
+                @endif
+
                 </div>
             </div>
         </aside>
     </div>
-    @endif
+
 </section>
 <!-- End of Labiocert Analysis -->
 

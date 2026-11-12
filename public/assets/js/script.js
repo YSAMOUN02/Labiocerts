@@ -23,11 +23,11 @@
   }
 
   // Function to hide the search box and suggestions
-  function hideSearchBox() {
-    var searchBox = document.querySelector('.search-box');
-    searchBox.classList.remove('show');
-    hideSearchSuggestions();
-  }
+//   function hideSearchBox() {
+//     var searchBox = document.querySelector('.search-box');
+//     searchBox.classList.remove('show');
+//     hideSearchSuggestions();
+//   }
 
   // Function to hide search suggestions
   function hideSearchSuggestions() {
@@ -44,15 +44,15 @@
   // Function for search icon click event
   function onSearchIconClick() {
     toggleSearchBox();
-    hideSearchSuggestions(); 
+    hideSearchSuggestions();
   }
 
   // Function for clicking outside the search bar
-  function onDocumentClick(event) {
-    if (!event.target.closest('.search-container') && !event.target.closest('.search-box')) {
-      hideSearchBox();
-    }
-  }
+//   function onDocumentClick(event) {
+//     if (!event.target.closest('.search-container') && !event.target.closest('.search-box')) {
+//       hideSearchBox();
+//     }
+//   }
 
   // Function for input in search box
   function onSearchBoxInput() {
@@ -102,10 +102,10 @@
 
   // Att// Media Center
   document.addEventListener('DOMContentLoaded', () => {
-    
 
- 
-    
+
+
+
 
 
 
@@ -168,21 +168,26 @@ function navigate(event) {
 }
 // end of menu
 // End of media centerach event listeners
-  document.querySelector('.search-icon').addEventListener('click', onSearchIconClick);
-  document.addEventListener('click', onDocumentClick);
-  document.querySelector('.search-box input').addEventListener('input', onSearchBoxInput);
-  document.querySelector('#search-button').addEventListener('click', onSearchButtonClick);
+//   document.querySelector('.search-icon').addEventListener('click', onSearchIconClick);
+//   document.addEventListener('click', onDocumentClick);
+//   document.querySelector('.search-box input').addEventListener('input', onSearchBoxInput);
+//   document.querySelector('#search-button').addEventListener('click', onSearchButtonClick);
   })();
 
   //Tablet Section
   function openNav() {
+
     document.getElementById("myNav").style.width = "100%";
+    document.getElementById("myNav").style.zIndex = "1000";
+
   }
   function closeNav() {
     document.getElementById("myNav").style.width = "0%";
   }
   function oNav() {
-    document.getElementById("m-Nav").style.width = "100%";
+
+    document.getElementById("myNav").style.width = "0%";
+
   }
   function cNav() {
     document.getElementById("m-Nav").style.width = "0%";
@@ -210,3 +215,4 @@ function navigate(event) {
 
 // End of Tablet Section
 //search
+

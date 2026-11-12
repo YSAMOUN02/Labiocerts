@@ -88,7 +88,7 @@ body{
     flex-direction: column;
 }
 .nav ul li {
-    
+
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -144,7 +144,7 @@ body{
 .nav ul ul li{
     padding: 5px   0 0 0;
     margin: 4px 0 0 0;
-    width: 100%;  
+    width: 100%;
     font-size: 12px ;
     background-color: rgb(0, 137, 223);
     color: white;
@@ -173,7 +173,7 @@ body{
 
 /* Main Body Dashboard */
 .body{
-    
+
     width: 90%;
     max-width: 100%;
     overflow: scroll;
@@ -204,9 +204,9 @@ body{
     box-shadow:  -1px -1px 5px rgba(0, 0, 0, 0.481) , 1px 1px 5px rgba(0, 0, 0, 0.39) ;
     z-index: 100 ;
     overflow-y: scroll;
-    padding: 60px 10px 0px 10px;  
+    padding: 60px 10px 0px 10px;
     position: relative;
-  
+
 }
 .minimize{
     position: absolute;
@@ -245,12 +245,12 @@ table td{
     padding: 3px 5px;
     color: rgb(0, 0, 0);
     border-top: 1px solid black;
-    
+
 }
 table td:last-child{
     display: flex;
     justify-content: right;
- 
+
 }
 table th:last-child{
     padding-right: 5px;
@@ -271,23 +271,23 @@ table td:last-child button{
     height: auto;
 }
 .active{
-    
+    width: 70px;
     padding: 1px 1px ;
     border-radius: 3px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(203, 255, 125);
+    background-color: rgb(153, 255, 0);
 }
 
 .inactive{
-    
+    width: 70px;
     padding: 1px 1px ;
     border-radius: 3px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(255, 149, 125);
+    background-color: rgb(255, 47, 0);
 }
 .alert-confirm ,.alert-confirm-logout{
     position: absolute;
@@ -306,7 +306,7 @@ table td:last-child button{
     flex-direction: column;
     animation:  fade_down 1s forwards;
     visibility: hidden;
-    
+
 }
 
 .alert-confirm-btn {
@@ -380,7 +380,7 @@ table td:last-child button{
 }
 
 .add-image{
-    
+
     position: fixed ;
     bottom: 30px ;
     right: 50px;
@@ -478,7 +478,7 @@ table td:last-child button{
 }
 .reference-box{
     height: 300px;
-  
+
 }
 .table_service{
     height: 400px;
@@ -495,7 +495,7 @@ table td:last-child button{
     border: 1px;
     background-color: #fff;
     border-radius: 5px;
-  
+
 }
   .float_corner{
     position: absolute;
@@ -509,9 +509,9 @@ table td:last-child button{
     margin-bottom: 20px;
     background-color: inherit;
     border: none;
-    
+
     padding-bottom: 10px;
- 
+
 }
 
 .la-name {
@@ -529,7 +529,7 @@ table td:last-child button{
     border-bottom:  1px solid rgba(0, 0, 0, 0.508);
     border-radius: 3px;
     box-sizing: border-box;
-    
+
 }
 
 .inquiry {
@@ -562,6 +562,17 @@ table td:last-child button{
 .pagination{
     margin: 0 !important;
 }
+.slide-style #carouselExampleControls{
+    width: 100% !important;
+
+}
+.carousel-item{
+    width: 100%;
+}
+.slide-style img{
+    width: 100%;
+    object-fit: cover;
+}
 @keyframes fade{
     0%{
         transform: translateY(10px);
@@ -578,7 +589,7 @@ table td:last-child button{
     }
     100%{
         opacity: 0;
- 
+
     }
 }
 @keyframes fade_out2{
@@ -587,7 +598,7 @@ table td:last-child button{
     }
     100%{
         display: none;
-   
+
     }
 }
 @keyframes fade_down{
@@ -597,7 +608,7 @@ table td:last-child button{
     }
     100%{
         opacity: 1;
-   
+
     }
 }
 
@@ -622,7 +633,7 @@ table td:last-child button{
         padding: 0 !important;
         width: auto !important;
         display: flex;
-        align-items: flex-start; 
+        align-items: flex-start;
         overflow: scroll;
     }
     .body {
@@ -638,7 +649,7 @@ table td:last-child button{
         position: fixed;
         width: 50%;
         z-index: 999;
-        font-size: 12px; 
+        font-size: 12px;
         font-weight: 400 !important;
     }
     .body-box{
@@ -655,7 +666,7 @@ table td:last-child button{
     }
     .title{
         height: 70px;
-    
+
     }
     .title span{
         top: 25px;
@@ -722,7 +733,7 @@ table td:last-child button{
         position: fixed;
         width: 30%;
         z-index: 999;
-        font-size: 12px; 
+        font-size: 12px;
         font-weight: 400 !important;
     }
 
@@ -731,8 +742,8 @@ table td:last-child button{
         padding: 5px !important;
         width: auto !important;
         display: flex;
-        align-items: flex-start; 
-   
+        align-items: flex-start;
+
     }
     .body {
         width: auto !important;

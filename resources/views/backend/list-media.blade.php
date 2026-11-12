@@ -1,4 +1,7 @@
 @extends('backend.master')
+@section('title')
+    List Media
+@endsection
 @section('content')
 @if(Session::has('sucess'))
 <div class="message-box sucess">
@@ -44,7 +47,7 @@
 
 @foreach ($data as $item)
     <tr>
-        @php 
+        @php
               $image = DB::table('image_box')
             ->where('post_id', $item->id)
             ->select('name')
@@ -59,16 +62,16 @@
 
             <img src="" alt="No Thumbnail">
             @endif
-   
+
         <td>{{$item->title}}</td>
         <td>
-            @if ($item->category_id != 0) 
-             
+            @if ($item->category_id != 0)
+
                     {{$item->category_name}}
-           
-            @else 
-                
-               
+
+            @else
+
+
             @endif
         </td>
         <td>{{$item->date}}</td>

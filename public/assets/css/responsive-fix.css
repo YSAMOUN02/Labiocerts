@@ -1,0 +1,67 @@
+/*
+ * Mobile / responsive fixes for Labiocert.
+ * Loaded AFTER style.css so these rules win. Delete this file's <link> in
+ * frontend/master.blade.php to undo everything here.
+ */
+
+/* Media never wider than its box */
+img, video, iframe { max-width: 100%; }
+
+/* Safety net: no sideways scrolling on phones */
+html, body { overflow-x: clip; }
+
+@media (max-width: 768px) {
+
+    /* Contact page: the form box was width:100% + 1rem margin (16px too wide) */
+    .contact-container {
+        margin-left: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+    .contact-container .c-text {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Service / welcome detail pages: same 100% + margin problem */
+    .pharma-title,
+    .food-section.tenzero-four,
+    .water.tenzero-four,
+    .welcome-title.tenzero-four {
+        margin-left: 0 !important;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        box-sizing: border-box;
+    }
+
+    /* "We're here to help" banner: one column, text wraps, button underneath */
+    .quote .container-width.quote-grid {
+        display: block !important;
+    }
+    .quote .quote-section.quote-grid {
+        display: flex !important;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: .5rem;
+        padding: 1rem;
+    }
+    .quote .text-title {
+        width: auto !important;
+        margin-left: 0 !important;
+        flex: 1 1 0;
+        min-width: 0;
+    }
+    .quote .text-title > h2 { font-size: 17px; line-height: 1.35; }
+    .quote .text-title > p  { font-size: 14px; margin-bottom: 0; }
+    .quote .mquote-btn {
+        flex-basis: 100%;
+        margin: .25rem 0 0 0;
+    }
+    .quote .btn-quote { margin: 0; }
+
+    /* Form fields: 16px stops iPhone from zooming in when tapping a field */
+    input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+        font-size: 16px;
+    }
+}

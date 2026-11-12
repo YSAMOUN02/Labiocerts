@@ -1,4 +1,7 @@
 @extends('backend.master')
+@section('title')
+    Add Client Logo
+@endsection
 @section('content')
 <!-- alert confirm for user aware -->
 <div class="alert-confirm " id="delete_logo_client">
@@ -31,7 +34,7 @@
         <div class="row">
             <div class="col-6">
                 <label for="">Logo client</label>
-               
+
                 @if(!empty($preview_logo))
                     <input type="file" name="thumbnail" accept="image/*" onchange="loadFile(event)" class="form-control">
                     <input type="text" name="old_thumbnail" value="{{$preview_logo->thumbnail}}" class="d-none">
@@ -43,14 +46,14 @@
             </div>
             <div class="col-6">
                 <label for="">Link</label>
-                
+
                 @if(!empty($preview_logo))
                 <input type="text" name="link" required class="form-control" value="{{$preview_logo->link}}">
                 @else
                 <input type="text" name="link" required class="form-control">
                 @endif
             </div>
-            
+
         </div>
         <div class="row mt-3">
             <div class="col-12">
@@ -70,7 +73,7 @@
     @else
         <img width="200px" height="200px" style="object-fit: contain;" alt="Preview File" id="output"/>
     @endif
-  
+
   </div>
   <table class="mt-2">
     <tr>
@@ -88,7 +91,7 @@
             </td>
         </tr>
     @endforeach
-    
+
 
   </table>
 

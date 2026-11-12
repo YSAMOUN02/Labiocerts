@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('service_id');
             $table->integer('no');
-            $table->string('title_category');
-            $table->longText('reference');
+            $table->string('category');
+            $table->longText('description')->nullable();
+            $table->longText('reference')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

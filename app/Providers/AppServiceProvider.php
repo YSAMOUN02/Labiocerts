@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Models\Media;
 use App\Models\Quote;
 use Illuminate\Support\ServiceProvider;
-
+use App\Models\Service;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
                 ->orderby('viewer','desc')
                 ->limit(4)
                 ->get();
-            
+
             $media_last = Media::with(['image'])
             ->where('status',1)
             ->orderby('id','desc')
@@ -41,13 +41,16 @@ class AppServiceProvider extends ServiceProvider
             ->where('status', 1)
             ->orderBy('id', 'desc')
             ->get();
-            return $view -> with(['media_last' => $media_last , 'media_event' =>$media_event , 'media_popular' =>$media_popular]);
+
+            $service = Service::orderby('no','desc')->get();
+
+            return $view -> with(['media_last' => $media_last , 'media_event' =>$media_event , 'media_popular' =>$media_popular,'service' => $service]);
         });
 
 
         view()->composer('backend.master',function($view){
             $quote_qty = Quote::Where('state',0)
-           
+
             ->count();
             return $view -> with([ 'quote_qty' =>$quote_qty]);
         });

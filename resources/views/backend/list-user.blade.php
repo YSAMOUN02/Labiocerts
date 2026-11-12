@@ -1,4 +1,7 @@
 @extends('backend.master')
+@section('title')
+    List User
+@endsection
 @section('content')
   <!-- alert confirm for user aware -->
   <div class="alert-confirm " id="delect_user">
@@ -21,7 +24,7 @@
  @elseif(Session::has('fail'))
   <div class="message-box fail">
       <span>{{Session::get('fail')}}</span>
-  
+
   </div>
   @endif
 <table >
@@ -52,13 +55,13 @@
                         <button type="button" onclick="delete_value({{$item->id}} ,'#user_id', '#delect_user' )" class="btn-danger btn-delete-category" >
                             <i class="fa-solid fa-trash" style="color: #ffffff;"></i>
                         </button>
-                    
+
                     </td>
                 </tr>
             @endforeach
         @endif
-     
-     
+
+
     </tbody>
   </table>
 

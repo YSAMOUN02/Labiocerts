@@ -26,7 +26,7 @@
                     @foreach($sorted_categories as $service_category)
                     <tr>
                         <td><strong>{{ $service_category->no }}</strong></td>
-                        <td colspan="3"><strong>{{ $service_category->title_category }}</strong></td>
+                        <td colspan="3"><strong>{{ $service_category->category }}</strong></td>
                     </tr>
                     <tr>
                         <td>No.</td>

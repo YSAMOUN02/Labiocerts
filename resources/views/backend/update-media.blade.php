@@ -1,7 +1,10 @@
 @extends('backend.master')
+@section('title')
+    Update Media
+@endsection
 @section('content')
 @php
-$child = 0;   
+$child = 0;
 @endphp
 <form  action="/admin/media/update/submit" method="POST" enctype="multipart/form-data">
     @csrf
@@ -21,10 +24,10 @@ $child = 0;
                 <option value="1">Active</option>
                 <option value="0">Inactive</option>
                 @endif
-        
+
             </select>
         </div>
-      
+
     </div>
     <div class="row">
         <div class="col-6">
@@ -40,7 +43,7 @@ $child = 0;
                 <option value="4">Science</option>
                 <option value="5"></option>
             </select>
-        </div>  
+        </div>
     </div>
     <div class="row">
 
@@ -54,21 +57,21 @@ $child = 0;
                     <option value="5"></option>
                 </select>
             </div>
-  
+
     </div>
     <div class="row">
         <div class="col-12">
             <small class="text-danger">Click Image to change Image. Double tap to remove image</small><br>
             <small>First Image is Thumbnail</small>
-        
+
         </div>
     </div>
     <div class="row">
         <div class="col-12">
             <div class="input">
                 <div class="input-child">
-                 
-                
+
+
                     @foreach($mergedData as $item)
 
                         @if($item->type == 'text')
@@ -81,9 +84,9 @@ $child = 0;
                                     </div>
                                 </div>
                             </div>
-                       
+
                         @elseif($item->type == 'image')
-              
+
                             {{-- Image --}}
                             <div class="inputBox{{$item->order}}">
                                 <div class="row mt-3">
@@ -96,15 +99,15 @@ $child = 0;
                                     <div class="row mt-3">
                                         <div class="col-6 thumbnail">
                                             <img width="100%"  src="/assets/uploads/{{$item->data->name}}" accept="image/*" ondblclick="clearImageThumbnail('input_class{{$item->order}}' , 'input_class{{$item->order}}','inputBox{{$item->order}}')" id="output_id{{$item->order}}" alt="">
-                                          
+
                                         </div>
                                     </div>
-                            
+
                                 </div>
-                                
+
                         @endif
                         @php
-                            $child ++;   
+                            $child ++;
                         @endphp
                     @endforeach
                         </div>
@@ -113,15 +116,15 @@ $child = 0;
             </div>
         </div>
     </div>
-   
+
 
 <div class="add-image">
     <button type="button" onclick="append_image({{$child}})"><i class="fa-regular fa-image"></i> </button>
     <button type="button" onclick="append_textbox({{$child}})"><i class="fa-solid fa-pen-to-square"></i></button>
     <button type="submit">Submit</button>
-   
+
 </div>
- 
+
 </form>
 
 @endsection

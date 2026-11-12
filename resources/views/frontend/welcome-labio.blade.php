@@ -36,11 +36,13 @@
                         </ul>
                     </div>
                 </div>
-                <div class="relecvant">
-                    <div class="relevant-img wel-img">
+
+                <div class="coverage-service">
+                    <div class="coverageservice-img wel-img">
                         <img src="{{URL('/assets/image/relevant.jpg')}}" alt="">
                     </div>
-                    <div class="relevan-text">
+                    <div class="relevan-text mt-4">
+
                         <h5>Relevant Products</h5>
                         <ul class="ulrelevant co-li">
                             <li>Pharmaceuticals</li>
@@ -50,29 +52,24 @@
                     </div>
                 </div>
                 <div class="button-container">
-                    <div class="share-dropdown">
-                        <button class="share-button"><i class="fa-solid share-link fa-share-nodes fa-sm" style="color: #0e0c0c;"></i>Share</button>
-                        <div class="dropdown-content">
-                            <a href="#" id="share-copy">Copy link</a>
-                        </div>
-                    </div>
+                 
                     <div class="face-btn">
                         <button class="facebook-button">
-                            <a href="#" id="share-facebook">
+                            <a href="https://www.facebook.com/share/1FQji8RHDQ/" target="_blank" id="share-facebook">
                                 <i class="fa-brands share-face fa-facebook-f" style="color: #ffffff;"></i>
                                 Facebook
                             </a>
                         </button>
                     </div>
-                    <div class="print-btn">
+                    {{-- <div class="print-btn">
                         <button class="print-button" onclick="window.print()">
                             <i class="fa-solid share-print fa-print" style="color: #ffffff;"></i>
                             Print
                         </button>
-                    </div>
+                    </div> --}}
 
                 </div>
-                <div class="block-row">
+                {{-- <div class="block-row">
                     <div class="previous-side">
                         <span class="pre-art">Previous article</span> <br>
                         <a href="/service/foodtesting">Food and Feed Testing</a>
@@ -81,7 +78,7 @@
                         <span class="next-art">Next article</span>
                         <a href="/service/pharmaceutical">Pharmaceutical Testing</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <aside>
 
@@ -91,18 +88,15 @@
                     <span class="lastnew">LASTEST NEWS</span>
                 </div>
                 <div class="lastnew-detail">
-                    <div class="img-khmernew ">
-                        <a href="/media/newyear" class="img-lastnew"><img src="{{URL('/assets/image/allimg1.jpg')}}" alt=""></a>
-                        <a href="/media/newyear" class="text-lastnew">New year and double birthday</a>
-                    </div>
+                @if(!empty($collection_lastest))
+                @foreach($collection_lastest as $item)
                     <div class="img-launchnew ">
-                        <a href="/media/launchofKEM" class="img-lastnew"><img src="{{URL('/assets/image/allimg2.jpg')}}" alt=""></a>
-                        <a href="/media/launchofKEM" class="text-lastnew">Launch of KEM</a>
+                        <a href="/media/page={{$item->id}}" class="img-lastnew"><img src="/assets/uploads/{{$item->image}}"  alt=""></a>
+                        <a href="/media/page={{$item->id}}" class="text-lastnew">{{ Str::limit($item->title, 40) }}</a>
                     </div>
-                    <div class="img-kinal ">
-                        <a href="/media/kinal" class="img-lastnew"><img src="{{URL('/assets/image/allimg3.jpg')}}" alt=""></a>
-                        <a href="/media/kinal" class="text-lastnew">KINAL is the symbol of the effective pain-killer</a>
-                    </div>
+                @endforeach
+                @endif
+
                 </div>
             </div>
         </div>

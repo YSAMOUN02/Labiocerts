@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service_parameter', function (Blueprint $table) {
+        Schema::create('sub_list', function (Blueprint $table) {
             $table->id();
-            $table->integer('service_category_id');
+            $table->integer('main_list_id');
             $table->integer('no');
-            $table->string('title_parameter');
+            $table->string('name');
             $table->string('duration')->nullable();
             $table->string('method')->nullable();
+
             $table->timestamps();
-            
+
         });
     }
 
@@ -28,7 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        
-        Schema::dropIfExists('service_parameter');
+
+        Schema::dropIfExists('sub_list');
     }
 };

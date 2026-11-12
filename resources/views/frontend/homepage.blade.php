@@ -2,7 +2,7 @@
 @section('content')
 
 <body>
-    
+
     <!-- Slider Section-->
     <swiper-container class="mySwiper" pagination="true" pagination-type="progressbar" navigation="true" autoplay="true"
         autoplay-delay="3000">
@@ -62,7 +62,7 @@
                     Would you need to check whether your materials...
                 </p>
                 <div class="readmore-btn">
-                    <a href="/service/pharmaceutical" class="btn1 btn-color btn-size btn-sizes">
+                    <a href="/service/1" class="btn1 btn-color btn-size btn-sizes">
                         <button class="read-btn style-bt btn-pharma btn-service">Read more <i
                                 class="fa-solid fa-angles-right"></i></button>
                     </a>
@@ -78,7 +78,7 @@
                     to gauge one or more characteristics of a product...
                 </p>
                 <div class="readmore-btn">
-                    <a href="/service/foodtesting" class="btn1 btn-color btn-size btn-sizes">
+                    <a href="/service/2" class="btn1 btn-color btn-size btn-sizes">
                         <button class="read-btn style-bt btn-food btn-service">Read more <i
                                 class="fa-solid fa-angles-right"></i></button>
                     </a>
@@ -94,7 +94,7 @@
                     We can help you check this at Labiocert laboratory...
                 </p>
                 <div class="readmore-btn water-btn">
-                    <a href="/service/watertesting" class="btn1 btn-color btn-size btn-sizes">
+                    <a href="/service/3" class="btn1 btn-color btn-size btn-sizes">
                         <button class="read-btn style-bt btn-water btn-service">Read more <i
                                 class="fa-solid fa-angles-right"></i></button>
                     </a>
@@ -112,12 +112,12 @@
         </div>
         <div class="swiper">
             <div class="swiper-wrapper m-client">
-     
+
                 @foreach ($client_logo as $item)
-                
+
                     <div class="swiper-slide"><a href="{{$item->link}}"  target="_blank"><img width="200px" src="/assets/uploads_logo/{{$item->thumbnail}}" alt="Client Logo"></a></div>
                 @endforeach
-               
+
             </div>
             <div class="swiper-button">
                 <div class="nextt-btn">
@@ -151,7 +151,7 @@
         </div>
     </div>
     <script>
-        
+
         // Example of swiper initialization
         var swiper = new Swiper('.swiper-container', {
             pagination: {
@@ -163,7 +163,7 @@
                 disableOnInteraction: false,
             },
         });
-        // Client 
+        // Client
         var swiper = new Swiper('.swiper', {
             slidesPerView: 4,
             direction: getDirection(),
@@ -196,7 +196,12 @@
         document.querySelector('.button-prev').addEventListener('click', function () {
             swiper.slidePrev();
         });
-
+        document.querySelector('.button-next').addEventListener('click', function() {
+            swiper.slideNext();
+        });
+        document.querySelector('.button-prev').addEventListener('click', function() {
+            swiper.slidePrev();
+        });
     </script>
 </body>
 

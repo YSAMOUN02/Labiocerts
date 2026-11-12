@@ -20,14 +20,19 @@ class userController extends Controller
       $user->name = $request->name;
       $user->email = $request->email;
       $user->password = Hash::make($request->password);
-      $user->save();
+      $stored =  $user->save();
 
-    return $request;
+      if($stored ){
+        return redirect('/admin/user/list')->with('sucess','Successful Create user.');
+     }else{
+
+        return redirect('/admin/user/list')->with('fail','Opp! Operation Fail. Try again.');
+     }
    }
    public function list_user(){
       $user = User::Orderby('id','desc')->get();
 
-   
+
       return view('backend.list-user',['user' => $user]);
    }
 
@@ -37,7 +42,7 @@ class userController extends Controller
       if($delete){
          return redirect('/admin/user/list')->with('sucess','Deleted 1 Record.');
       }else{
-         
+
          return redirect('/admin/user/list')->with('fail','Opp! Operation Fail. Try again.');
       }
    }
@@ -46,5 +51,22 @@ class userController extends Controller
       $user = User::where('id',$id)->first();
 
       return view('backend.update-user',['user' => $user]);
+   }
+
+   public function user_update_submit(request $request){
+
+    $user = User::where('id',$request->id)->first();
+
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->password = Hash::make($request->password);
+    $stored =  $user->save();
+
+    if($stored){
+        return redirect('/admin/user/list')->with('sucess','Update Success.');
+     }else{
+
+        return redirect('/admin/user/list')->with('fail','Opp! Operation Fail. Try again.');
+     }
    }
 }

@@ -38,7 +38,7 @@
                 <p>Please consult with out team to determine what you need to analyze for the microbiological quality of
                     your
                     product which may be one of the followings.
-                </p>    
+                </p>
             </div>
             <div class="physico">
                 <div class="microbiological-img">
@@ -65,7 +65,7 @@
                     <li>Liquid preparation for oral use</li>
                     <li>Rectal prepations</li>
                 </ul>
-                    
+
                 </div>
             </div>
             <div class="physico-detail  p-txt">
@@ -74,27 +74,28 @@
                     With our existing laboratory located in Chom Chao, Phnom Penh and internationally recognized
                     partner laboratories,
                     we are please to support you in quality analysis and related consultancy.
-                </p>    
+                </p>
             </div>
             <div class="serive-onebtn">
                 <a href="/service/pharmaceutical/quote" class="btn1 btn-color btn-size btn-sizes">
                     <span class="serviceone-btn">GET A QUOTE</span>
-                </a>  
-                <a href="/service/pharamaceutial/testparameter" class="btn1 btn-color btn-size btn-sizes">
-                    <span class="parameter-btn">Test Parameters</span>
-                </a>      
+                </a>
+                @if (!empty($services_category))
+                    @foreach ($services_category as $item)
+
+                        <a href="/service={{$item->service_id}}/detail/category={{$item->id}}" class="btn1 btn-color btn-size btn-sizes">
+                            <span class="parameter-btn">{{$item->category}}</span>
+                        </a>
+                    @endforeach
+
+                @endif
+
             </div>
-            <div class="button-container">
-                <div class="share-dropdown">
-                    <button class="share-button"><i class="fa-solid share-link fa-share-nodes fa-sm"
-                            style="color: #0e0c0c;"></i>Share</button>
-                    <div class="dropdown-content">
-                        <a href="#" id="share-copy">Copy link</a>
-                    </div>
-                </div>
-                <div class="face-btn"> 
+            {{-- <div class="button-container">
+
+                <div class="face-btn">
                     <button class="facebook-button">
-                        <a href="#" id="share-facebook">
+                        <a href="https://www.facebook.com/share/1FQji8RHDQ/" target="_blank" id="share-facebook">
                             <i class="fa-brands share-face fa-facebook-f"style="color: #ffffff;"></i>
                             Facebook
                         </a>
@@ -103,17 +104,17 @@
                 <div class="print-btn">
                     <button class="print-button" onclick="window.print()">
                         <i class="fa-solid share-print fa-print"style="color: #ffffff;"></i>
-                        Print 
+                        Print
                     </button>
                 </div>
-                
-            </div>
-            <div class="block-row">
+
+            </div> --}}
+            {{-- <div class="block-row">
                 <div class="previous-side">
                     <span class="pre-art">Previous article</span> <br>
                     <a href="/welcomelabiocert">Welcome to Labiocert</a>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="adversting fixed ads-service">
             <div class="last-new">

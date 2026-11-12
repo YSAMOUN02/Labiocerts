@@ -37,7 +37,7 @@
                     <label class="c-name" for="y-Name">Your Message * <br></label>
                     <textarea  class="c-text" name="message" id="y-Name" maxlength="5000" required>{{ old('message') }}</textarea><br>
                     @error('message')<div class="eror-mes" style="display:block">{{ $message }}</div>@enderror
-                
+
                     <button type="submit" class="c-btnsub">Submit</button>
                 </form>
                 <div id="res-Message" class="{{ session('contact_success') ? '' : 'hidden' }}" style="color:#1a7f37">Thank you for your message. It has been sent.</div>
@@ -50,10 +50,10 @@
                             <i class="fa-solid fa-mobile-screen"></i>
                         </div>
                         <div class="cont-tell o-detail">
-                            <h5>Telephone & Fax :</h5>
+                            <h5>Telephone :</h5>
                             <span class="telll">
-                                - Tel: <a href="tel:+85517594293" style="text-decoration: none;"> (+855) 17 59 42 93 </a><br>
-                                - Fax: <a href="tel:+85523890093" style="text-decoration: none;"> (+855) 23 89 00 93</a>
+                                - Tel: <a href="tel:+85517594243" style="text-decoration: none;"> (+855) 17 594 243 </a><br>
+                                - Tel: <a href="tel:+85593594243" style="text-decoration: none;"> (+855) 93 594 243 </a>
                             </span>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                         <div class="emaill-text o-detail">
                             <h5>Email :</h5>
                             <span class="telll">
-                                - <a href="mailto:ncharkriya@labiocert.com" style="text-decoration: none;"> nchakriya@labiocert.com </a> <br> 
+
                                 - <a href="mailto:info@labiocert.com" style="text-decoration: none;"> info@labiocert.com</a></span>
                         </div>
                     </div>

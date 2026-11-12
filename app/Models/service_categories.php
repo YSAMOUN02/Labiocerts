@@ -9,17 +9,15 @@ class service_categories extends Model
 {
 
     use HasFactory;
-    
+
     protected $table = 'service_category';
-    protected $fillable = [
-    'service_id', 
-    'no', 
-    'title_category',
-    'status',
-  ];
-  public function service(){
-    return $this->belongTo(Service::class);
-  }
+
+
+    public function mainlist(){
+        return $this->hasMany(MainList::class,'category_id','id');
+      }
+
+
 }
 
 

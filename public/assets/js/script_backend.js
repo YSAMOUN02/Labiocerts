@@ -35,8 +35,6 @@ function drop_down_logo_user() {
         state_media = 1;
         drop_down_media();
 
-        website_manage =1;
-        drop_down_website_manage();
 
     } else {
         document.getElementById('user-manage').style.display = 'none';
@@ -55,14 +53,8 @@ function drop_down_media() {
         document.getElementById('media_icon').style.transform = 'rotate(180deg)';
         document.getElementById('media_icon').style.top = '5%';
         state_media = 1;
-
-
         state_user = 1;
         drop_down_logo_user();
-
-        website_manage =1;
-        drop_down_website_manage();
-
     } else {
         document.getElementById('media-manage').style.display = 'none';
         document.getElementById('media_icon').style.transform = 'rotate(0deg)';
@@ -71,32 +63,10 @@ function drop_down_media() {
     }
 }
 
-var website_manage = 0;
-function drop_down_website_manage() {
-
-    if (website_manage == 0) {
-        document.getElementById('website-manage').style.display = 'block';
-        document.getElementById('website-manage_icon').style.transform = 'rotate(180deg)';
-        document.getElementById('website-manage_icon').style.top = '5%';
-        website_manage = 1;
 
 
-        state_media = 1;
-        drop_down_media();
 
-        state_user = 1;
-        drop_down_logo_user();
-        
-    } else {
-        document.getElementById('website-manage').style.display = 'none';
-        document.getElementById('website-manage_icon').style.transform = 'rotate(0deg)';
-        document.getElementById('website-manage_icon').style.top = '20%';
-        website_manage = 0;
-    }
-}
-
-
-// Alert For User 
+// Alert For User
 function fade_alert(class_hide) {
 
     document.querySelector(class_hide).style.visibility = 'hidden';
@@ -146,7 +116,7 @@ tinymce.init({
 
 
 var state = 0;
-var output =  'output'; 
+var output =  'output';
 var class_no = 1;
 var input = 'input';
 var state_child = 0;
@@ -156,7 +126,7 @@ function append_image(qty_child){
         class_no += qty_child;
         state_child =1;
     }
-    
+
     var append_child = document.querySelector(".input-child");
 
 
@@ -164,34 +134,34 @@ function append_image(qty_child){
         // alert(class_no);
         var output_id = output_id = output + class_no.toString();
         var input_class = input+class_no.toString();
-    
+
         var new_div = document.createElement('div');
         var new_class = "inputBox"+class_no.toString();
         new_div.classList.add(new_class);
-      
+
         new_div.innerHTML = `
         <div class="row mt-3">
             <div class="col-6">
                 <input type="file"  name="${input_class}" onchange="loadFileDynamic(event,'${output_id}')" id="${input_class}" class="form-control d-none">
             </div>
-   
+
             </div>
             <div class="row mt-3">
                 <div class="col-6 thumbnail">
                     <img width="100%"  src="" accept="image/*" ondblclick="clearImageThumbnail('${input_class}' , '${output_id}','${new_class}')" id="${output_id}" alt="">
                 </div>
             </div>
-       
+
         </div>
                 `;
-    
-         
+
+
         append_child.appendChild(new_div);
         document.getElementById(input_class).click();
         class_no ++ ;
         state ++ ;
         document.getElementById('state').value = state;
-        
+
     } else {
         console.log("Element with class 'appen-child' not found");
     }
@@ -203,7 +173,7 @@ function append_textbox(qty_child){
         class_no += qty_child;
         state_child =1;
     }
-         
+
     var append_child = document.querySelector(".input-child");
 
 
@@ -221,19 +191,19 @@ function append_textbox(qty_child){
                             <button class="clear-text-box" type="button" onclick="clearTextbox('${new_class}')"><i class="fa-solid fa-minus"></i></button>
                         </div>
                 </div>
-            
+
                 `;
-  
-              
+
+
         append_child.appendChild(new_div);
         tinymce.init({
             selector: `.textarea`,
             plugins: 'image link'
-        });  
+        });
         class_no ++ ;
         state ++ ;
-        state_child =   document.getElementById('state').value = class_no;                  
-    } 
+        state_child =   document.getElementById('state').value = class_no;
+    }
     else {
         console.log("Element with class 'appen-child' not found");
     }
@@ -243,7 +213,7 @@ function clearTextbox(id_box){
     document.querySelector("#"+id_box).value = "";
     // console.log(123);
 
-    
+
 }
 
 
@@ -256,9 +226,9 @@ function clearImageThumbnail(inputId ,outputId,disable_class) {
     document.getElementById(inputId).value = "";
     document.getElementById(inputId).removeAttribute = "name";
     document.getElementById(outputId).src = "";
-  
+
 }
-// For Preview File Image Dynamic  
+// For Preview File Image Dynamic
 function loadFileDynamic(event,output_data) {
     var reader = new FileReader();
     reader.onload = function () {
@@ -272,7 +242,7 @@ function loadFileDynamic(event,output_data) {
 function validation(event){
     // alert(123);
        // Check if file input is empty
-    
+
 
     if (fileInput.files.length === 0) {
         event.preventDefault(); // Prevent form submission
@@ -288,17 +258,6 @@ function delete_value(id , input , show_alert){
 }
 
 
-// }
-// function delete_media(id){
-//     document.querySelector('#media_id').value = id;
-//     document.querySelector('#delect_media').style.visibility = 'visible';
-   
-// }
-// function delete_logo_client(id ){
-//     document.querySelector('#logo_client_id').value = id;
-//     document.querySelector('#delete_logo_client').style.visibility = 'visible';
-   
-// }
 
 
 function showUpdateForm(serviceCategoryId) {
